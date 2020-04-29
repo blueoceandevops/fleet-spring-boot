@@ -29,6 +29,7 @@
         <module>spring-boot-properties</module>
         <module>spring-boot-logback</module>
         <module>spring-boot-aop</module>
+        <module>spring-boot-exception</module>
     </modules>
 
     <build>
