@@ -18,3 +18,4 @@ Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spri
 - [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 logback 日志
 - [spring-boot-aop](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-aop)：Spring Boot AOP 切面
 - [spring-boot-exception](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-exception)：Spring Boot 统一异常处理
+- [spring-boot-actuator](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-actuator)：Spring Boot Actuator 监控与管理

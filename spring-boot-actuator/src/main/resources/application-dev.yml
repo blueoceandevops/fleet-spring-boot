@@ -1,0 +1,23 @@
+# 加载所有的端点，默认只加载了info、health
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    # 可以关闭指定的端点
+    shutdown:
+      enabled: false
+  health:
+
+info:
+  blog-url: www.fleetsoft.com.cn
+  author: fleet
+  version: 1.0
+  app:
+    name: actuator
+    port: 8080
