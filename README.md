@@ -9,3 +9,4 @@ Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spri
 - [spring-boot-hello](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hello)：Spring Boot 入门项目
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 mysql
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 mybatis
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 Jpa

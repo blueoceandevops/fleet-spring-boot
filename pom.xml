@@ -21,6 +21,7 @@
         <module>spring-boot-hello</module>
         <module>spring-boot-mysql</module>
         <module>spring-boot-mybatis</module>
+        <module>spring-boot-jpa</module>
     </modules>
 
     <build>
