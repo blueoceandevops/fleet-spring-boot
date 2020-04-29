@@ -22,6 +22,10 @@
         <module>spring-boot-mysql</module>
         <module>spring-boot-mybatis</module>
         <module>spring-boot-jpa</module>
+        <module>spring-boot-thymeleaf</module>
+        <module>spring-boot-freemarker</module>
+        <module>spring-boot-beetl</module>
+        <module>spring-boot-enjoy</module>
     </modules>
 
     <build>

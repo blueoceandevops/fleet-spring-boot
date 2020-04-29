@@ -9,4 +9,8 @@ Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spri
 - [spring-boot-hello](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hello)：Spring Boot 入门项目
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 mysql
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 mybatis
-- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 Jpa
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 jpa
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-thymeleaf)：Spring Boot 结合 thymeleaf 模板引擎
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 freemarker 模板引擎
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-beetl)：Spring Boot 结合 beetl 模板引擎
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 enjoy 模板引擎
