@@ -26,6 +26,7 @@
         <module>spring-boot-freemarker</module>
         <module>spring-boot-beetl</module>
         <module>spring-boot-enjoy</module>
+        <module>spring-boot-properties</module>
     </modules>
 
     <build>
