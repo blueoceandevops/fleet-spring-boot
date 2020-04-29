@@ -28,6 +28,7 @@
         <module>spring-boot-enjoy</module>
         <module>spring-boot-properties</module>
         <module>spring-boot-logback</module>
+        <module>spring-boot-aop</module>
     </modules>
 
     <build>
