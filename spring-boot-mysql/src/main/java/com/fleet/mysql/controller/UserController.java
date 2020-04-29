@@ -32,8 +32,8 @@ public class UserController {
     }
 
     @RequestMapping("/get")
-    public void get(Long id) {
-        userService.get(id);
+    public User get(Long id) {
+        return userService.get(id);
     }
 
     @RequestMapping("/list")
