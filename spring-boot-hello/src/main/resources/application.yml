@@ -1,5 +1,2 @@
-spring:
-  application:
-    name: spring-boot-helloworld
 server:
   port: 8080
