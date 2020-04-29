@@ -40,5 +40,4 @@ public class UserController {
     public List<Map<String, Object>> list() {
         return userService.list();
     }
-
 }
