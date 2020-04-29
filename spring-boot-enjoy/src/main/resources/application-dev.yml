@@ -1,5 +1,0 @@
-logging:
-  config: classpath:logback-custom.xml
-  level:
-    root: debug
-  path: applog/spring-boot-enjoy
