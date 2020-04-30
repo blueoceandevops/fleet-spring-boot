@@ -15,30 +15,31 @@
 
 ```javascript
 
-	// send AJAX request, catch success or error callback
-	if (param.json) {
-        var ajaxRequest = {
-            url: url,
-            headers: header,
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(JSON.parse(param.json)),
-            type: type.toUpperCase(),
-            success: displaySuccess,
-            error: displayError
-        };
-        $.ajax(ajaxRequest);
-    } else {
-        var ajaxRequest = {
-            url: url,
-            headers: header,
-            data: param,
-            type: type.toUpperCase(),
-            success: displaySuccess,
-            error: displayError
-        };
-        $.ajax(ajaxRequest);
-    }
+// send AJAX request, catch success or error callback
+if (param.json) {
+	var ajaxRequest = {
+		url: url,
+        headers: header,
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(JSON.parse(param.json)),
+        type: type.toUpperCase(),
+        success: displaySuccess,
+        error: displayError
+    };
+    $.ajax(ajaxRequest);
+} else {
+	var ajaxRequest = {
+        url: url,
+        headers: header,
+        data: param,
+        type: type.toUpperCase(),
+        success: displaySuccess,
+        error: displayError
+    };
+    $.ajax(ajaxRequest);
+}
+
 ```
 
 2. 使用 npm 安装 apidoc `npm install apidoc –g`
