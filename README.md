@@ -1,6 +1,6 @@
 # fleet-spring-boot
 
-Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spring Boot 各种组件
+> Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spring Boot 各种组件
 
 ## 示例项目
 
@@ -21,5 +21,5 @@ Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spri
 - [spring-boot-actuator](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-actuator)：Spring Boot Actuator 监控与管理
 - [spring-boot-admin-client](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-admin/spring-boot-admin-client)：Spring Boot Admin 应用信息可视化，客户端示例
 - [spring-boot-admin-server](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-admin/spring-boot-admin-server)：Spring Boot Admin 应用信息可视化，服务端示例
-- [spring-boot-swagger](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-swagger)：Spring Boot swagger swagger 自动生成接口文档
 - [spring-boot-swagger](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-swagger)：Spring Boot swagger 自动生成接口文档
+- [spring-boot-apidoc](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-apidoc)：Spring Boot apidoc 自动生成接口文档
