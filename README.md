@@ -23,3 +23,4 @@
 - [spring-boot-admin-server](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-admin/spring-boot-admin-server)：Spring Boot Admin 应用信息可视化，服务端示例
 - [spring-boot-swagger](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-swagger)：Spring Boot swagger 自动生成接口文档
 - [spring-boot-apidoc](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-apidoc)：Spring Boot apidoc 自动生成接口文档
+- [spring-boot-async](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-async)：Spring Boot 线程池配置

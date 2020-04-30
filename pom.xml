@@ -36,6 +36,7 @@
         <module>spring-boot-admin</module>
         <module>spring-boot-swagger</module>
         <module>spring-boot-apidoc</module>
+        <module>spring-boot-async</module>
     </modules>
 
     <build>
