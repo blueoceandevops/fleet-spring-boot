@@ -6,6 +6,50 @@
 
 1. 安装 node.js
 2. 使用 npm 安装 apidoc `npm install apidoc –g`
+3. 配置 apidoc.json
+
+```
+
+{
+  "name": "接口文档",
+  "version": "1.0.0",
+  "description": "接口文档",
+  "title": "接口文档",
+  "url": "http://localhost:8080/",
+  "sampleUrl": "http://localhost:8080/"
+}
+
+```
+
+4. 编写apidoc文档
+
+`
+
+/**
+ * @api {get} user/get 根据用户id查询用户信息
+ * @apiVersion 1.0.0
+ * @apiGroup 用户信息
+ * @apiName 1、根据用户id查询用户信息
+ * @apiDescription 根据用户id查询用户信息
+ * @apiParam {Long} id 用户id
+ * @apiSuccess {Long} id 用户id
+ * @apiSuccess {String} name 用户名
+ * @apiSuccessExample Success-Response:
+ * { "id": 1, "name": "fleet" }
+ * @apiSampleRequest user/get
+ */
+@CrossOrigin
+@RequestMapping(value = "/get")
+private User get(@RequestParam Long id) {
+    User user = new User();
+    user.setId(1L);
+    user.setName("fleet");
+    return user;
+}
+
+`
+
+5. 执行命令，生成文档。`apidoc -i fleet-spring-boot/spring-boot-apidoc -o   fleet-spring-boot/aipdoc`
 
 ## 修改apidoc
 
