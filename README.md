@@ -19,3 +19,5 @@ Spring Boot 教程，Spring Boot 的各种简单示例，快速入门使用 Spri
 - [spring-boot-aop](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-aop)：Spring Boot AOP 切面
 - [spring-boot-exception](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-exception)：Spring Boot 统一异常处理
 - [spring-boot-actuator](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-actuator)：Spring Boot Actuator 监控与管理
+- [spring-boot-admin-client](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-admin/spring-boot-admin-client)：Spring Boot Admin 对应用信息进行可视化，客户端示例
+- [spring-boot-admin-client](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-admin/spring-boot-admin-client)：Spring Boot Admin 对应用信息进行可视化，服务端示例
