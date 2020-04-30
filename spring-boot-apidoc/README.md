@@ -23,7 +23,7 @@
 
 4. 编写apidoc文档
 
-`
+```
 
 /**
  * @api {get} user/get 根据用户id查询用户信息
@@ -47,9 +47,9 @@ private User get(@RequestParam Long id) {
     return user;
 }
 
-`
+```
 
-5. 执行命令，生成文档。`apidoc -i fleet-spring-boot/spring-boot-apidoc -o   fleet-spring-boot/aipdoc`
+5. 执行命令，生成文档 `apidoc -i fleet-spring-boot/spring-boot-apidoc -o   fleet-spring-boot/aipdoc`
 
 ## 修改apidoc
 
