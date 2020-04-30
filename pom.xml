@@ -34,6 +34,7 @@
         <module>spring-boot-exception</module>
         <module>spring-boot-actuator</module>
         <module>spring-boot-admin</module>
+        <module>spring-boot-swagger</module>
     </modules>
 
     <build>
