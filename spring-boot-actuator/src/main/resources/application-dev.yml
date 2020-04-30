@@ -12,8 +12,6 @@ management:
     # 可以关闭指定的端点
     shutdown:
       enabled: false
-  health:
-
 info:
   blog-url: www.fleetsoft.com.cn
   author: fleet
