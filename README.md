@@ -24,3 +24,6 @@
 - [spring-boot-swagger](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-swagger)：Spring Boot swagger 自动生成接口文档
 - [spring-boot-apidoc](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-apidoc)：Spring Boot apidoc 自动生成接口文档
 - [spring-boot-async](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-async)：Spring Boot 线程池配置
+- [spring-boot-h2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-h2)：Spring Boot h2 数据库
+- [spring-boot-sqlite](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sqlite)：Spring Boot sqlite 数据库
+- [spring-boot-postgresql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-postgresql)：Spring Boot postgresql 数据库
