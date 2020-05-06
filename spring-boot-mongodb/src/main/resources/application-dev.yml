@@ -1,0 +1,13 @@
+logging:
+  config: classpath:logback-custom.xml
+  level:
+    root: debug
+  path: applog/nosql-mongodb
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mongodb
+      username: admin
+      password: admin

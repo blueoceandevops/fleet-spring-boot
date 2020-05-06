@@ -31,6 +31,7 @@
 - [spring-boot-mail](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mail)：Spring Boot 发送邮件
 - [spring-boot-redis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-redis)：Spring Boot redis 缓存
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot elasticsearch 全文搜索引擎
+- [spring-boot-mongodb](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mongodb)：Spring Boot mongodb 基于分布式文件存储的数据库
 
 ### 中级部分：
 
