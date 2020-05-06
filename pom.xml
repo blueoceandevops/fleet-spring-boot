@@ -23,6 +23,7 @@
         <module>spring-boot-hello</module>
         <module>spring-boot-mysql</module>
         <module>spring-boot-mybatis</module>
+        <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-jpa</module>
         <module>spring-boot-thymeleaf</module>
         <module>spring-boot-freemarker</module>
