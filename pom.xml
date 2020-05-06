@@ -40,6 +40,7 @@
         <module>spring-boot-h2</module>
         <module>spring-boot-sqlite</module>
         <module>spring-boot-postgresql</module>
+        <module>spring-boot-mail</module>
     </modules>
 
     <build>
