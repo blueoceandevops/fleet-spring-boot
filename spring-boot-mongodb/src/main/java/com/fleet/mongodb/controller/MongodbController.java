@@ -1,7 +1,7 @@
 package com.fleet.mongodb.controller;
 
 import com.fleet.mongodb.entity.User;
-import com.fleet.mongodb.service.UserService;
+import com.fleet.mongodb.repository.UserRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,7 +18,7 @@ public class MongodbController {
     MongoTemplate mongotemplate;
 
     @Resource
-    UserService userService;
+    UserRepository userRepository;
 
     @RequestMapping("/insert")
     User insert() {
@@ -36,7 +36,7 @@ public class MongodbController {
 
     @RequestMapping("/get1")
     User get1() {
-        return userService.findByName("测试");
+        return userRepository.findByName("测试");
     }
 
 }
