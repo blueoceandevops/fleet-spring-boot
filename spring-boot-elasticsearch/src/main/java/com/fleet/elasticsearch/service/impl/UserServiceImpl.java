@@ -1,6 +1,6 @@
 package com.fleet.elasticsearch.service.impl;
 
-import com.fleet.elasticsearch.dao.UserDao;
+import com.fleet.elasticsearch.repository.UserRepository;
 import com.fleet.elasticsearch.entity.User;
 import com.fleet.elasticsearch.service.UserService;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -21,11 +21,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Override
     public Long insert(User user) {
-        User userResult = userDao.save(user);
+        User userResult = userRepository.save(user);
         return userResult.getId();
     }
 
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
         // 创建搜索 DSL 查询
         SearchQuery searchQuery = new NativeSearchQueryBuilder().withPageable(pageable).withQuery(functionScoreQueryBuilder).build();
-        Page<User> searchPageResults = userDao.search(searchQuery);
+        Page<User> searchPageResults = userRepository.search(searchQuery);
         return searchPageResults.getContent();
     }
 
