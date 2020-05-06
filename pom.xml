@@ -42,6 +42,7 @@
         <module>spring-boot-sqlite</module>
         <module>spring-boot-postgresql</module>
         <module>spring-boot-mail</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <build>
