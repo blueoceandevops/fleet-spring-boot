@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    # 开发
+    url: jdbc:sqlite::resource:db/sqlite.db
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    #    database-platform: com.fleet.sqlite.config.SQLiteDialect #自己配置的方言
+    # 自动根据Entity配置创建表
+    generate-ddl: true
