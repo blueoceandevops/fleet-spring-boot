@@ -37,6 +37,9 @@
         <module>spring-boot-swagger</module>
         <module>spring-boot-apidoc</module>
         <module>spring-boot-async</module>
+        <module>spring-boot-h2</module>
+        <module>spring-boot-sqlite</module>
+        <module>spring-boot-postgresql</module>
     </modules>
 
     <build>
