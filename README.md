@@ -32,6 +32,8 @@
 - [spring-boot-redis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-redis)：Spring Boot redis 缓存
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot elasticsearch 全文搜索引擎
 - [spring-boot-mongodb](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mongodb)：Spring Boot mongodb 基于分布式文件存储的数据库
+- [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka Server 微服务注册与发现
+- [spring-boot-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-provider)：Spring Boot 将微服务注册到 Eukeka Server 上
 
 ### 中级部分：
 
