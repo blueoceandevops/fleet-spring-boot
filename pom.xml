@@ -21,6 +21,9 @@
 
     <modules>
         <module>spring-boot-hello</module>
+        <module>spring-boot-simple</module>
+        <module>spring-boot-eureka</module>
+        <module>spring-boot-provider</module>
         <module>spring-boot-mysql</module>
         <module>spring-boot-mybatis</module>
         <module>spring-boot-mybatis-plus</module>
@@ -45,8 +48,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-mongodb</module>
-        <module>spring-boot-eureka</module>
-        <module>spring-boot-provider</module>
+        <module>spring-boot-zuul</module>
     </modules>
 
     <build>

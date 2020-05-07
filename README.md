@@ -7,6 +7,10 @@
 ### 基础部分：
 
 - [spring-boot-hello](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hello)：Spring Boot 入门项目
+- [spring-boot-simple-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple-provider)：编写服务提供者
+- [spring-boot-simple-consumer](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple-consumer)：编写服务消费者
+- [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka Server 微服务注册与发现
+- [spring-boot-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-provider)：Spring Boot 将微服务注册到 Eukeka Server 上
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 mysql
 - [spring-boot-mybatis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 mybatis
 - [spring-boot-mybatis-plus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-plus)：Spring Boot 结合 mybatis plus
@@ -32,8 +36,7 @@
 - [spring-boot-redis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-redis)：Spring Boot redis 缓存
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot elasticsearch 全文搜索引擎
 - [spring-boot-mongodb](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mongodb)：Spring Boot mongodb 基于分布式文件存储的数据库
-- [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka Server 微服务注册与发现
-- [spring-boot-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-provider)：Spring Boot 将微服务注册到 Eukeka Server 上
+- [spring-boot-zuul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-zuul)：Spring Boot zuul 微服务网关
 
 ### 中级部分：
 
