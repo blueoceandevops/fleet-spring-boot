@@ -50,6 +50,7 @@
         <module>spring-boot-mongodb</module>
         <module>spring-boot-zuul</module>
         <module>spring-boot-gateway</module>
+        <module>spring-boot-feign</module>
     </modules>
 
     <build>

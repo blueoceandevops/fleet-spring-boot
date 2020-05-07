@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ProviderController {
+public class HelloController {
 
     @RequestMapping("hello")
-    public String get() {
+    public String hello() {
         return "hello！！！";
     }
 }
