@@ -1,13 +1,15 @@
 spring:
   application:
     name: service-provider
+  profiles:
+    active: dev
 server:
-  port: 8081
+  port: 8080
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 30 # 定义服务续约任务（心跳）的调用间隔，单位：秒
-    lease-expiration-duration-in-seconds: 60 # 定义服务失效的时间，单位：秒
