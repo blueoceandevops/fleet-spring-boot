@@ -37,6 +37,7 @@
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot elasticsearch 全文搜索引擎
 - [spring-boot-mongodb](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mongodb)：Spring Boot mongodb 基于分布式文件存储的数据库
 - [spring-boot-zuul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-zuul)：Spring Boot zuul 微服务网关
+- [spring-boot-gateway](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-gateway)：Spring Boot gateway 微服务网关
 
 ### 中级部分：
 

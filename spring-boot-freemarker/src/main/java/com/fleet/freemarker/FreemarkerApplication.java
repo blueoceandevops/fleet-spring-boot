@@ -1,4 +1,4 @@
-package com.fleet.template.engine.freemarker;
+package com.fleet.freemarker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

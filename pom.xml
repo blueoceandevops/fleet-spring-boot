@@ -49,6 +49,7 @@
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-mongodb</module>
         <module>spring-boot-zuul</module>
+        <module>spring-boot-gateway</module>
     </modules>
 
     <build>

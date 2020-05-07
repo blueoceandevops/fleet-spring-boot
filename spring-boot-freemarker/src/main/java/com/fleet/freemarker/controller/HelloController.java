@@ -1,4 +1,4 @@
-package com.fleet.template.engine.freemarker.controller;
+package com.fleet.freemarker.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
