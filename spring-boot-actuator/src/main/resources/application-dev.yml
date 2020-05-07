@@ -1,7 +1,5 @@
 # 加载所有的端点，默认只加载了info、health
 management:
-  server:
-    port: 8081
   endpoints:
     web:
       exposure:
