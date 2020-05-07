@@ -39,6 +39,7 @@
 - [spring-boot-zuul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-zuul)：Spring Boot Zuul 微服务网关
 - [spring-boot-gateway](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-gateway)：Spring Boot Gateway 微服务网关
 - [spring-boot-feign](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-feign)：Spring Boot Feign 实现声明式 REST 调用
+- [spring-boot-dataway](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-dataway)：Spring Boot Dataway 数据接口配置服务
 
 ### 中级部分：
 

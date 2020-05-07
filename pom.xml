@@ -51,6 +51,7 @@
         <module>spring-boot-zuul</module>
         <module>spring-boot-gateway</module>
         <module>spring-boot-feign</module>
+        <module>spring-boot-dataway</module>
     </modules>
 
     <build>
