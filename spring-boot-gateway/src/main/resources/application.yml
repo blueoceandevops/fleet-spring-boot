@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: service-gateway
+  profiles:
+    active: dev
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
