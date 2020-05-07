@@ -5,10 +5,10 @@ import com.fleet.mybatis.plus.entity.User;
 import com.fleet.mybatis.plus.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 @SpringBootTest
 public class MybatisPlusApplicationTests {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @Test
