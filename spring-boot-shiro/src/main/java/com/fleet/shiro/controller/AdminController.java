@@ -1,9 +1,11 @@
 package com.fleet.shiro.controller;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiresRoles("ADMIN")
 @RequestMapping("/admin")
 public class AdminController {
 
