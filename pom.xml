@@ -61,6 +61,7 @@
         <module>spring-boot-shiro</module>
         <module>spring-boot-security</module>
         <module>spring-boot-neo4j</module>
+        <module>spring-boot-hystrix</module>
     </modules>
 
     <build>

@@ -49,6 +49,7 @@
 - [spring-boot-shiro](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-shiro)：Spring Boot Shiro 权限管理
 - [spring-boot-security](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-security)：Spring Boot Security 权限管理
 - [spring-boot-neo4j](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-neo4j)：Spring Boot Neo4j 图形数据库
+- [spring-boot-hystrix](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-neo4j)：Spring Boot Hystrix 容错处理
 
 ### 中级部分：
 
