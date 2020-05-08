@@ -45,6 +45,7 @@
 - [spring-boot-kafka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-kafka)：Spring Boot Kafka 消息中间件
 - [spring-boot-rabbitmq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-rabbitmq)：Spring Boot RabbitMQ 消息中间件
 - [spring-boot-rocketmq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-rocketmq)：Spring Boot RocketMQ 消息中间件
+- [spring-boot-websocket](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-websocket)：Spring Boot WebSocket 前后端通信
 
 ### 中级部分：
 
