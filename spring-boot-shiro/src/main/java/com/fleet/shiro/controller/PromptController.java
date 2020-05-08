@@ -10,7 +10,7 @@ public class PromptController {
      * 未登录提示
      */
     @RequestMapping(value = "/notIn")
-    public String notLogin() {
+    public String notIn() {
         return "未登录";
     }
 
