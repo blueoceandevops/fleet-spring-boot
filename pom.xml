@@ -53,6 +53,7 @@
         <module>spring-boot-feign</module>
         <module>spring-boot-dataway</module>
         <module>spring-boot-ribbon</module>
+        <module>spring-boot-activemq</module>
     </modules>
 
     <build>
