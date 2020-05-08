@@ -58,6 +58,7 @@
         <module>spring-boot-rabbitmq</module>
         <module>spring-boot-rocketmq</module>
         <module>spring-boot-socket</module>
+        <module>spring-boot-shiro</module>
     </modules>
 
     <build>
