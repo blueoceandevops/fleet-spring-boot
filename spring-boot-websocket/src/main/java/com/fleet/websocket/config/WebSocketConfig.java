@@ -1,4 +1,4 @@
-package com.fleet.socket.config;
+package com.fleet.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

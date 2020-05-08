@@ -1,9 +1,8 @@
-package com.fleet.socket.controller;
+package com.fleet.websocket.controller;
 
-import com.fleet.socket.entity.Msg;
-import com.fleet.socket.entity.User;
-import com.fleet.socket.service.MsgQueue;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fleet.websocket.entity.Msg;
+import com.fleet.websocket.entity.User;
+import com.fleet.websocket.service.MsgQueue;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -11,15 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Controller
-@RequestMapping("/socket")
+@RequestMapping("/websocket")
 public class WebSocketController {
 
-    @Autowired
+    @Resource
     private SimpMessagingTemplate simpMessagingTemplate;
 
     @GetMapping(path = "/msg")

@@ -1,4 +1,4 @@
-package com.fleet.socket.entity;
+package com.fleet.websocket.entity;
 
 import java.io.Serializable;
 

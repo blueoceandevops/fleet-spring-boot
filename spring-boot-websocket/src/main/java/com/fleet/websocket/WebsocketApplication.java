@@ -1,4 +1,4 @@
-package com.fleet.socket;
+package com.fleet.websocket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +12,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableScheduling
-public class SocketApplication {
+public class WebsocketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocketApplication.class, args);
+		SpringApplication.run(WebsocketApplication.class, args);
 	}
 
 }

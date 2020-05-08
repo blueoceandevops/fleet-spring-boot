@@ -1,6 +1,6 @@
-package com.fleet.socket.service;
+package com.fleet.websocket.service;
 
-import com.fleet.socket.entity.Msg;
+import com.fleet.websocket.entity.Msg;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.fleet</groupId>
-    <artifactId>spring-boot-socket</artifactId>
-    <name>spring-boot-socket</name>
-    <description>socket</description>
+    <artifactId>spring-boot-websocket</artifactId>
+    <name>spring-boot-websocket</name>
+    <description>websocket</description>
     <packaging>jar</packaging>
     <version>1.0</version>
 
