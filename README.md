@@ -42,6 +42,9 @@
 - [spring-boot-dataway](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-dataway)：Spring Boot Dataway 数据接口配置服务
 - [spring-boot-ribbon](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-ribbon)：Spring Boot Ribbon 负载均衡
 - [spring-boot-activemq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activemq)：Spring Boot ActiveMQ 消息中间件
+- [spring-boot-kafka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-kafka)：Spring Boot Kafka 消息中间件
+- [spring-boot-activemq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activemq)：Spring Boot ActiveMQ 消息中间件
+- [spring-boot-activemq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activemq)：Spring Boot ActiveMQ 消息中间件
 
 ### 中级部分：
 
