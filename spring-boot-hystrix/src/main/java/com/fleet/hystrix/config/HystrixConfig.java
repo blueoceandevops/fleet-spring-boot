@@ -14,6 +14,11 @@ public class HystrixConfig {
     }
 
     @Bean
+    public ServletRegistrationBean<HystrixMetricsStreamServlet> actuatorServletRegistrationBean() {
+        return new ServletRegistrationBean<>(new HystrixMetricsStreamServlet(), "/actuator/hystrix.stream");
+    }
+
+    @Bean
     public HystrixMetricsStreamServlet hystrixMetricsStreamServlet() {
         return new HystrixMetricsStreamServlet();
     }
