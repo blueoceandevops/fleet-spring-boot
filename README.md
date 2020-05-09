@@ -54,6 +54,7 @@
 - [spring-boot-hystrix-dashboard](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hystrix-dashboard)：Spring Boot Hystrix Dashboard 监控
 - [spring-boot-hystrix-turbine](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hystrix-turbine)：Spring Boot Hystrix Turbine 聚合监控
 - [spring-boot-webflux](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-webflux)：Spring Boot Webflux 响应式编程
+- [spring-boot-ehcache](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-ehcache)：Spring Boot EhCache 纯Java的进程内缓存框架
 
 ### 中级部分：
 
