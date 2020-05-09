@@ -18,7 +18,7 @@ public class LogoutSuccess implements LogoutSuccessHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/plain;charset=utf-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("注销成功");
+        printWriter.write("登出成功");
         printWriter.flush();
         printWriter.close();
     }
