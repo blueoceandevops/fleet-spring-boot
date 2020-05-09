@@ -12,10 +12,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
     /**
-     * 实例化 RedisTemplate<String, Object> 对象，提供给 RedisUtil 使用
-     *
-     * @param connectionFactory springboot 配置好的连接工厂
-     * @return
+     * 实例化 RedisTemplate<String, Object> 对象
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
