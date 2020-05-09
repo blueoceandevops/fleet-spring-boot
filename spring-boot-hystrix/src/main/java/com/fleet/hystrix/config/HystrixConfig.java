@@ -9,25 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class HystrixConfig {
 
     @Bean
+    public ServletRegistrationBean<HystrixMetricsStreamServlet> servletRegistrationBean() {
+        return new ServletRegistrationBean<>(new HystrixMetricsStreamServlet(), "/hystrix.stream");
+    }
+
+    @Bean
     public HystrixMetricsStreamServlet hystrixMetricsStreamServlet() {
         return new HystrixMetricsStreamServlet();
-    }
-
-    @Bean
-    public ServletRegistrationBean<HystrixMetricsStreamServlet> hystrixServlet() {
-        HystrixMetricsStreamServlet servlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean<HystrixMetricsStreamServlet> registration = new ServletRegistrationBean<>(servlet, "/hystrix.stream");
-        registration.setName("HystrixServlet");
-        registration.setLoadOnStartup(1);
-        return registration;
-    }
-
-    @Bean
-    public ServletRegistrationBean<HystrixMetricsStreamServlet> actuatorHystrixServlet() {
-        HystrixMetricsStreamServlet servlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean<HystrixMetricsStreamServlet> registration = new ServletRegistrationBean<>(servlet, "/actuator/hystrix.stream");
-        registration.setName("ActuatorHystrixServlet");
-        registration.setLoadOnStartup(1);
-        return registration;
     }
 }
