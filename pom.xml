@@ -63,6 +63,7 @@
         <module>spring-boot-neo4j</module>
         <module>spring-boot-hystrix</module>
         <module>spring-boot-hystrix-dashboard</module>
+        <module>spring-boot-hystrix-turbine</module>
     </modules>
 
     <build>

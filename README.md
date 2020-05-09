@@ -51,6 +51,7 @@
 - [spring-boot-neo4j](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-neo4j)：Spring Boot Neo4j 图形数据库
 - [spring-boot-hystrix](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hystrix)：Spring Boot Hystrix 容错处理
 - [spring-boot-hystrix-dashboard](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hystrix-dashboard)：Spring Boot Hystrix Dashboard 监控
+- [spring-boot-hystrix-turbine](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hystrix-turbine)：Spring Boot Hystrix Turbine 聚合监控
 
 ### 中级部分：
 
