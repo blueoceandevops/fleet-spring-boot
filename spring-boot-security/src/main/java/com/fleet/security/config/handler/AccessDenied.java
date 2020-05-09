@@ -19,7 +19,7 @@ public class AccessDenied implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/plain;charset=utf-8");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("无权限");
+        printWriter.write("未授权");
         printWriter.flush();
         printWriter.close();
     }
