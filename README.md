@@ -60,6 +60,7 @@
 - [spring-boot-schedule](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-schedule)：Spring Boot 定时任务
 - [spring-boot-quartz](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-quartz)：Spring Boot Quartz 定时任务
 - [spring-boot-xxl-job](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-xxl-job)：Spring Boot xxl-job 分布式任务调度平台
+- [spring-boot-jsoup](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jsoup)：Spring Boot Jsoup 拦截 XSS
 
 ### 中级部分：
 
