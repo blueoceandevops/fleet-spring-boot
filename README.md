@@ -56,6 +56,7 @@
 - [spring-boot-webflux](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-webflux)：Spring Boot Webflux 响应式编程
 - [spring-boot-ehcache](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-ehcache)：Spring Boot EhCache 纯Java的进程内缓存框架
 - [spring-boot-liquibase](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-liquibase)：Spring Boot Liquibase 数据库管理与迁移工具
+- [spring-boot-prometheus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-prometheus)：Spring Boot Prometheus 监控
 
 ### 中级部分：
 
