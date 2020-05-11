@@ -69,6 +69,7 @@
         <module>spring-boot-ehcache</module>
         <module>spring-boot-liquibase</module>
         <module>spring-boot-prometheus</module>
+        <module>spring-boot-schedule</module>
         <module>spring-boot-quartz</module>
     </modules>
 
