@@ -7,8 +7,6 @@ spring:
     password:
 mybatis-plus:
   mapper-locations: mybatis/*Mapper.xml
-  #实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.fleet.entity.user
   typeEnumsPackage: com.fleet.enums
   global-config:
     # 数据库相关配置
