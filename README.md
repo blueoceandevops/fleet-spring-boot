@@ -65,6 +65,7 @@
 - [spring-boot-druid](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-druid)：Spring Boot Druid 连接池
 - [spring-boot-hikari](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hikari)：Spring Boot Hikari 连接池
 - [spring-boot-consul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-consul)：Spring Boot Consul 微服务注册与发现
+- [spring-boot-dubbo](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-dubbo)：Spring Boot Dubbo 框架
 
 ### 中级部分：
 
