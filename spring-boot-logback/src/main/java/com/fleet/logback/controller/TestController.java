@@ -19,5 +19,4 @@ public class TestController {
         logger.warn("******warn******");
         logger.error("******error******");
     }
-
 }
