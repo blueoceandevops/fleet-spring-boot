@@ -6,7 +6,7 @@ import org.jsoup.safety.Whitelist;
 
 public class JsoupUtil {
 
-    private static final Whitelist whitelist = Whitelist.none(); // none 只保留标签内文本内容
+    private static final Whitelist whitelist = Whitelist.relaxed();
 
     /*
      * 配置过滤化参数，不对代码进行格式化

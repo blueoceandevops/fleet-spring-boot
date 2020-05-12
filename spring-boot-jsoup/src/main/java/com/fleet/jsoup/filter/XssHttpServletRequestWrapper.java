@@ -34,20 +34,20 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public String getHeader(String name) {
-        String header = super.getHeader(name);
-        if (StringUtils.isNotEmpty(header)) {
-            header = clean(header);
+        String value = super.getHeader(name);
+        if (StringUtils.isNotEmpty(value)) {
+            value = clean(value);
         }
-        return header;
+        return value;
     }
 
     @Override
     public String getParameter(String name) {
-        String parameter = super.getParameter(name);
-        if (StringUtils.isNotEmpty(parameter)) {
-            parameter = clean(parameter);
+        String value = super.getParameter(name);
+        if (StringUtils.isNotEmpty(value)) {
+            value = clean(value);
         }
-        return parameter;
+        return value;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         return map;
     }
 
-    private class WrapperServletInputStream extends ServletInputStream {
+    private static class WrapperServletInputStream extends ServletInputStream {
         private InputStream stream;
 
         public WrapperServletInputStream(InputStream stream) {
