@@ -67,7 +67,7 @@
 - [spring-boot-consul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-consul)：Spring Boot Consul 微服务注册与发现
 - [spring-boot-dubbo](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-dubbo)：Spring Boot Dubbo 框架
 - [spring-boot-mycat-mysql-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-proxy)：Spring Boot Mycat Mysql 读写分离
-- [spring-boot-mycat-mysql-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-proxy)：Spring Boot Mycat Mysql 读写分离
+- [spring-boot-mycat-mysql-sharding](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-sharding)：Spring Boot Mycat Mysql 分库分表
 
 ### 中级部分：
 
