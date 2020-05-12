@@ -1,4 +1,4 @@
-package com.fleet.cics;
+package com.fleet.hikari;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FleetCicsApplicationTests {
+public class HikariApplicationTests {
 
     @Test
     public void contextLoads() {
