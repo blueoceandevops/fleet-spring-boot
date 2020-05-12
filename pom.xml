@@ -34,6 +34,7 @@
         <module>spring-boot-enjoy</module>
         <module>spring-boot-properties</module>
         <module>spring-boot-logback</module>
+        <module>spring-boot-log4j2</module>
         <module>spring-boot-aop</module>
         <module>spring-boot-exception</module>
         <module>spring-boot-actuator</module>
@@ -73,6 +74,7 @@
         <module>spring-boot-quartz</module>
         <module>spring-boot-xxl-job</module>
         <module>spring-boot-jsoup</module>
+        <module>spring-boot-druid</module>
     </modules>
 
     <build>

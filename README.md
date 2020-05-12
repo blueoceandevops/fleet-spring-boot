@@ -11,16 +11,17 @@
 - [spring-boot-simple-consumer](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple-consumer)：编写服务消费者
 - [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka Server 微服务注册与发现
 - [spring-boot-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-provider)：Spring Boot 将微服务注册到 Eukeka Server 上
-- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 mysql
-- [spring-boot-mybatis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 mybatis
-- [spring-boot-mybatis-plus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-plus)：Spring Boot 结合 mybatis plus
-- [spring-boot-jpa](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 jpa
-- [spring-boot-thymeleaf](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-thymeleaf)：Spring Boot 结合 thymeleaf 模板引擎
-- [spring-boot-freemarker](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 freemarker 模板引擎
-- [spring-boot-beetl](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-beetl)：Spring Boot 结合 beetl 模板引擎
-- [spring-boot-enjoy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 enjoy 模板引擎
+- [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 Mysql
+- [spring-boot-mybatis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 Mybatis
+- [spring-boot-mybatis-plus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-plus)：Spring Boot 结合 Mybatis Plus
+- [spring-boot-jpa](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 JPA
+- [spring-boot-thymeleaf](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-thymeleaf)：Spring Boot 结合 Thymeleaf 模板引擎
+- [spring-boot-freemarker](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 Freemarker 模板引擎
+- [spring-boot-beetl](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-beetl)：Spring Boot 结合 Beetl 模板引擎
+- [spring-boot-enjoy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 Enjoy 模板引擎
 - [spring-boot-properties](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-properties)：Spring Boot 读取配置文件中的内容
-- [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 logback 日志
+- [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 Logback 日志
+- [spring-boot-log4j2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-log4j2)：Spring Boot 集成 Log4j2 日志
 - [spring-boot-aop](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-aop)：Spring Boot AOP 切面
 - [spring-boot-exception](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-exception)：Spring Boot 统一异常处理
 - [spring-boot-actuator](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-actuator)：Spring Boot Actuator 监控与管理
