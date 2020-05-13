@@ -5,10 +5,9 @@ spring:
     url: jdbc:sqlite::resource:db/sqlite.db
     username:
     password:
+  # jpa配置
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
-    #    database-platform: com.fleet.sqlite.config.SQLiteDialect #自己配置的方言
-    # 自动根据Entity配置创建表
-    generate-ddl: true
+
