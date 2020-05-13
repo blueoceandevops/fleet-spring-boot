@@ -82,6 +82,7 @@
         <module>spring-boot-mysql-multi-aop</module>
         <module>spring-boot-mycat-mysql-proxy</module>
         <module>spring-boot-mycat-mysql-sharding</module>
+        <module>spring-boot-sharding-jdbc-proxy</module>
     </modules>
 
     <build>

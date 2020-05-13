@@ -71,6 +71,7 @@
 - [spring-boot-mysql-multi-aop](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql-multi-aop)：Spring Boot Mysql 多数据源 AOP 实现
 - [spring-boot-mycat-mysql-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-proxy)：Spring Boot Mycat Mysql 读写分离
 - [spring-boot-mycat-mysql-sharding](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-sharding)：Spring Boot Mycat Mysql 分库分表
+- [spring-boot-sharding-jdbc-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sharding-jdbc-proxy)：Spring Boot Sharding Jdbc 读写分离
 
 ### 中级部分：
 
