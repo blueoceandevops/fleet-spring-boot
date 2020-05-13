@@ -1,0 +1,12 @@
+logging:
+  config: classpath:logback-custom.xml
+  level:
+    root: debug
+  path: applog/activiti5
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    # 开发
+    url: jdbc:mysql://localhost:3306/fleet-activiti5?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true
+    username: root
+    password:
