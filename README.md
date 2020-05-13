@@ -72,6 +72,7 @@
 - [spring-boot-mycat-mysql-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-proxy)：Spring Boot Mycat Mysql 读写分离
 - [spring-boot-mycat-mysql-sharding](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mycat-mysql-sharding)：Spring Boot Mycat Mysql 分库分表
 - [spring-boot-sharding-jdbc-proxy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sharding-jdbc-proxy)：Spring Boot Sharding Jdbc 读写分离
+- [spring-boot-sharding-jdbc-sharding](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sharding-jdbc-sharding)：Spring Boot Sharding Jdbc 分库分表
 
 ### 中级部分：
 
