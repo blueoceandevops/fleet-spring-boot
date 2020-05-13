@@ -36,8 +36,7 @@ public class MasterDataSourceConfig {
 
     @Primary
     @Bean("masterSqlSessionTemplate")
-    public SqlSessionTemplate masterSqlSessionTemplate(
-            @Qualifier("masterSqlSessionFactory") SqlSessionFactory masterSqlSessionFactory) {
+    public SqlSessionTemplate masterSqlSessionTemplate(@Qualifier("masterSqlSessionFactory") SqlSessionFactory masterSqlSessionFactory) {
         return new SqlSessionTemplate(masterSqlSessionFactory);
     }
 }
