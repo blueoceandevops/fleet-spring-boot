@@ -1,6 +1,6 @@
-package com.fleet.sharding.jdbc.proxy.service;
+package com.fleet.druid.service;
 
-import com.fleet.sharding.jdbc.proxy.entity.User;
+import com.fleet.druid.entity.User;
 
 import java.util.List;
 import java.util.Map;

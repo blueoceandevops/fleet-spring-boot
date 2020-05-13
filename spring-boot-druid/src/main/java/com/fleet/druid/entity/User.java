@@ -1,4 +1,4 @@
-package com.fleet.sharding.jdbc.proxy.entity;
+package com.fleet.druid.entity;
 
 import java.io.Serializable;
 

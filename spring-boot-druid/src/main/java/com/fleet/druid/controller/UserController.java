@@ -1,7 +1,7 @@
-package com.fleet.sharding.jdbc.proxy.controller;
+package com.fleet.druid.controller;
 
-import com.fleet.sharding.jdbc.proxy.entity.User;
-import com.fleet.sharding.jdbc.proxy.service.UserService;
+import com.fleet.druid.entity.User;
+import com.fleet.druid.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,8 +1,8 @@
-package com.fleet.sharding.jdbc.proxy.service.impl;
+package com.fleet.druid.service.impl;
 
-import com.fleet.sharding.jdbc.proxy.dao.UserDao;
-import com.fleet.sharding.jdbc.proxy.entity.User;
-import com.fleet.sharding.jdbc.proxy.service.UserService;
+import com.fleet.druid.entity.User;
+import com.fleet.druid.service.UserService;
+import com.fleet.druid.dao.UserDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,6 +1,6 @@
-package com.fleet.sharding.jdbc.proxy.dao;
+package com.fleet.druid.dao;
 
-import com.fleet.sharding.jdbc.proxy.entity.User;
+import com.fleet.druid.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

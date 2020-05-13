@@ -1,4 +1,4 @@
-package com.fleet.sharding.jdbc.proxy.config;
+package com.fleet.druid.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
