@@ -5,10 +5,10 @@ spring:
     username: root
     password:
     platform: h2
+  # jpa配置
   jpa:
-    database: h2
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
   h2:
     console:
