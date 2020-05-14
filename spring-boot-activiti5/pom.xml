@@ -22,7 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
-        <activiti.version>5.23.0</activiti.version>
+        <activiti.version>5.22.0</activiti.version>
     </properties>
 
     <dependencies>

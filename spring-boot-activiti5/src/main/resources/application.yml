@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: activiti5
   profiles:
     active: dev
   activiti:
