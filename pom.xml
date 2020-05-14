@@ -85,6 +85,7 @@
         <module>spring-boot-sharding-jdbc-proxy</module>
         <module>spring-boot-sharding-jdbc-sharding</module>
         <module>spring-boot-activiti5</module>
+        <module>spring-boot-activiti-modeler5</module>
     </modules>
 
     <build>
