@@ -87,10 +87,10 @@ public interface ProcessService {
     /**
      * 委派任务
      */
-    void delegateTask(Turn turn);
+    String delegateTask(Turn turn);
 
     /**
-     * 委派人办理任务
+     * 委派人处理任务
      */
     String resolveTask(Turn turn);
 
