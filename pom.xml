@@ -86,6 +86,7 @@
         <module>spring-boot-sharding-jdbc-sharding</module>
         <module>spring-boot-activiti5</module>
         <module>spring-boot-activiti-modeler5</module>
+        <module>spring-boot-uflo2</module>
     </modules>
 
     <build>

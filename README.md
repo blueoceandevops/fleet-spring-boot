@@ -75,6 +75,7 @@
 - [spring-boot-sharding-jdbc-sharding](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sharding-jdbc-sharding)：Spring Boot Sharding Jdbc 分库分表
 - [spring-boot-activiti5](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activiti5)：Spring Boot Activiti 5 工作流
 - [spring-boot-activiti-modeler5](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activiti-modeler5)：Spring Boot Activiti Modeler 5 在线流程编辑器
+- [spring-boot-uflo2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-uflo2)：Spring Boot Uflo2 工作流
 
 ### 中级部分：
 
