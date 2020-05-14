@@ -4,9 +4,9 @@ package com.fleet.ureport2.config;
 import com.bstek.ureport.definition.datasource.BuildinDatasource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ public class Ureport2DataSource implements BuildinDatasource {
 
     private static final Logger logger = LoggerFactory.getLogger(Ureport2DataSource.class);
 
-    @Autowired
+    @Resource
     private DataSource dataSource;
 
     /**

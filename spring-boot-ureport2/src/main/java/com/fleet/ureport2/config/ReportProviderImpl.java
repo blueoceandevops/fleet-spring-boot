@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class ReportProviderImpl implements ReportProvider {
     // 是否禁用
     private boolean disabled;
 
-    @Autowired
+    @Resource
     private Ureport2FileDao ureport2FileDao;
 
     @Override
