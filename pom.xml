@@ -90,6 +90,7 @@
         <module>spring-boot-ureport2</module>
         <module>spring-boot-excel</module>
         <module>spring-boot-word</module>
+        <module>spring-boot-openoffice</module>
     </modules>
 
     <build>
