@@ -1,0 +1,11 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 100MB #限制文件上传大小为10M
+# MinIO对象存储相关配置
+minio:
+  endpoint: http://localhost:9000 #MinIO服务所在地址
+  bucket-name: file-minio #存储桶名称
+  access-key: minioadmin #访问的key
+  secret-key: minioadmin #访问的秘钥
