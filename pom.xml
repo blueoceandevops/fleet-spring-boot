@@ -91,6 +91,7 @@
         <module>spring-boot-excel</module>
         <module>spring-boot-word</module>
         <module>spring-boot-openoffice</module>
+        <module>spring-boot-libreoffice</module>
     </modules>
 
     <build>
