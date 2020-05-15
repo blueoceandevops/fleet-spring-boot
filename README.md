@@ -88,5 +88,6 @@
 - [spring-boot-libreoffice](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-libreoffice)：Spring Boot LibreOffice 文件转换 pdf 操作
 - [spring-boot-minio](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-minio)：Spring Boot Minio 对象存储服务
 - [spring-boot-bigfile](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-bigfile)：Spring Boot 文件操作
+- [spring-boot-javafx](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-javafx)：Spring Boot Javafx 桌面GUI开发
 
 ### 高级部分：

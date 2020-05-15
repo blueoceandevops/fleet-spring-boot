@@ -1,0 +1,10 @@
+#spring:
+#  main:
+#    banner-mode: off
+javafx:
+  title: "测试"
+  stage:
+    style: TRANSPARENT
+    resizable: true
+#javafx.stage.width=200
+#javafx.stage.height=200
