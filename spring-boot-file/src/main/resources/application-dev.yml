@@ -1,0 +1,13 @@
+# 文件
+file:
+  file-path: D:/file/files/
+  big-file-path: D:/file/files/big/
+  # 存储图片资源的目录
+  img-path: D:/file/files/img/
+  template-path: D:/file/files/template/
+  zip-path: D:/file/files/zip/
+spring:
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 100MB #限制文件上传大小为10M

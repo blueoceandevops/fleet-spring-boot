@@ -92,6 +92,8 @@
         <module>spring-boot-word</module>
         <module>spring-boot-openoffice</module>
         <module>spring-boot-libreoffice</module>
+        <module>spring-boot-minio</module>
+        <module>spring-boot-bogfile</module>
     </modules>
 
     <build>
