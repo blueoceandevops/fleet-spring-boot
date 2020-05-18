@@ -25,6 +25,7 @@
         <module>spring-boot-eureka</module>
         <module>spring-boot-provider</module>
         <module>spring-boot-lombok</module>
+        <module>spring-boot-jetty</module>
         <module>spring-boot-mysql</module>
         <module>spring-boot-mybatis</module>
         <module>spring-boot-mybatis-plus</module>
