@@ -12,7 +12,8 @@
 - [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka Server 微服务注册与发现
 - [spring-boot-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-provider)：Spring Boot 将微服务注册到 Eukeka Server 上
 - [spring-boot-lombok](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-lombok)：Spring Boot Lombok 消除样板式代码
-- [spring-boot-jetty](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jetty)：Spring Boot 使用 Jetty 作为 Servlet 引擎应用
+- [spring-boot-jetty](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jetty)：Spring Boot 使用 Jetty 作为 Servlet 引擎
+- [spring-boot-undertow](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-undertow)：Spring Boot 使用 Undertow 作为 Servlet 引擎
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 Mysql
 - [spring-boot-mybatis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 Mybatis
 - [spring-boot-mybatis-plus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-plus)：Spring Boot 结合 Mybatis Plus
