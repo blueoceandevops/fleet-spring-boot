@@ -52,7 +52,7 @@ public class WordUtil {
     public File getTempFile(Map<String, Object> map, String tempPath, String tempFile) throws Exception {
         config.setClassForTemplateLoading(WordUtil.class, "/template");
         Template template = config.getTemplate(tempFile);
-        File file = new File(tempPath + "temp.doc");
+        File file = new File(tempPath + UUIDUtil.getUUID() + ".doc");
         Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
         template.process(map, writer);
         writer.flush();
