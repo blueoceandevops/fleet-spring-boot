@@ -50,6 +50,7 @@
 - [spring-boot-rabbitmq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-rabbitmq)：Spring Boot RabbitMQ 消息中间件
 - [spring-boot-rocketmq](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-rocketmq)：Spring Boot RocketMQ 消息中间件
 - [spring-boot-websocket](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-websocket)：Spring Boot WebSocket 前后端通信
+- [spring-boot-socketio](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-socketio)：Spring Boot SocketIO 前后端通信
 - [spring-boot-shiro](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-shiro)：Spring Boot Shiro 权限管理
 - [spring-boot-security](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-security)：Spring Boot Security 权限管理
 - [spring-boot-oauth2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-oauth2)：Spring Boot Oauth2 权限管理
