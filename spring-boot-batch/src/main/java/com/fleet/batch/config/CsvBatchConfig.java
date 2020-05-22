@@ -89,7 +89,7 @@ public class CsvBatchConfig {
     @Bean
     public ItemReader<User> reader() {
         FlatFileItemReader<User> reader = new FlatFileItemReader<>();
-        reader.setResource(new ClassPathResource("person.csv"));
+        reader.setResource(new ClassPathResource("user.csv"));
         reader.setLineMapper(new DefaultLineMapper<User>() {
             {
                 setLineTokenizer(new DelimitedLineTokenizer() {
