@@ -1,7 +1,6 @@
 package com.fleet.websocket.controller;
 
 import com.fleet.websocket.entity.Msg;
-import com.fleet.websocket.entity.User;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -32,8 +31,6 @@ public class WebSocketController {
      */
     @Scheduled(fixedRate = 1000)
     public void sendTopicMessage() {
-        User user = new User();
-        user.setId(1L);
         Msg msg = new Msg(System.currentTimeMillis(), "广播推送消息");
         simpMessagingTemplate.convertAndSend("/topic/getResponse", msg);
     }
@@ -43,9 +40,7 @@ public class WebSocketController {
      */
     @Scheduled(fixedRate = 1000)
     public void sendQueueMessage() {
-        User user = new User();
-        user.setId(1L);
         Msg msg = new Msg(System.currentTimeMillis(), "一对一推送消息");
-        simpMessagingTemplate.convertAndSendToUser(user.getId() + "", "/queue/getResponse", msg);
+        simpMessagingTemplate.convertAndSendToUser(1L + "", "/queue/getResponse", msg);
     }
 }
