@@ -17,6 +17,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/socket").setAllowedOrigins("*").withSockJS();
     }
 
+    @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         // 点对点应配置一个 /user 消息代理，广播式应配置一个 /topic 消息代理，,群发（mass），单独聊天（alone）
         registry.enableSimpleBroker("/topic", "/user", "/mass", "/alone");
