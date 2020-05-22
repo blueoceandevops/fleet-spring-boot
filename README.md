@@ -97,5 +97,6 @@
 - [spring-boot-minio](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-minio)：Spring Boot Minio 对象存储服务
 - [spring-boot-bigfile](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-bigfile)：Spring Boot 文件操作
 - [spring-boot-javafx](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-javafx)：Spring Boot Javafx 桌面GUI开发
+- [spring-boot-cxf](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-cxf)：Spring Boot CXF 实现 WebService
 
 ### 高级部分：
