@@ -1,8 +1,6 @@
 package com.fleet.batch.config;
 
 import com.fleet.batch.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -30,8 +28,6 @@ import javax.sql.DataSource;
 @Configuration
 @EnableBatchProcessing
 public class CsvBatchConfig {
-
-    private Logger logger = LoggerFactory.getLogger(CsvBatchConfig.class);
 
     @Resource
     private DataSource dataSource;
