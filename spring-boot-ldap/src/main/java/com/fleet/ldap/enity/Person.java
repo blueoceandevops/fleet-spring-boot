@@ -16,18 +16,21 @@ import javax.naming.Name;
  * sn – 真实名称
  * cn - 常用名称
  */
-@Entry(base = "ou=people,dc=fleet,dc=com", objectClasses = "inetOrgPerson")
 @Data
+@Entry(base = "ou=people,dc=fleet,dc=com", objectClasses = "inetOrgPerson")
 public class Person {
 
     @Id
     private Name id;
+
     @DnAttribute(value = "uid", index = 3)
     private String uid;
+
     @Attribute(name = "cn")
     private String commonName;
+
     @Attribute(name = "sn")
     private String suerName;
-    private String userPassword;
 
+    private String userPassword;
 }

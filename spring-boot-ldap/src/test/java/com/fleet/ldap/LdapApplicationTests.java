@@ -17,14 +17,12 @@ public class LdapApplicationTests {
     private PersonRepository personRepository;
 
     @Test
-    public void findAll() throws Exception {
-        personRepository.findAll().forEach(p -> {
-            System.out.println(p);
-        });
+    public void findAll() {
+        personRepository.findAll().forEach(System.out::println);
     }
 
     @Test
-    public void save() throws Exception {
+    public void save() {
         Person person = new Person();
         person.setUid("uid:1");
         person.setSuerName("AAA");
@@ -32,8 +30,6 @@ public class LdapApplicationTests {
         person.setUserPassword("123456");
         personRepository.save(person);
 
-        personRepository.findAll().forEach(p -> {
-            System.out.println(p);
-        });
+        findAll();
     }
 }
