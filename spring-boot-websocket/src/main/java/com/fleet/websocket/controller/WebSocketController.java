@@ -41,6 +41,6 @@ public class WebSocketController {
     @Scheduled(fixedRate = 1000)
     public void sendQueueMessage() {
         Msg msg = new Msg(System.currentTimeMillis(), "一对一推送消息");
-        simpMessagingTemplate.convertAndSendToUser(1L + "", "/queue/getResponse", msg);
+        simpMessagingTemplate.convertAndSendToUser("1", "/queue/getResponse", msg);
     }
 }
