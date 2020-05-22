@@ -5,14 +5,9 @@ import com.fleet.ldap.repository.PersonRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.ldap.core.AttributesMapper;
-import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,19 +16,15 @@ public class LdapApplicationTests {
     @Resource
     private PersonRepository personRepository;
 
-    @Resource
-    private LdapTemplate ldapTemplate;
-
     @Test
-    public void findAll() {
-        Iterable<Person> iterable = personRepository.findAll();
-        iterable.forEach(p -> {
+    public void findAll() throws Exception {
+        personRepository.findAll().forEach(p -> {
             System.out.println(p);
         });
     }
 
     @Test
-    public void save() {
+    public void save() throws Exception {
         Person person = new Person();
         person.setUid("uid:1");
         person.setSuerName("AAA");
@@ -41,6 +32,8 @@ public class LdapApplicationTests {
         person.setUserPassword("123456");
         personRepository.save(person);
 
-        findAll();
+        personRepository.findAll().forEach(p -> {
+            System.out.println(p);
+        });
     }
 }

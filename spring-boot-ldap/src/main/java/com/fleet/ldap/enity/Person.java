@@ -16,8 +16,8 @@ import javax.naming.Name;
  * sn – 真实名称
  * cn - 常用名称
  */
-@Data
 @Entry(base = "ou=people,dc=fleet,dc=com", objectClasses = "inetOrgPerson")
+@Data
 public class Person {
 
     @Id
