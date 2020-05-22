@@ -15,7 +15,7 @@
 </div>
 </body>
 <script>
-    var stompClient = null;
+    var stomp = null;
     // 加载完浏览器后，调用connect()，打开双通道
     $(function () {
         //打开双通道
@@ -29,9 +29,9 @@
 
     function connect() {
         var socket = new SockJS('http://localhost:8080/socket');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) {
-            stompClient.subscribe('/user/1/queue/getResponse', function (response) {
+        stomp = Stomp.over(socket);
+        stomp.connect({}, function (frame) {
+            stomp.subscribe('/user/1/queue/getResponse', function (response) {
                 showResponse(JSON.parse(response.body));
             });
         });
@@ -39,9 +39,9 @@
 
     //关闭双通道
     function disconnect() {
-        if (stompClient != null) {
-            stompClient.disconnect();
-            stompClient = null;
+        if (stomp != null) {
+            stomp.disconnect();
+            stomp = null;
         }
     }
 
