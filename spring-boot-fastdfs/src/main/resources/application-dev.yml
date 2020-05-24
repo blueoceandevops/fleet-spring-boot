@@ -1,0 +1,12 @@
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  pool:
+    jmx-enabled: false
+    max-total: 200
+    max-idle-per-key: 50
+    max-wait-millis: 5000
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list: 10.17.191.55:22122

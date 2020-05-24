@@ -107,6 +107,7 @@
         <module>spring-boot-libreoffice</module>
         <module>spring-boot-minio</module>
         <module>spring-boot-file</module>
+        <module>spring-boot-fastdfs</module>
         <module>spring-boot-javafx</module>
         <module>spring-boot-cxf</module>
     </modules>
