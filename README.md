@@ -23,6 +23,7 @@
 - [spring-boot-freemarker](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 Freemarker 模板引擎
 - [spring-boot-beetl](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-beetl)：Spring Boot 结合 Beetl 模板引擎
 - [spring-boot-enjoy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 Enjoy 模板引擎
+- [spring-boot-velocity](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-velocity)：Spring Boot 结合 Velocity 模板引擎（Spring Boot 1.5 以后版本不再支持）
 - [spring-boot-properties](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-properties)：Spring Boot 读取配置文件中的内容
 - [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 Logback 日志
 - [spring-boot-log4j2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-log4j2)：Spring Boot 集成 Log4j2 日志
