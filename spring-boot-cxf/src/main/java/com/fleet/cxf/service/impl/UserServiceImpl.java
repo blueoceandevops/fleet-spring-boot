@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@WebService(serviceName = "UserService", targetNamespace = "http://service.cxf.fleet.com")
+@WebService(serviceName = "userService", targetNamespace = "http://service.cxf.fleet.com")
 public class UserServiceImpl implements UserService {
 
     private Map<Long, User> users = new HashMap<>();

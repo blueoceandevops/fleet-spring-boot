@@ -7,7 +7,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-@WebService(serviceName = "UserService", targetNamespace = "http://service.cxf.fleet.com")
+@WebService(serviceName = "userService", targetNamespace = "http://service.cxf.fleet.com")
 public interface UserService {
 
     @WebMethod
