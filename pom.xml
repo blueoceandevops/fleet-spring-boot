@@ -38,6 +38,7 @@
         <module>spring-boot-enjoy</module>
         <module>spring-boot-velocity</module>
         <module>spring-boot-mustache</module>
+        <module>spring-boot-groovy</module>
         <module>spring-boot-properties</module>
         <module>spring-boot-logback</module>
         <module>spring-boot-log4j2</module>

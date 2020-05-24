@@ -25,6 +25,7 @@
 - [spring-boot-enjoy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 Enjoy 模板引擎
 - [spring-boot-velocity](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-velocity)：Spring Boot 结合 Velocity 模板引擎（Spring Boot 1.4版本之后弃用）
 - [spring-boot-mustache](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mustache)：Spring Boot 结合 Mustache 模板引擎
+- [spring-boot-groovy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-groovy)：Spring Boot 结合 Groovy 模板引擎
 - [spring-boot-properties](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-properties)：Spring Boot 读取配置文件中的内容
 - [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 Logback 日志
 - [spring-boot-log4j2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-log4j2)：Spring Boot 集成 Log4j2 日志
