@@ -29,6 +29,7 @@
 - [spring-boot-properties](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-properties)：Spring Boot 读取配置文件中的内容
 - [spring-boot-logback](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logback)：Spring Boot 集成 Logback 日志
 - [spring-boot-log4j2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-log4j2)：Spring Boot 集成 Log4j2 日志
+- [spring-boot-logstash](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-logstash)：Spring Boot Logstash 日志管理工具
 - [spring-boot-aop](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-aop)：Spring Boot AOP 切面
 - [spring-boot-exception](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-exception)：Spring Boot 统一异常处理
 - [spring-boot-actuator](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-actuator)：Spring Boot Actuator 监控与管理

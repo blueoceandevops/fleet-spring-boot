@@ -42,6 +42,7 @@
         <module>spring-boot-properties</module>
         <module>spring-boot-logback</module>
         <module>spring-boot-log4j2</module>
+        <module>spring-boot-logstash</module>
         <module>spring-boot-aop</module>
         <module>spring-boot-exception</module>
         <module>spring-boot-actuator</module>
