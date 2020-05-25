@@ -1,13 +1,10 @@
 package com.fleet.fastdfs.util;
 
-import com.github.tobato.fastdfs.domain.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,13 +17,8 @@ import java.io.InputStream;
 @Component
 public class FastDFSUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(FastDFSUtil.class);
-
     @Resource
     private FastFileStorageClient storageClient;
-
-    @Resource
-    private FdfsWebServer fdfsWebServer;
 
     /**
      * 上传文件
@@ -34,7 +26,7 @@ public class FastDFSUtil {
     public String uploadFile(File file) throws IOException {
         InputStream is = new FileInputStream(file);
         StorePath storePath = storageClient.uploadFile(is, file.length(), FilenameUtils.getExtension(file.getName()), null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath();
     }
 
     /**
@@ -42,7 +34,7 @@ public class FastDFSUtil {
      */
     public String uploadFile(MultipartFile file) throws IOException {
         StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath();
     }
 
     /**
@@ -50,7 +42,7 @@ public class FastDFSUtil {
      */
     public String uploadFile(InputStream is, String fileExtName) throws IOException {
         StorePath storePath = storageClient.uploadFile(is, is.available(), fileExtName, null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath();
     }
 
     /**
@@ -59,7 +51,7 @@ public class FastDFSUtil {
     public String uploadImageFile(File file) throws IOException {
         InputStream is = new FileInputStream(file);
         StorePath storePath = storageClient.uploadImageAndCrtThumbImage(is, file.length(), FilenameUtils.getExtension(file.getName()), null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath();
     }
 
     /**
@@ -67,7 +59,7 @@ public class FastDFSUtil {
      */
     public String uploadImageFile(MultipartFile file) throws IOException {
         StorePath storePath = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath();
     }
 
     /**
@@ -75,11 +67,7 @@ public class FastDFSUtil {
      */
     public String uploadImageFile(InputStream is, String fileExtName) throws IOException {
         StorePath storePath = storageClient.uploadImageAndCrtThumbImage(is, is.available(), fileExtName, null);
-        return getResAccessUrl(storePath);
-    }
-
-    private String getResAccessUrl(StorePath storePath) {
-        return fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
+        return storePath.getFullPath();
     }
 
     /**
