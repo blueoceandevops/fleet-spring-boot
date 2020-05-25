@@ -55,6 +55,7 @@
         <module>spring-boot-postgresql</module>
         <module>spring-boot-mail</module>
         <module>spring-boot-redis</module>
+        <module>spring-boot-session</module>
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-mongodb</module>
         <module>spring-boot-zuul</module>

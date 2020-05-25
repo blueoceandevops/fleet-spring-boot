@@ -43,6 +43,7 @@
 - [spring-boot-postgresql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-postgresql)：Spring Boot Postgresql 数据库
 - [spring-boot-mail](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mail)：Spring Boot 发送邮件
 - [spring-boot-redis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-redis)：Spring Boot Redis 缓存
+- [spring-boot-session](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-session)：Spring Boot Session 共享
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot Elasticsearch 全文搜索引擎
 - [spring-boot-mongodb](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mongodb)：Spring Boot Mongodb 基于分布式文件存储的数据库
 - [spring-boot-zuul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-zuul)：Spring Boot Zuul 微服务网关
