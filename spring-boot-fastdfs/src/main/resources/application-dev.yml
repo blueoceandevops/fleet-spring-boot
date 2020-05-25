@@ -1,5 +1,4 @@
 fdfs:
-  web-server-url: 10.17.191.55
   so-timeout: 1500
   connect-timeout: 600
   pool:
