@@ -18,7 +18,7 @@ public class MsgController {
 
     @RequestMapping(path = "/send")
     public void send(String msg) {
-        System.out.println("发送消息" + msg);
+        System.out.println("发送消息：" + msg);
         // Destination destination = new ActiveMQQueue("test.queue");
         Destination destination = new ActiveMQTopic("test.queue");
         jmsMessagingTemplate.convertAndSend(destination, msg);
