@@ -25,7 +25,7 @@ public class MsgController {
     }
 
     @JmsListener(destination = "test.queue", containerFactory = "customJmsListenerContainerFactory")
-    public void receive(String msg) {
+    public void receive1(String msg) {
         System.out.println("接收到消息1：" + msg);
     }
 
