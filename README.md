@@ -38,10 +38,11 @@
 - [spring-boot-swagger](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-swagger)：Spring Boot Swagger 自动生成接口文档
 - [spring-boot-apidoc](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-apidoc)：Spring Boot Apidoc 自动生成接口文档
 - [spring-boot-async](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-async)：Spring Boot 线程池配置
+- [spring-boot-mail](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mail)：Spring Boot 发送邮件
+- [spring-boot-couchbase](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-couchbase)：Spring Boot Couchbase 数据库
 - [spring-boot-h2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-h2)：Spring Boot H2 数据库
 - [spring-boot-sqlite](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sqlite)：Spring Boot Sqlite 数据库
 - [spring-boot-postgresql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-postgresql)：Spring Boot Postgresql 数据库
-- [spring-boot-mail](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mail)：Spring Boot 发送邮件
 - [spring-boot-redis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-redis)：Spring Boot Redis 缓存
 - [spring-boot-session](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-session)：Spring Boot Session 共享
 - [spring-boot-elasticsearch](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-elasticsearch)：Spring Boot Elasticsearch 全文搜索引擎
