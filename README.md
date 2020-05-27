@@ -23,6 +23,7 @@
 - [spring-boot-freemarker](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 Freemarker 模板引擎
 - [spring-boot-beetl](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-beetl)：Spring Boot 结合 Beetl 模板引擎
 - [spring-boot-enjoy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-enjoy)：Spring Boot 结合 Enjoy 模板引擎
+- [spring-boot-markdown](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-markdown)：Spring Boot 结合 Markdown 模板引擎
 - [spring-boot-velocity](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-velocity)：Spring Boot 结合 Velocity 模板引擎（Spring Boot 1.4版本之后弃用）
 - [spring-boot-mustache](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mustache)：Spring Boot 结合 Mustache 模板引擎
 - [spring-boot-groovy](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-groovy)：Spring Boot 结合 Groovy 模板引擎

@@ -115,6 +115,7 @@
         <module>spring-boot-fastdfs</module>
         <module>spring-boot-javafx</module>
         <module>spring-boot-cxf</module>
+        <module>spring-boot-markdown</module>
     </modules>
 
     <build>
