@@ -36,6 +36,7 @@
         <module>spring-boot-freemarker</module>
         <module>spring-boot-beetl</module>
         <module>spring-boot-enjoy</module>
+        <module>spring-boot-markdown</module>
         <module>spring-boot-velocity</module>
         <module>spring-boot-mustache</module>
         <module>spring-boot-groovy</module>
@@ -115,7 +116,6 @@
         <module>spring-boot-fastdfs</module>
         <module>spring-boot-javafx</module>
         <module>spring-boot-cxf</module>
-        <module>spring-boot-markdown</module>
     </modules>
 
     <build>
