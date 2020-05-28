@@ -1,0 +1,57 @@
+package com.fleet.mybatis.pagehelper.config;
+
+import com.fleet.mybatis.pagehelper.entity.Page;
+import com.fleet.mybatis.pagehelper.entity.PageUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+/**
+ * 自动分页AOP拦截器（service方法名要带后缀Page，参数中要带Page page，否则会按照正常处理）
+ */
+@Aspect
+@Component
+public class PageAspect {
+
+    @Around("execution(* com.fleet.mybatis.pagehelper.service.*.*Page(..))")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        // 获取连接点方法运行时的入参列表
+        Object[] args = pjp.getArgs();
+        Page page = null;
+        if (args.length > 0) {
+            for (Object arg : args) {
+                boolean isPage = true;
+                try {
+                    page = (Page) arg;
+                } catch (Exception e) {
+                    isPage = false;
+                }
+                if (isPage) {
+                    break;
+                }
+            }
+        }
+
+        if (page != null) {
+            PageHelper.startPage(page.getPageIndex(), page.getPageRows());
+            try {
+                @SuppressWarnings("unchecked")
+                PageUtil<Object> pageUtil = (PageUtil<Object>) pjp.proceed();
+                PageInfo<Object> pageInfo = new PageInfo<>(pageUtil.getList());
+                page.setTotalRows((int) pageInfo.getTotal());
+                pageUtil.setPage(page);
+                return pageUtil;
+            } catch (Exception e) {
+                PageUtil<Object> pageUtil = new PageUtil<>();
+                page.setTotalRows(0);
+                pageUtil.setPage(page);
+                return pageUtil;
+            }
+        } else {
+            return pjp.proceed();
+        }
+    }
+}

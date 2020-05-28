@@ -18,6 +18,7 @@
 - [spring-boot-mysql](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mysql)：Spring Boot 结合 Mysql
 - [spring-boot-mybatis](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis)：Spring Boot 结合 Mybatis
 - [spring-boot-mybatis-plus](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-plus)：Spring Boot 结合 Mybatis Plus
+- [spring-boot-mybatis-pagehelper](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mybatis-pagehelper)：Spring Boot 结合 Mybatis PageHelper
 - [spring-boot-jpa](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jpa)：Spring Boot 结合 JPA
 - [spring-boot-thymeleaf](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-thymeleaf)：Spring Boot 结合 Thymeleaf 模板引擎
 - [spring-boot-freemarker](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-freemarker)：Spring Boot 结合 Freemarker 模板引擎
