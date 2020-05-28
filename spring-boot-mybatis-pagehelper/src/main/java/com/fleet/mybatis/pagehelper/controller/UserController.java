@@ -4,6 +4,7 @@ import com.fleet.mybatis.pagehelper.entity.Page;
 import com.fleet.mybatis.pagehelper.entity.PageUtil;
 import com.fleet.mybatis.pagehelper.entity.User;
 import com.fleet.mybatis.pagehelper.service.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @RequestMapping("/listPage")
-    public PageUtil<User> listPage() {
-        return userService.listPage(new Page());
+    public PageUtil<User> listPage(@RequestBody Page page) {
+        return userService.listPage(page);
     }
 }

@@ -9,3 +9,13 @@ mybatis:
   mapper-locations: mybatis/**/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+# PageHelper 配置
+pagehelper:
+  helper-dialect: mysql
+  auto-dialect: true
+  reasonable: true
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  page-size-zero: false
+  params: count=countSql
+  support-methods-arguments: true

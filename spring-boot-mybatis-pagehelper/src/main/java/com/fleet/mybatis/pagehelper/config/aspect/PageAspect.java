@@ -1,4 +1,4 @@
-package com.fleet.mybatis.pagehelper.config;
+package com.fleet.mybatis.pagehelper.config.aspect;
 
 import com.fleet.mybatis.pagehelper.entity.Page;
 import com.fleet.mybatis.pagehelper.entity.PageUtil;
