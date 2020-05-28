@@ -23,13 +23,8 @@ public class PageAspect {
         Page page = null;
         if (args.length > 0) {
             for (Object arg : args) {
-                boolean isPage = true;
-                try {
+                if (arg instanceof Page) {
                     page = (Page) arg;
-                } catch (Exception e) {
-                    isPage = false;
-                }
-                if (isPage) {
                     break;
                 }
             }
@@ -38,20 +33,20 @@ public class PageAspect {
         if (page != null) {
             PageHelper.startPage(page.getPageIndex(), page.getPageRows());
             try {
-                @SuppressWarnings("unchecked")
-                PageUtil<Object> pageUtil = (PageUtil<Object>) pjp.proceed();
-                PageInfo<Object> pageInfo = new PageInfo<>(pageUtil.getList());
+                PageUtil<?> pageUtil = (PageUtil<?>) pjp.proceed();
+                PageInfo<?> pageInfo = new PageInfo<>(pageUtil.getList());
                 page.setTotalRows((int) pageInfo.getTotal());
                 pageUtil.setPage(page);
                 return pageUtil;
             } catch (Exception e) {
-                PageUtil<Object> pageUtil = new PageUtil<>();
-                page.setTotalRows(0);
-                pageUtil.setPage(page);
-                return pageUtil;
+                throw e;
             }
         } else {
-            return pjp.proceed();
+            try {
+                return pjp.proceed();
+            } catch (Exception e) {
+                throw e;
+            }
         }
     }
 }
