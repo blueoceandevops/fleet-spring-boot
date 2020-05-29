@@ -1,11 +1,8 @@
 package com.fleet.aop.aspect;
 
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +23,18 @@ public class LogAspect {
 
     private static Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Around("execution(* com.fleet..*.controller..*.*(..))")
+    @Pointcut("execution(* com.fleet..*.controller..*.*(..))")
+    public void pointcut() {
+    }
+
+    @Before("pointcut()")
+    public void doBefore() {
+        System.out.println("执行 Before");
+    }
+
+    @Around("pointcut()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("执行 Around");
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         logger.info("【请求URL】：{}", request.getRequestURL());
@@ -45,12 +52,21 @@ public class LogAspect {
                 paramList.add(argNames[i] + ": " + argValues[i]);
             }
         }
-        logger.info("【请求参数】：{}", "{" + StringUtils.join(paramList, ", ") + "}");
         return pjp.proceed();
     }
 
-    @AfterThrowing(pointcut = "execution(* com.fleet..*.controller..*.*(..))", throwing = "e")
+    @AfterThrowing(pointcut = "pointcut()", throwing = "e")
     public void doAfterThrowing(JoinPoint jp, Throwable e) {
-        logger.error(e.getMessage());
+        System.out.println("执行 AfterThrowing");
+    }
+
+    @After("pointcut()")
+    public void doAfter(JoinPoint pjp) {
+        System.out.println("执行 After");
+    }
+
+    @AfterReturning(pointcut = "pointcut()", returning = "o")
+    public void doAfterReturning(JoinPoint pjp, Object o) {
+        System.out.println("执行 AfterReturning");
     }
 }
