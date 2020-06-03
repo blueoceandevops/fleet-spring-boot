@@ -8,17 +8,17 @@
 
 1. Edit Configurations -> configuration 按图示配置
 
-![avatar](https://img-blog.csdnimg.cn/20200603122941857.png)
-![avatar](https://img-blog.csdnimg.cn/20200603122729484.png)
+	![avatar](https://img-blog.csdnimg.cn/20200603122941857.png)
+	![avatar](https://img-blog.csdnimg.cn/20200603122729484.png)
 
 2. Help -> Find action 输入 `Registry` 按图示配置
 
-![avatar](https://img-blog.csdnimg.cn/20200603122900456.png)
-![avatar](https://img-blog.csdnimg.cn/20200603133121656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgyOTM5NQ==,size_16,color_FFFFFF,t_70)
+	![avatar](https://img-blog.csdnimg.cn/20200603122900456.png)
+	![avatar](https://img-blog.csdnimg.cn/20200603133121656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgyOTM5NQ==,size_16,color_FFFFFF,t_70)
 
 3. File -> Settings -> Build,Execution,Deployment -> Compiler 按图示配置
 
-![avatar](https://img-blog.csdnimg.cn/20200603133200941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgyOTM5NQ==,size_16,color_FFFFFF,t_70)
+	![avatar](https://img-blog.csdnimg.cn/20200603133200941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgyOTM5NQ==,size_16,color_FFFFFF,t_70)
 
 4. 在 application.yml 中配置
 
