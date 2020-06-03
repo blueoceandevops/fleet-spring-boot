@@ -1,80 +1,55 @@
 package com.fleet.sso.controller.token;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.fleet.sso.config.property.CustomSetting;
-import com.fleet.sso.util.RedisUtil;
-import com.fleet.sso.feign.user.UserService;
+import com.fleet.sso.config.handler.BaseException;
+import com.fleet.sso.controller.BaseController;
 import com.fleet.sso.enums.ResultStatus;
 import com.fleet.sso.enums.TokenExpiresIn;
 import com.fleet.sso.json.R;
-import com.fleet.util.UUIDUtil;
-import com.fleet.util.token.TokenUtil;
-import com.fleet.util.token.entity.UserAccessToken;
-import com.fleet.util.token.entity.UserRefreshToken;
-import com.fleet.util.token.entity.UserToken;
+import com.fleet.sso.util.RedisUtil;
+import com.fleet.sso.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping(value = "/token")
-public class TokenController {
-
-	@Resource
-	UserService userService;
+@RequestMapping("/token")
+public class TokenController extends BaseController {
 
     @Resource
-	RedisUtil redisUtil;
+    RedisUtil redisUtil;
 
-	@Resource
-	CustomSetting customSetting;
+    /**
+     * 刷新 accessToken
+     */
+    @RequestMapping(value = "/refresh", method = {RequestMethod.GET, RequestMethod.POST})
+    public R refresh(HttpServletRequest request) {
+        String refreshToken = request.getHeader("refreshToken");
+        if (StringUtils.isEmpty(refreshToken)) {
+            refreshToken = request.getParameter("refreshToken");
+        }
+        if (StringUtils.isEmpty(refreshToken)) {
+            throw new BaseException(ResultStatus.ERROR, "缺少 refreshToken");
+        }
 
-	/**
-	 * 刷新token
-	 *
-	 * @param refreshToken
-	 * @return
-	 */
-	@RequestMapping(value = "/refresh")
-	public R login(@RequestParam("refreshToken") String refreshToken) {
-		UserRefreshToken userRefreshToken = (UserRefreshToken) redisUtil.get("refreshToken:" + refreshToken);
-		if (userRefreshToken == null) {
-			return R.error(ResultStatus.NOT_LOGIN_PROMPT);
-		}
-		if (TokenUtil.checkUserRefreshTokenForExpiration(userRefreshToken, TokenExpiresIn.REFRESH_EXPIRES_IN.getMsec())) {
-			return R.error(ResultStatus.REFRESH_TOKEN_EXPIRE, "需要重新登陆");
-		}
-		Integer id = userRefreshToken.getId();
-		UserToken userToken = (UserToken) redisUtil.get("userToken:" + id);
-		if (userToken == null) {
-			return R.error(ResultStatus.NOT_LOGIN_PROMPT);
-		}
-		redisUtil.delete("accessToken:" + userToken.getAccessToken());
+        Integer id = (Integer) redisUtil.get("refreshToken:user:" + refreshToken);
+        if (id == null) {
+            throw new BaseException("refreshToken 无效或已过期");
+        }
 
-		Long issuedAt = System.currentTimeMillis();
-		UserAccessToken userAccessToken = new UserAccessToken();
-		userAccessToken.setId(id);
-		String accessToken = UUIDUtil.getUUID();
-		userAccessToken.setAccessToken(accessToken);
-		userAccessToken.setExpiresIn(TokenExpiresIn.EXPIRES_IN.getMsec());
-		userAccessToken.setIssuedAt(issuedAt);
-		redisUtil.set("accessToken:" + accessToken, userAccessToken);
+        String accessToken = (String) redisUtil.get("refreshToken:accessToken:" + refreshToken);
+        if (accessToken != null) {
+            redisUtil.delete("accessToken:user:" + accessToken);
+        }
+        redisUtil.delete("refreshToken:accessToken:" + refreshToken);
 
-		// 更新userToken中关于accessToken的值
-		userToken.setAccessToken(accessToken);
-		redisUtil.set("userToken:" + id, userToken);
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("accessToken", accessToken);
-		map.put("expiresIn", TokenExpiresIn.EXPIRES_IN.getMsec());
-		map.put("issuedAt", issuedAt);
-		return R.ok(map);
-	}
-
+        accessToken = UUIDUtil.getUUID();
+        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, accessToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:user:" + accessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        return R.ok(accessToken);
+    }
 }

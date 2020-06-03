@@ -11,13 +11,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-		`id`, `name`, `nick_name`, `pwd`, `pwd_salt`, `status`,
+		`id`, `name`, `nick_name`, `pwd`, `pwd_salt`, `status`
 	</sql>
 
-    <insert id="insert" parameterType="com.fleet.sso.entity.User"
-            useGeneratedKeys="true" keyProperty="id">
-        insert
-        into `user`
+    <insert id="insert" parameterType="com.fleet.sso.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into `user`
         (
         <trim suffixOverrides=",">
             <if test="id != null">`id`,</if>

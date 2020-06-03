@@ -1,5 +1,6 @@
 package com.fleet.sso.config.handler;
 
+import com.fleet.sso.json.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
@@ -28,8 +29,8 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = BaseException.class)
-    public String handleBaseException(BaseException e) {
-        return e.getMsg();
+    public R handleBaseException(BaseException e) {
+        return R.error(e.getMsg());
     }
 
     /**
@@ -39,7 +40,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = Exception.class)
-    public String handleException(Exception e) {
+    public R handleException(Exception e) {
         if (e != null) {
             if (e instanceof RuntimeException) {
                 if (e instanceof NullPointerException) {
@@ -99,6 +100,6 @@ public class GlobalExceptionHandler {
                 }
             }
         }
-        return "失败";
+        return R.error();
     }
 }

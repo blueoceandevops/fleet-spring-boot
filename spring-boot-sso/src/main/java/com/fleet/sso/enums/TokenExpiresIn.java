@@ -2,21 +2,20 @@ package com.fleet.sso.enums;
 
 public enum TokenExpiresIn {
 
-	// 设置accessToken与refreshToken过期时间（单位：毫秒）
-	EXPIRES_IN(72000000L), REFRESH_EXPIRES_IN(2592000000L);
+    // 设置 accessToken 与 refreshToken 过期时间 (单位：秒)
+    ACCESS_EXPIRES_IN(720L), REFRESH_EXPIRES_IN(5184000L);
 
-	private TokenExpiresIn(Long msec) {
-		this.msec = msec;
-	}
+    TokenExpiresIn(Long sec) {
+        this.sec = sec;
+    }
 
-	private Long msec;
+    private Long sec;
 
-	public Long getMsec() {
-		return msec;
-	}
+    public Long getSec() {
+        return sec;
+    }
 
-	public void setMsec(Long msec) {
-		this.msec = msec;
-	}
-
+    public void setSec(Long sec) {
+        this.sec = sec;
+    }
 }

@@ -1,23 +1,23 @@
 package com.fleet.sso.controller.user;
 
-import com.fleet.common.enums.TokenExpiresIn;
-import com.fleet.common.util.UUIDUtil;
-import com.fleet.common.util.token.entity.Token;
-import com.fleet.common.util.token.entity.UserToken;
 import com.fleet.sso.entity.User;
 import com.fleet.sso.enums.ResultStatus;
+import com.fleet.sso.enums.TokenExpiresIn;
 import com.fleet.sso.json.R;
 import com.fleet.sso.service.UserService;
 import com.fleet.sso.util.MD5Util;
 import com.fleet.sso.util.RedisUtil;
-import org.springframework.util.StringUtils;
+import com.fleet.sso.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping
@@ -64,52 +64,34 @@ public class LoginController {
         }
 
         Integer id = user.getId();
-        Integer single = user.getSingle();
-        if (single.equals(1)) {
-            Set<String> keys = redisUtil.keys("token:user:" + id + ":*");
-            if (keys != null) {
-                for (String key : keys) {
-                    UserToken userToken = (UserToken) redisUtil.get(key);
-                    if (userToken != null) {
-                        redisUtil.delete("token:access:" + userToken.getAccessToken());
-                        redisUtil.delete("token:refresh:" + userToken.getRefreshToken());
-                    }
-                    redisUtil.delete(key);
-                }
-            }
-        }
-
-        UserToken userToken = setUserToken(id);
-        return R.ok(userToken);
+        clearToken(id);
+        Map<String, Object> tokenMap = initToken(id);
+        return R.ok(tokenMap);
     }
 
-    public UserToken setUserToken(Integer id) {
-        Long issuedAt = System.currentTimeMillis();
-        String accessToken = UUIDUtil.getUUID();
+    public void clearToken(Integer id) {
+        String refreshToken = (String) redisUtil.get("user:refreshToken:" + id);
+        if (StringUtils.isNotEmpty(refreshToken)) {
+            redisUtil.delete("refreshToken:user:" + refreshToken);
+            String accessToken = (String) redisUtil.get("refreshToken:accessToken:" + refreshToken);
+            if (StringUtils.isNotEmpty(accessToken)) {
+                redisUtil.delete("accessToken:user:" + accessToken);
+            }
+            redisUtil.delete("refreshToken:accessToken:" + refreshToken);
+        }
+        redisUtil.delete("user:refreshToken:" + id);
+    }
+
+    public Map<String, Object> initToken(Integer id) {
+        Map<String, Object> tokenMap = new HashMap<>();
         String refreshToken = UUIDUtil.getUUID();
-
-        // 设置用户 accessToken 信息
-        Token userAccessToken = new Token();
-        userAccessToken.setId(id);
-        userAccessToken.setToken(accessToken);
-        userAccessToken.setIssuedAt(issuedAt);
-        userAccessToken.setExpiresIn(TokenExpiresIn.EXPIRES_IN.getMsec());
-        redisUtil.set("token:access:" + accessToken, userAccessToken);
-
-        // 设置用户 refreshToken 信息
-        Token userRefreshToken = new Token();
-        userRefreshToken.setId(id);
-        userRefreshToken.setToken(refreshToken);
-        userRefreshToken.setIssuedAt(issuedAt);
-        userRefreshToken.setExpiresIn(TokenExpiresIn.REFRESH_EXPIRES_IN.getMsec());
-        redisUtil.set("token:refresh:" + refreshToken, userRefreshToken);
-
-        // 设置用户 token 关联信息
-        UserToken userToken = new UserToken();
-        userToken.setAccessToken(accessToken);
-        userToken.setRefreshToken(refreshToken);
-        redisUtil.set("token:user:" + id + ":refresh:" + refreshToken + ":access:" + accessToken, userToken);
-
-        return userToken;
+        String accessToken = UUIDUtil.getUUID();
+        redisUtil.setEx("user:refreshToken:" + id, refreshToken, TokenExpiresIn.REFRESH_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("refreshToken:user:" + refreshToken, id, TokenExpiresIn.REFRESH_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, accessToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:user:" + accessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        tokenMap.put("refreshToken", refreshToken);
+        tokenMap.put("accessToken", accessToken);
+        return tokenMap;
     }
 }

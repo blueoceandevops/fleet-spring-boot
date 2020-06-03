@@ -1,7 +1,6 @@
 package com.fleet.sso.controller.user;
 
 import com.fleet.sso.entity.User;
-import com.fleet.sso.enums.ResultStatus;
 import com.fleet.sso.json.R;
 import com.fleet.sso.service.UserService;
 import com.fleet.sso.util.MD5Util;
@@ -32,10 +31,9 @@ public class SignUpController {
         String pwd = MD5Util.encrypt(user.getPwd(), pwdSalt);
         user.setPwd(pwd);
 
-        Boolean b = userService.insert(user);
-        if (b) {
-            return R.ok(ResultStatus.SUCCESS);
+        if (userService.insert(user)) {
+            return R.ok();
         }
-        return R.error(ResultStatus.ERROR);
+        return R.error();
     }
 }
