@@ -30,8 +30,7 @@ public class WordController {
         Map<String, Object> review = new HashMap<>();
         review.put("userList", userList);
 
-        String fileName = new String("用户表.doc".getBytes(), StandardCharsets.ISO_8859_1);
-        resp.setHeader("Content-disposition", "attachment;filename=\"" + fileName + "\"");
+        resp.setHeader("Content-disposition", "attachment;filename=" + new String("用户表.doc".getBytes(), StandardCharsets.ISO_8859_1));
         resp.setContentType("application/ms-word;charset=utf-8");
         OutputStream out = resp.getOutputStream();
 

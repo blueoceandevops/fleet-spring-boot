@@ -38,8 +38,7 @@ public class ExcelController {
     public void export(HttpServletResponse resp) throws Exception {
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
 
-        String fileName = new String("测试.xls".getBytes(), StandardCharsets.ISO_8859_1);
-        resp.setHeader("Content-disposition", "attachment;filename=\"" + fileName + "\"");
+        resp.setHeader("Content-disposition", "attachment;filename=" + new String("测试.xls".getBytes(), StandardCharsets.ISO_8859_1));
         resp.setContentType("application/ms-excel;charset=utf-8");
         OutputStream out = resp.getOutputStream();
 
@@ -60,8 +59,7 @@ public class ExcelController {
     public void exportByTemplate(HttpServletResponse resp) throws Exception {
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
 
-        String fileName = new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1);
-        resp.setHeader("Content-disposition", "attachment;filename=\"" + fileName + "\"");
+        resp.setHeader("Content-disposition", "attachment;filename=" + new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1));
         resp.setContentType("application/ms-excel;charset=utf-8");
         OutputStream out = resp.getOutputStream();
 

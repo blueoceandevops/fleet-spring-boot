@@ -1,4 +1,4 @@
-package com.fleet.common.util;
+package com.fleet.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

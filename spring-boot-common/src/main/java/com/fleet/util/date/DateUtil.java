@@ -1,4 +1,4 @@
-package com.fleet.common.util.date;
+package com.fleet.util.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

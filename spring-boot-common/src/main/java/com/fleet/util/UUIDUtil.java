@@ -1,4 +1,4 @@
-package com.fleet.common.util;
+package com.fleet.util;
 
 import java.util.UUID;
 

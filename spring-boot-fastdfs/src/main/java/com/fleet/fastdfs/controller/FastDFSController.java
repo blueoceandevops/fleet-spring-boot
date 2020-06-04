@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/fdfs")
@@ -44,7 +44,7 @@ public class FastDFSController {
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("image/jpeg;charset=utf-8");
-        response.setHeader("Content-disposition", "attachment;filename=\"" + URLEncoder.encode("test.jpg", "UTF-8") + "\"");
+        response.setHeader("Content-disposition", "attachment;filename=" + new String("test.jpg".getBytes(), StandardCharsets.ISO_8859_1));
 
         OutputStream out = response.getOutputStream();
         IOUtils.write(data, out);

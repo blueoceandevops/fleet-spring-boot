@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.MappedByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.zip.ZipEntry;
@@ -53,14 +54,34 @@ public class FileUtil {
     }
 
     /**
-     * 文件下载
+     * resource 文件下载
      */
-    public static void download(String path, String fileName, HttpServletResponse response) throws Exception {
-        InputStream in = new FileInputStream(path + fileName);
+    public static void downloadResource(String filePath, String fileName, HttpServletResponse response) throws Exception {
+        InputStream in = FileUtil.class.getResourceAsStream(filePath);
 
         response.reset();
         response.setContentType("bin");
-        response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
+        OutputStream out = response.getOutputStream();
+        byte[] b = new byte[1024];
+        int len;
+        while ((len = in.read(b)) > 0) {
+            out.write(b, 0, len);
+        }
+        out.flush();
+        out.close();
+        in.close();
+    }
+
+    /**
+     * 文件下载
+     */
+    public static void download(String filePath, String fileName, HttpServletResponse response) throws Exception {
+        InputStream in = new FileInputStream(filePath);
+
+        response.reset();
+        response.setContentType("bin");
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
         OutputStream out = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
@@ -177,7 +198,7 @@ public class FileUtil {
 
         response.reset();
         response.setContentType("application/octet-stream");
-        response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), "ISO-8859-1"));
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
         OutputStream out = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;

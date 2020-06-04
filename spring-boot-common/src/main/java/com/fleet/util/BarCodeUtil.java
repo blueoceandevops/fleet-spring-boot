@@ -1,4 +1,4 @@
-package com.fleet.common.util;
+package com.fleet.util;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
