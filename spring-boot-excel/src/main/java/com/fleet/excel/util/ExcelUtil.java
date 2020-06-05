@@ -32,7 +32,7 @@ public class ExcelUtil<T> {
     private FormulaEvaluator formulaEvaluator;
 
     /**
-     * 导入EXCEL
+     * 导入 excel 文件，读取数据
      */
     public List<T> read(MultipartFile file) throws Exception {
         InputStream in = file.getInputStream();
@@ -40,7 +40,7 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 导入EXCEL
+     * 导入 excel 文件，读取数据
      */
     public List<T> read(File file) throws Exception {
         FileInputStream in = new FileInputStream(file);
@@ -48,7 +48,7 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 导入EXCEL
+     * 导入 excel 文件，读取数据
      */
     public List<T> read(File file, String sheetName) throws Exception {
         FileInputStream in = new FileInputStream(file);
@@ -56,7 +56,7 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 导入EXCEL
+     * 导入 excel 文件，读取数据
      */
     public List<T> read(InputStream in) throws Exception {
         int sheetAt = 0;
@@ -68,17 +68,17 @@ public class ExcelUtil<T> {
         }
 
         Workbook workbook = getWorkbook(in);
-        Sheet sheet = getSheet(workbook, sheetAt);
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
-        Map<Integer, Field> fieldMap = getFieldMap();
-        List<T> list = getList(sheet, fieldMap, startWith);
+        Sheet sheet = getSheet(workbook, sheetAt);
+        Map<Integer, Field> fields = getFields();
+        List<T> list = getList(sheet, fields, startWith);
         workbook.close();
         in.close();
         return list;
     }
 
     /**
-     * 导入EXCEL
+     * 导入 excel 文件，读取数据
      */
     public List<T> read(InputStream in, String sheetName) throws Exception {
         int startWith = 1;
@@ -88,11 +88,10 @@ public class ExcelUtil<T> {
         }
 
         Workbook workbook = getWorkbook(in);
-        Sheet sheet = getSheet(workbook, sheetName);
-
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
-        Map<Integer, Field> fieldMap = getFieldMap();
-        List<T> list = getList(sheet, fieldMap, startWith);
+        Sheet sheet = getSheet(workbook, sheetName);
+        Map<Integer, Field> fields = getFields();
+        List<T> list = getList(sheet, fields, startWith);
         workbook.close();
         in.close();
         return list;
@@ -119,27 +118,29 @@ public class ExcelUtil<T> {
         return workbook.getSheetAt(sheetAt);
     }
 
-    private List<T> getList(Sheet sheet, Map<Integer, Field> fieldMap, Integer StartWith) throws Exception {
+    private List<T> getList(Sheet sheet, Map<Integer, Field> fields, Integer startWith) throws Exception {
         List<T> list = new ArrayList<>();
         for (Row row : sheet) {
-            // 从第 StartWith 行开始取数据
-            if (row.getRowNum() < StartWith) {
+            int rowNum = row.getRowNum();
+            // 从第 startWith 行开始取数据
+            if (rowNum < startWith) {
                 continue;
             }
             T t = clazz.newInstance();
 
-            //检查所有字段是否都为空
-            Boolean isNull = true;
-            for (Integer col : fieldMap.keySet()) {
-                Field field = fieldMap.get(col);
+            // 检查所有字段是否都为空
+            boolean isNull = true;
+            for (Integer cellNum : fields.keySet()) {
+                Field field = fields.get(cellNum);
                 // 设置实体类私有属性可访问
                 field.setAccessible(true);
                 ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
-                Cell cell = row.getCell(col);
+                Cell cell = row.getCell(cellNum);
                 if (cell == null) {
                     continue;
                 }
-                String value = getValue(cell);// 单元格中的内容
+                // 单元格中的内容
+                String value = getValue(cell);
                 if (StringUtils.isEmpty(value)) {
                     continue;
                 } else {
@@ -216,21 +217,21 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 导出EXCEL模板（表头）
+     * 导出 excel 模板（表头）文件
      */
     public void exportTemplate(String sheetName, OutputStream out) throws Exception {
-        export(null, sheetName, out);
+        export(sheetName, new ArrayList<>(), out);
     }
 
     /**
-     * 导出EXCEL模板（表头与示例数据）
+     * 导出 excel 模板（表头、数据）文件
      */
-    public void exportTemplate(List<T> list, String sheetName, OutputStream out) throws Exception {
-        export(list, sheetName, out);
+    public void exportTemplate(String sheetName, List<T> list, OutputStream out) throws Exception {
+        export(sheetName, list, out);
     }
 
     /**
-     * 导出EXCEL
+     * 导出 excel 文件
      */
     public void export(List<T> list, OutputStream out) throws Exception {
         int startWith = 1;
@@ -244,10 +245,10 @@ public class ExcelUtil<T> {
         // 产生工作表对象
         HSSFSheet sheet = createSheet(workbook);
 
-        Map<Integer, Field> fieldMap = getFieldMap();
+        Map<Integer, Field> fields = getFields();
 
-        createHead(workbook, sheet, fieldMap);
-        createBody(workbook, sheet, fieldMap, list, startWith);
+        createHead(workbook, sheet, fields);
+        createBody(workbook, sheet, fields, list, startWith);
 
         workbook.write(out);
         workbook.close();
@@ -256,9 +257,9 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 导出EXCEL
+     * 导出 excel 文件
      */
-    public void export(List<T> list, String sheetName, OutputStream out) throws Exception {
+    public void export(String sheetName, List<T> list, OutputStream out) throws Exception {
         int startWith = 1;
         if (clazz.isAnnotationPresent(ExcelSheet.class)) {
             ExcelSheet excelSheet = clazz.getAnnotation(ExcelSheet.class);
@@ -270,10 +271,10 @@ public class ExcelUtil<T> {
         // 产生工作表对象
         HSSFSheet sheet = createSheet(workbook, sheetName);
 
-        Map<Integer, Field> fieldMap = getFieldMap();
+        Map<Integer, Field> fields = getFields();
 
-        createHead(workbook, sheet, fieldMap);
-        createBody(workbook, sheet, fieldMap, list, startWith);
+        createHead(workbook, sheet, fields);
+        createBody(workbook, sheet, fields, list, startWith);
 
         workbook.write(out);
         workbook.close();
@@ -301,45 +302,45 @@ public class ExcelUtil<T> {
         return sheet;
     }
 
-    private void createHead(HSSFWorkbook workbook, HSSFSheet sheet, Map<Integer, Field> fieldMap) {
-        // 创建行
+    private void createHead(HSSFWorkbook workbook, HSSFSheet sheet, Map<Integer, Field> fields) {
+        // 创建表头行
         HSSFRow row = sheet.createRow(0);
         // 生成一个样式
-        HSSFCellStyle headCellStyle = workbook.createCellStyle();
+        HSSFCellStyle cellStyle = workbook.createCellStyle();
         // 设置标题样式
-        headCellStyle = setHeadStyle(workbook, headCellStyle);
-        for (Integer col : fieldMap.keySet()) {
-            Field field = fieldMap.get(col);
+        setHeadCellStyle(workbook, cellStyle);
+        for (Integer cellNum : fields.keySet()) {
+            Field field = fields.get(cellNum);
             // 设置实体类私有属性可访问
             field.setAccessible(true);
             ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
             // 创建列
-            HSSFCell cell = row.createCell(col);
-            cell.setCellStyle(headCellStyle);
+            HSSFCell cell = row.createCell(cellNum);
+            cell.setCellStyle(cellStyle);
             cell.setCellValue(excelColumn.name());
         }
     }
 
-    private void createBody(HSSFWorkbook workbook, HSSFSheet sheet, Map<Integer, Field> fieldMap, List<T> list, Integer StartWith) throws Exception {
+    private void createBody(HSSFWorkbook workbook, HSSFSheet sheet, Map<Integer, Field> fields, List<T> list, Integer startWith) throws Exception {
         // 写入各条记录，每条记录对应excel表中的一行
         if (list != null) {
             // 生成一个样式
-            HSSFCellStyle bodyCellStyle = workbook.createCellStyle();
+            HSSFCellStyle cellStyle = workbook.createCellStyle();
             // 设置内容样式
-            bodyCellStyle = setBodyStyle(workbook, bodyCellStyle);
+            setBodyCellStyle(workbook, cellStyle);
             for (int i = 0; i < list.size(); i++) {
                 // 创建行
-                HSSFRow row = sheet.createRow(i + StartWith);
+                HSSFRow row = sheet.createRow(i + startWith);
                 T t = (T) list.get(i);
-                for (Integer col : fieldMap.keySet()) {
-                    Field field = fieldMap.get(col);
+                for (Integer cellNum : fields.keySet()) {
+                    Field field = fields.get(cellNum);
                     // 设置实体类私有属性可访问
                     field.setAccessible(true);
                     ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
 
                     // 创建列
-                    HSSFCell cell = row.createCell(col);
-                    cell.setCellStyle(bodyCellStyle);
+                    HSSFCell cell = row.createCell(cellNum);
+                    cell.setCellStyle(cellStyle);
 
                     // 根据ExcelVOAttribute中设置情况决定是否导出，有些情况需要保持为空
                     if (excelColumn.isExport()) {
@@ -361,7 +362,7 @@ public class ExcelUtil<T> {
                             }
                             // 生成一个data样式（转换结果可能显示错误，需要手动转换成需要的格式）
                             // HSSFCellStyle dataFormatCellStyle = workbook.createCellStyle();
-                            // dataFormatCellStyle.cloneStyleFrom(bodyCellStyle);
+                            // dataFormatCellStyle.cloneStyleFrom(cellStyle);
                             // CreationHelper createHelper = workbook.getCreationHelper();
                             // short dateFormat = createHelper.createDataFormat().getFormat(excelColumn.dateFormat());
                             // dataFormatCellStyle.setDataFormat(dateFormat);
@@ -400,7 +401,7 @@ public class ExcelUtil<T> {
                             double doubleVal = bigDecimalVal.doubleValue();
                             // 生成一个data样式（转换结果可能显示错误，需要手动转换成需要的格式）
                             // HSSFCellStyle dataFormatCellStyle = workbook.createCellStyle();
-                            // dataFormatCellStyle.cloneStyleFrom(bodyCellStyle);
+                            // dataFormatCellStyle.cloneStyleFrom(cellStyle);
                             // CreationHelper createHelper = workbook.getCreationHelper();
                             // short dateFormat = createHelper.createDataFormat().getFormat("￥#,##0.00");
                             // dataFormatCellStyle.setDataFormat(dateFormat);
@@ -422,8 +423,30 @@ public class ExcelUtil<T> {
         }
     }
 
-    private HSSFCellStyle setHeadStyle(HSSFWorkbook workbook, HSSFCellStyle style) {
-        style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+    private void setHeadCellStyle(HSSFWorkbook workbook, HSSFCellStyle cellStyle) {
+        cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        setCellStyle(cellStyle);
+        // 生成字体
+        HSSFFont font = workbook.createFont();
+        font.setColor(IndexedColors.BLACK.getIndex());
+        font.setFontHeightInPoints((short) 12);
+        font.setBold(true);
+        // 把字体应用到当前的样样式
+        cellStyle.setFont(font);
+    }
+
+    private void setBodyCellStyle(HSSFWorkbook workbook, HSSFCellStyle cellStyle) {
+        cellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+        setCellStyle(cellStyle);
+        // 生成字体
+        HSSFFont font = workbook.createFont();
+        font.setColor(IndexedColors.BLACK.getIndex());
+        font.setFontHeightInPoints((short) 10);
+        // 把字体应用到当前的样样式
+        cellStyle.setFont(font);
+    }
+
+    private void setCellStyle(HSSFCellStyle style) {
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         style.setBorderTop(BorderStyle.THIN);
         style.setBorderRight(BorderStyle.THIN);
@@ -431,36 +454,10 @@ public class ExcelUtil<T> {
         style.setBorderLeft(BorderStyle.THIN);
         style.setAlignment(HorizontalAlignment.CENTER);
         style.setVerticalAlignment(VerticalAlignment.CENTER);
-        // 生成字体
-        HSSFFont font = workbook.createFont();
-        font.setColor(IndexedColors.BLACK.getIndex());
-        font.setFontHeightInPoints((short) 12);
-        font.setBold(true);
-        // 把字体应用到当前的样样式
-        style.setFont(font);
-        return style;
-    }
-
-    private HSSFCellStyle setBodyStyle(HSSFWorkbook workbook, HSSFCellStyle style) {
-        style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        style.setBorderTop(BorderStyle.THIN);
-        style.setBorderRight(BorderStyle.THIN);
-        style.setBorderBottom(BorderStyle.THIN);
-        style.setBorderLeft(BorderStyle.THIN);
-        // style.setAlignment(HorizontalAlignment.RIGHT);
-        style.setVerticalAlignment(VerticalAlignment.CENTER);
-        // 生成字体
-        HSSFFont font = workbook.createFont();
-        font.setColor(IndexedColors.BLACK.getIndex());
-        font.setFontHeightInPoints((short) 10);
-        // 把字体应用到当前的样样式
-        style.setFont(font);
-        return style;
     }
 
     /**
-     * 导出EXCEL(按照模板导出)
+     * 导出 excel 文件(按照模板导出)
      */
     public void exportByTemplate(List<T> list, OutputStream out) throws Exception {
         String template = "";
@@ -485,10 +482,10 @@ public class ExcelUtil<T> {
 
         Workbook workbook = getWorkbook(in);
         Sheet sheet = getSheet(workbook, sheetAt);
-        Map<Integer, Field> fieldMap = getFieldMap();
+        Map<Integer, Field> fields = getFields();
 
-        createHead(sheet, fieldMap, headAt);
-        createBody(sheet, fieldMap, list, startWith);
+        createHead(sheet, headAt, fields);
+        createBody(sheet, startWith, fields, list);
 
         workbook.write(out);
         workbook.close();
@@ -496,31 +493,31 @@ public class ExcelUtil<T> {
         out.close();
     }
 
-    private void createHead(Sheet sheet, Map<Integer, Field> fieldMap, int headAt) {
+    private void createHead(Sheet sheet, int headAt, Map<Integer, Field> fields) {
         Row row = sheet.getRow(headAt);
-        for (Integer col : fieldMap.keySet()) {
-            Field field = fieldMap.get(col);
+        for (Integer cellNum : fields.keySet()) {
+            Field field = fields.get(cellNum);
             // 设置实体类私有属性可访问
             field.setAccessible(true);
             ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
             // 创建列
-            Cell cell = row.getCell(col);
+            Cell cell = row.getCell(cellNum);
             if (cell == null) {
-                cell = row.createCell(col);
+                cell = row.createCell(cellNum);
             }
             cell.setCellValue(excelColumn.name());
         }
     }
 
-    private void createBody(Sheet sheet, Map<Integer, Field> fieldMap, List<T> list, Integer StartWith) throws Exception {
+    private void createBody(Sheet sheet, Integer startWith, Map<Integer, Field> fields, List<T> list) throws Exception {
         // 写入各条记录，每条记录对应excel表中的一行
         if (list != null) {
             Short rowHeight = null;
             Map<Integer, CellStyle> cellStyleMap = new HashMap<>();
             for (int i = 0; i < list.size(); i++) {
-                Row row = sheet.getRow(i + StartWith);
+                Row row = sheet.getRow(i + startWith);
                 if (row == null) {
-                    row = sheet.createRow(i + StartWith);
+                    row = sheet.createRow(i + startWith);
                     if (rowHeight != null) {
                         row.setHeight(rowHeight);
                     }
@@ -531,23 +528,23 @@ public class ExcelUtil<T> {
                 }
 
                 T t = (T) list.get(i);
-                for (Integer col : fieldMap.keySet()) {
-                    Field field = fieldMap.get(col);
+                for (Integer cellNum : fields.keySet()) {
+                    Field field = fields.get(cellNum);
                     // 设置实体类私有属性可访问
                     field.setAccessible(true);
                     ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
 
                     // 创建列
-                    Cell cell = row.getCell(col);
+                    Cell cell = row.getCell(cellNum);
                     if (cell == null) {
-                        cell = row.createCell(col);
+                        cell = row.createCell(cellNum);
                     }
 
                     if (i == 0) {
                         CellStyle cellStyle = cell.getCellStyle();
-                        cellStyleMap.put(col, cellStyle);
+                        cellStyleMap.put(cellNum, cellStyle);
                     } else {
-                        CellStyle cellStyle = cellStyleMap.get(col);
+                        CellStyle cellStyle = cellStyleMap.get(cellNum);
                         cell.setCellStyle(cellStyle);
                     }
 
@@ -618,36 +615,35 @@ public class ExcelUtil<T> {
         }
     }
 
-    private Map<Integer, Field> getFieldMap() {
+    private Map<Integer, Field> getFields() {
         // 得到所有定义字段
-        Field[] fields = clazz.getDeclaredFields();
-        // field集合
-        Map<Integer, Field> fieldMap = new HashMap<>();
-        // 得到所有field并存放到一个Map中，重复项会被覆盖
-        for (Field field : fields) {
+        Field[] declaredFields = clazz.getDeclaredFields();
+        // field 集合
+        Map<Integer, Field> fields = new HashMap<>();
+        // 得到所有 field 并存放到一个 Map 中，重复项会被覆盖
+        for (Field field : declaredFields) {
             // 设置实体类私有属性可访问
             field.setAccessible(true);
             if (field.isAnnotationPresent(ExcelColumn.class)) {
                 ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
-                int col = getExcelCol(excelColumn.column());
-                fieldMap.put(col, field);
+                int cellNum = getCellNum(excelColumn.column());
+                fields.put(cellNum, field);
             }
         }
-        return fieldMap;
+        return fields;
     }
 
     /**
-     * 将EXCEL中A,B,C,D,E列映射成0,1,2,3
+     * 将 EXCEL 中 A,B,C,D,E 列映射成 0,1,2,3,4
      */
-    private int getExcelCol(String column) {
+    private int getCellNum(String column) {
         column = column.toUpperCase();
-        // 从-1开始计算，字母重1开始运算
-        int count = -1;
-        char[] cs = column.toCharArray();
-        for (int i = 0; i < cs.length; i++) {
-            count += (cs[i] - 64) * Math.pow(26, cs.length - 1 - i);
+        int cellNum = -1;
+        char[] chars = column.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            cellNum += (chars[i] - 64) * Math.pow(26, chars.length - i - 1);
         }
-        return count;
+        return cellNum;
     }
 
     /**
@@ -681,28 +677,34 @@ public class ExcelUtil<T> {
 
     private String getValue(Cell cell) {
         String value = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         switch (cell.getCellType()) {
-            case NUMERIC: // 数值
+            // 数值
+            case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date d = DateUtil.getJavaDate(cell.getNumericCellValue());
                     value = sdf.format(d);
                 } else {
                     value = BigDecimal.valueOf(cell.getNumericCellValue()).stripTrailingZeros().toPlainString();
                 }
                 break;
-            case STRING: // 字符串
+            // 字符串
+            case STRING:
                 value = cell.getStringCellValue();
                 break;
-            case BOOLEAN: // Boolean
-                value = cell.getBooleanCellValue() + "";
+            // Boolean
+            case BOOLEAN:
+                value = String.valueOf(cell.getBooleanCellValue());
                 break;
-            case FORMULA: // 公式
+            // 公式
+            case FORMULA:
                 value = getCellValue(formulaEvaluator.evaluate(cell));
                 break;
-            case BLANK: // 空值
+            // 空值
+            case BLANK:
                 break;
-            case ERROR: // 错误
+            // 错误
+            case ERROR:
                 break;
             default:
                 break;
@@ -713,14 +715,23 @@ public class ExcelUtil<T> {
     private String getCellValue(CellValue cellValue) {
         String value = "";
         switch (cellValue.getCellType()) {
+            // 数值
             case NUMERIC:
                 value = BigDecimal.valueOf(cellValue.getNumberValue()).stripTrailingZeros().toPlainString();
                 break;
+            // 字符串
             case STRING:
                 value = cellValue.getStringValue();
                 break;
+            // Boolean
             case BOOLEAN:
-                value = cellValue.getBooleanValue() + "";
+                value = String.valueOf(cellValue.getBooleanValue());
+                break;
+            // 空值
+            case BLANK:
+                break;
+            // 错误
+            case ERROR:
                 break;
             default:
                 break;

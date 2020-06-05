@@ -35,12 +35,12 @@ public class ExcelController {
     }
 
     @RequestMapping("/export")
-    public void export(HttpServletResponse resp) throws Exception {
+    public void export(HttpServletResponse response) throws Exception {
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
 
-        resp.setHeader("Content-disposition", "attachment;filename=" + new String("测试.xls".getBytes(), StandardCharsets.ISO_8859_1));
-        resp.setContentType("application/ms-excel;charset=utf-8");
-        OutputStream out = resp.getOutputStream();
+        response.setHeader("Content-disposition", "attachment;filename=" + new String("测试.xls".getBytes(), StandardCharsets.ISO_8859_1));
+        response.setContentType("application/ms-excel;charset=utf-8");
+        OutputStream out = response.getOutputStream();
 
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
@@ -52,16 +52,16 @@ public class ExcelController {
             user.setIdNo("20201918");
             list.add(user);
         }
-        excelUtil.export(list, "用户", out);
+        excelUtil.export("用户", list, out);
     }
 
     @RequestMapping("/exportByTemplate")
-    public void exportByTemplate(HttpServletResponse resp) throws Exception {
+    public void exportByTemplate(HttpServletResponse response) throws Exception {
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
 
-        resp.setHeader("Content-disposition", "attachment;filename=" + new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1));
-        resp.setContentType("application/ms-excel;charset=utf-8");
-        OutputStream out = resp.getOutputStream();
+        response.setHeader("Content-disposition", "attachment;filename=" + new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1));
+        response.setContentType("application/ms-excel;charset=utf-8");
+        OutputStream out = response.getOutputStream();
 
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 25; i++) {

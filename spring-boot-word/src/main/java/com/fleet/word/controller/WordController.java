@@ -17,7 +17,7 @@ import java.util.Map;
 public class WordController {
 
     @RequestMapping("/export")
-    public void export(HttpServletResponse resp) throws Exception {
+    public void export(HttpServletResponse response) throws Exception {
         List<Map<String, Object>> userList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Map<String, Object> map = new HashMap<>();
@@ -30,9 +30,9 @@ public class WordController {
         Map<String, Object> review = new HashMap<>();
         review.put("userList", userList);
 
-        resp.setHeader("Content-disposition", "attachment;filename=" + new String("用户表.doc".getBytes(), StandardCharsets.ISO_8859_1));
-        resp.setContentType("application/ms-word;charset=utf-8");
-        OutputStream out = resp.getOutputStream();
+        response.setHeader("Content-disposition", "attachment;filename=" + new String("用户表.doc".getBytes(), StandardCharsets.ISO_8859_1));
+        response.setContentType("application/ms-word;charset=utf-8");
+        OutputStream out = response.getOutputStream();
 
         WordUtil wordUtil = new WordUtil();
         wordUtil.export(review, "D:\\", "User.xml", out);
