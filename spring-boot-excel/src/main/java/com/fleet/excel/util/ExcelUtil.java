@@ -6,6 +6,7 @@ import com.fleet.excel.value.Values;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -120,6 +121,7 @@ public class ExcelUtil<T> {
 
     private List<T> getList(Sheet sheet, Map<Integer, Field> fields, Integer startWith) throws Exception {
         List<T> list = new ArrayList<>();
+        Map<String, String> mergedRegionValues = mergedRegionValues(sheet);
         for (Row row : sheet) {
             int rowNum = row.getRowNum();
             // 从第 startWith 行开始取数据
@@ -139,8 +141,14 @@ public class ExcelUtil<T> {
                 if (cell == null) {
                     continue;
                 }
+
                 // 单元格中的内容
-                String value = getValue(cell);
+                String value = null;
+                if (mergedRegionValues.containsKey(rowNum + "" + cellNum)) {
+                    value = mergedRegionValues.get(rowNum + "" + cellNum);
+                } else {
+                    value = getValue(cell);
+                }
                 if (StringUtils.isEmpty(value)) {
                     continue;
                 } else {
@@ -214,6 +222,31 @@ public class ExcelUtil<T> {
             }
         }
         return list;
+    }
+
+    /**
+     * 获取合并单元格中所有单元格数据
+     */
+    private Map<String, String> mergedRegionValues(Sheet sheet) {
+        Map<String, String> mergedRegionValues = new HashMap<>();
+        int numMergedRegions = sheet.getNumMergedRegions();
+        for (int i = 0; i < numMergedRegions; i++) {
+            CellRangeAddress range = sheet.getMergedRegion(i);
+            int firstRowNum = range.getFirstRow();
+            int lastRowNum = range.getLastRow();
+            int firstCellNum = range.getFirstColumn();
+            int lastCellNum = range.getLastColumn();
+            // 在所有合并单元格中默认取第一个单元格中的数值
+            Row row = sheet.getRow(firstRowNum);
+            Cell cell = row.getCell(firstCellNum);
+            String value = getValue(cell);
+            for (int rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
+                for (int cellNum = firstCellNum; cellNum <= lastCellNum; cellNum++) {
+                    mergedRegionValues.put(rowNum + "" + cellNum, value);
+                }
+            }
+        }
+        return mergedRegionValues;
     }
 
     /**
