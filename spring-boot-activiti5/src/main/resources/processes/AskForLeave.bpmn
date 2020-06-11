@@ -5,7 +5,7 @@
     <userTask id="apply" name="填写申请单" activiti:assignee="${initiator}"></userTask>
     <userTask id="ldsp" name="领导审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssignTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <exclusiveGateway id="exclusivegateway1" name="ExclusiveGateway"></exclusiveGateway>

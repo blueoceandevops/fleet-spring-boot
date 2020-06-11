@@ -6,7 +6,7 @@ import org.activiti.engine.delegate.TaskListener;
 
 import java.util.Map;
 
-public class AssignTaskListener implements TaskListener {
+public class AssigneeTaskListener implements TaskListener {
 
     private static final long serialVersionUID = 1L;
 
