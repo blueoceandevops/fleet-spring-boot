@@ -13,14 +13,14 @@ public class TaskInfo<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 流程标识
+     * 实例id
      */
-    private String processId;
+    private String processInstanceId;
 
     /**
      * 流程类型
      */
-    private String definitionKey;
+    private String processDefinitionKey;
 
     /**
      * 流程编号（唯一）
@@ -79,20 +79,20 @@ public class TaskInfo<T> implements Serializable {
      */
     private String assignee;
 
-    public String getProcessId() {
-        return processId;
+    public String getProcessInstanceId() {
+        return processInstanceId;
     }
 
-    public void setProcessId(String processId) {
-        this.processId = processId;
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
     }
 
-    public String getDefinitionKey() {
-        return definitionKey;
+    public String getProcessDefinitionKey() {
+        return processDefinitionKey;
     }
 
-    public void setDefinitionKey(String definitionKey) {
-        this.definitionKey = definitionKey;
+    public void setProcessDefinitionKey(String processDefinitionKey) {
+        this.processDefinitionKey = processDefinitionKey;
     }
 
     public String getBusinessKey() {

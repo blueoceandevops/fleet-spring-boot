@@ -54,7 +54,7 @@ public class Activiti5ApplicationTests {
     @Test
     public void start() {
         ProcessInfo<List<Integer>> processInfo = new ProcessInfo<>();
-        processInfo.setDefinitionKey("AskForLeave");
+        processInfo.setProcessDefinitionKey("AskForLeave");
         processInfo.setBusinessKey("AskForLeave:1");
         processInfo.setProcessName("这是请假流程");
         processInfo.setInitiator("1");
@@ -76,7 +76,7 @@ public class Activiti5ApplicationTests {
     @Test
     public void apply() {
         ProcessInfo<List<Integer>> processInfo = new ProcessInfo<>();
-        processInfo.setDefinitionKey("AskForLeave");
+        processInfo.setProcessDefinitionKey("AskForLeave");
         processInfo.setBusinessKey("AskForLeave:1");
         processInfo.setProcessName("这是请假流程");
         processInfo.setInitiator("1");
@@ -128,8 +128,8 @@ public class Activiti5ApplicationTests {
     }
 
     @Test
-    public void getByProcessId() {
-        ProcessInfo<?> processInfo = processService.getByProcessId("5007");
+    public void getByProcessInstanceId() {
+        ProcessInfo<?> processInfo = processService.getByProcessInstanceId("5007");
         System.out.println(JSON.toJSONString(processInfo));
     }
 

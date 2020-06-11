@@ -6,6 +6,7 @@ import com.fleet.activiti5.page.PageUtil;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProcessService {
 
@@ -25,6 +26,11 @@ public interface ProcessService {
     PageUtil<ProcessInfo<?>> myApprovedList(String userId, Page page);
 
     /**
+     * 获取同一类型流程数量
+     */
+    Long getTotal(String processDefinitionKey);
+
+    /**
      * 创建流程实例
      */
     TaskInfo<?> start(ProcessInfo<?> processInfo);
@@ -35,14 +41,24 @@ public interface ProcessService {
     String apply(ProcessInfo<?> processInfo);
 
     /**
+     * 重新流程申请
+     */
+    String reApply(String taskId, ProcessInfo<?> processInfo);
+
+    /**
      * 完成当前节点审批
      */
-    void completeTask(Approval approval);
+    String completeTask(Approval approval);
+
+    /**
+     * 重新设置流程审批人
+     */
+    String resetAssignees(String businessKey, Map<String, String> assignees);
 
     /**
      * 流程中止
      */
-    void stop(String businessKey);
+    String stop(String businessKey);
 
     /**
      * 流程详情
@@ -52,7 +68,7 @@ public interface ProcessService {
     /**
      * 流程详情
      */
-    ProcessInfo<?> getByProcessId(String processInstanceId);
+    ProcessInfo<?> getByProcessInstanceId(String processInstanceId);
 
     /**
      * 流程详情
@@ -82,7 +98,7 @@ public interface ProcessService {
     /**
      * 转交任务
      */
-    void turnTask(Turn turn);
+    String turnTask(Turn turn);
 
     /**
      * 委派任务
