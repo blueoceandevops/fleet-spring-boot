@@ -83,6 +83,8 @@
         <module>spring-boot-hystrix-turbine</module>
         <module>spring-boot-webflux</module>
         <module>spring-boot-ehcache</module>
+        <module>spring-boot-caffeine</module>
+        <module>spring-boot-guava</module>
         <module>spring-boot-liquibase</module>
         <module>spring-boot-flyway</module>
         <module>spring-boot-batch</module>
