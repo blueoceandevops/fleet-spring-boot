@@ -77,12 +77,8 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     private TaskInfo<?> getTaskInfo(Task task) {
-        String processInstanceId = task.getProcessInstanceId();
-
         String taskId = task.getId();
-        String taskName = task.getName();
-        Date createTime = task.getCreateTime();
-        String assignee = task.getAssignee();
+        String processInstanceId = task.getProcessInstanceId();
 
         String initiator = (String) taskService.getVariable(taskId, "initiator");
         ProcessInfo<?> processInfo = (ProcessInfo<?>) taskService.getVariable(taskId, "info");
@@ -90,28 +86,32 @@ public class ProcessServiceImpl implements ProcessService {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .singleResult();
-        String businessKey = processInstance.getBusinessKey();
+        if (processInstance == null) {
+            return null;
+        }
 
         HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .singleResult();
-        Date startTime = historicProcessInstance.getStartTime();
+        if (historicProcessInstance == null) {
+            return null;
+        }
 
-        // 将task转换成我们需要的格式taskInfo
+        // 将 task 转换成我们需要的格式 taskInfo
         TaskInfo<?> taskInfo = new TaskInfo<>();
         taskInfo.setProcessInstanceId(processInstanceId);
         taskInfo.setProcessDefinitionKey(processInfo.getProcessDefinitionKey());
-        taskInfo.setBusinessKey(businessKey);
+        taskInfo.setBusinessKey(processInstance.getBusinessKey());
         taskInfo.setProcessName(processInfo.getProcessName());
         taskInfo.setInitiator(initiator);
         taskInfo.setPhone(processInfo.getPhone());
         taskInfo.setEmail(processInfo.getEmail());
-        taskInfo.setStartTime(startTime);
+        taskInfo.setStartTime(historicProcessInstance.getStartTime());
         taskInfo.setRemark(processInfo.getRemark());
         taskInfo.setTaskId(taskId);
-        taskInfo.setTaskName(taskName);
-        taskInfo.setCreateTime(createTime);
-        taskInfo.setAssignee(assignee);
+        taskInfo.setTaskName(task.getName());
+        taskInfo.setCreateTime(task.getCreateTime());
+        taskInfo.setAssignee(task.getAssignee());
         return taskInfo;
     }
 
@@ -142,16 +142,16 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     private ProcessInfo<?> getProcessInfo(HistoricProcessInstance historicProcessInstance) {
-        ProcessInfo<?> processInfo = new ProcessInfo<>();
         String processInstanceId = historicProcessInstance.getId();
         HistoricVariableInstance historicVariableInstance = historyService.createHistoricVariableInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .variableName("info")
                 .singleResult();
-        if (historicVariableInstance != null) {
-            processInfo = (ProcessInfo<?>) historicVariableInstance.getValue();
+        if (historicVariableInstance == null) {
+            return null;
         }
 
+        ProcessInfo<?> processInfo = (ProcessInfo<?>) historicVariableInstance.getValue();
         if (historicProcessInstance.getEndTime() == null) {
             processInfo.setState(1);
             Task task = taskService.createTaskQuery()
@@ -209,24 +209,17 @@ public class ProcessServiceImpl implements ProcessService {
         return pageUtil;
     }
 
-    @Override
-    public Long getTotal(String processDefinitionKey) {
-        return historyService.createHistoricProcessInstanceQuery()
-                .processDefinitionKey(processDefinitionKey)
-                .count();
-    }
-
     private ProcessInfo<?> getProcessInfo(HistoricActivityInstance historicActivityInstance) {
-        ProcessInfo<?> processInfo = new ProcessInfo<>();
         String processInstanceId = historicActivityInstance.getId();
         HistoricVariableInstance historicVariableInstance = historyService.createHistoricVariableInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .variableName("info")
                 .singleResult();
-        if (historicVariableInstance != null) {
-            processInfo = (ProcessInfo<?>) historicVariableInstance.getValue();
+        if (historicVariableInstance == null) {
+            return null;
         }
 
+        ProcessInfo<?> processInfo = (ProcessInfo<?>) historicVariableInstance.getValue();
         if (historicActivityInstance.getEndTime() == null) {
             processInfo.setState(1);
             Task task = taskService.createTaskQuery()
@@ -255,36 +248,45 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
-    public TaskInfo<?> start(ProcessInfo<?> processInfo) {
-        String processDefinitionKey = processInfo.getProcessDefinitionKey();
-        String businessKey = processInfo.getBusinessKey();
-        String initiator = processInfo.getInitiator();
-        identityService.setAuthenticatedUserId(initiator);
-
-        Map<String, Object> vars = new HashMap<>();
-        vars.put("info", processInfo);
-        vars.put("initiator", processInfo.getInitiator());
-
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey, vars);
-        String processInstanceId = processInstance.getId();
-        Task task = taskService.createTaskQuery()
-                .processInstanceId(processInstanceId)
-                .singleResult();
-        return getTaskInfo(task);
+    public Long getTotal(String processDefinitionKey) {
+        return historyService.createHistoricProcessInstanceQuery()
+                .processDefinitionKey(processDefinitionKey)
+                .count();
     }
 
     @Override
-    public String apply(ProcessInfo<?> processInfo) {
+    public TaskInfo<?> start(ProcessInfo<?> processInfo) {
         // 先判断business的唯一性
         String businessKey = processInfo.getBusinessKey();
         HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
         if (historicProcessInstance != null) {
-            return "businessKey:" + businessKey + "已存在";
+            return null;
         }
 
+        identityService.setAuthenticatedUserId(processInfo.getInitiator());
+
+        Map<String, Object> vars = new HashMap<>();
+        vars.put("info", processInfo);
+        vars.put("initiator", processInfo.getInitiator());
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processInfo.getProcessDefinitionKey(), processInfo.getBusinessKey(), vars);
+        if (processInstance == null) {
+            return null;
+        }
+
+        Task task = taskService.createTaskQuery()
+                .processInstanceId(processInstance.getId())
+                .singleResult();
+        return getTaskInfo(task);
+    }
+
+    @Override
+    public String apply(ProcessInfo<?> processInfo) {
         TaskInfo<?> taskInfo = start(processInfo);
+        if (taskInfo == null) {
+            return "失败";
+        }
 
         Approval approval = new Approval();
         approval.setFlag("提交");
@@ -319,9 +321,8 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Override
     public String completeTask(Approval approval) {
-        String taskId = approval.getTaskId();
         Task task = taskService.createTaskQuery()
-                .taskId(taskId)
+                .taskId(approval.getTaskId())
                 .singleResult();
         if (task == null) {
             return "任务不存在";
@@ -395,9 +396,9 @@ public class ProcessServiceImpl implements ProcessService {
         if (historicProcessInstance == null) {
             return null;
         }
-        String processInstanceId = historicProcessInstance.getId();
+
         HistoricVariableInstance historicVariableInstance = historyService.createHistoricVariableInstanceQuery()
-                .processInstanceId(processInstanceId)
+                .processInstanceId(historicProcessInstance.getId())
                 .variableName("info")
                 .singleResult();
         if (historicVariableInstance == null) {
@@ -426,9 +427,9 @@ public class ProcessServiceImpl implements ProcessService {
         if (historicTaskInstance == null) {
             return null;
         }
-        String processInstanceId = historicTaskInstance.getProcessInstanceId();
+
         HistoricVariableInstance historicVariableInstance = historyService.createHistoricVariableInstanceQuery()
-                .processInstanceId(processInstanceId)
+                .processInstanceId(historicTaskInstance.getProcessInstanceId())
                 .variableName("info")
                 .singleResult();
         if (historicVariableInstance == null) {
@@ -494,7 +495,7 @@ public class ProcessServiceImpl implements ProcessService {
             String[] conditionGroup = condition.split("\\|\\||&&");
             for (String group : conditionGroup) {
                 String[] pd = group.split("==");
-                if (pd[0].trim().equals("操作")) {
+                if ("操作".equals(pd[0].trim())) {
                     rList.add(pd[1].trim().replaceAll("'", ""));
                 }
             }
@@ -522,15 +523,14 @@ public class ProcessServiceImpl implements ProcessService {
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
             InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", Collections.<String>emptyList(), Collections.<String>emptyList(), "宋体", "宋体", null, null, 1.0);
 
-            int len = in.available();
-            byte[] bytes = new byte[len];
+            byte[] bytes = new byte[in.available()];
             in.read(bytes);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "image/png");
             headers.add("Connection", "close");
             headers.add("Accept-Ranges", "bytes");
-            entity = new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+            entity = new ResponseEntity<>(bytes, headers, HttpStatus.OK);
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -545,35 +545,39 @@ public class ProcessServiceImpl implements ProcessService {
             HistoricProcessInstance processInstance = historyService.createHistoricProcessInstanceQuery()
                     .processInstanceBusinessKey(businessKey)
                     .singleResult();
-            String processInstanceId = processInstance.getId();
-            String processDefinitionId = processInstance.getProcessDefinitionId();
+            if (processInstance == null) {
+                return null;
+            }
 
             List<HistoricActivityInstance> historicActivityInstanceList = historyService.createHistoricActivityInstanceQuery()
-                    .processInstanceId(processInstanceId)
+                    .processInstanceId(processInstance.getId())
                     .orderByHistoricActivityInstanceStartTime().asc()
                     .list();
-            List<String> highLightedActivityIds = new ArrayList<String>();
+            if (historicActivityInstanceList == null) {
+                return null;
+            }
+
+            List<String> highLightedActivityIds = new ArrayList<>();
             for (HistoricActivityInstance tempActivity : historicActivityInstanceList) {
                 String activityId = tempActivity.getActivityId();
                 highLightedActivityIds.add(activityId);
             }
 
-            ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processDefinitionId);
+            ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processInstance.getProcessDefinitionId());
             List<String> highLightedFlows = getHighLightedFlows(processDefinitionEntity, historicActivityInstanceList);
 
-            BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinitionId);
+            BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
             InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
 
-            int len = in.available();
-            byte[] bytes = new byte[len];
+            byte[] bytes = new byte[in.available()];
             in.read(bytes);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "image/png");
             headers.add("Connection", "close");
             headers.add("Accept-Ranges", "bytes");
-            entity = new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+            entity = new ResponseEntity<>(bytes, headers, HttpStatus.OK);
             in.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -588,46 +592,43 @@ public class ProcessServiceImpl implements ProcessService {
      * @param historicActivityInstanceList
      */
     private List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstanceList) {
-        List<String> highFlows = new ArrayList<>();
+        List<String> highLightedFlows = new ArrayList<>();
         for (int i = 0; i < historicActivityInstanceList.size() - 1; i++) {
-            ActivityImpl nextActivityImpl = processDefinitionEntity
-                    .findActivity(historicActivityInstanceList.get(i + 1)
-                            .getActivityId());
+            ActivityImpl nextActivityImpl = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i + 1)
+                    .getActivityId());
 
-            ActivityImpl activityImpl = processDefinitionEntity
-                    .findActivity(historicActivityInstanceList.get(i)
-                            .getActivityId());
+            ActivityImpl activityImpl = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i)
+                    .getActivityId());
             List<PvmTransition> pvmTransitions = activityImpl.getOutgoingTransitions();
             for (PvmTransition pvmTransition : pvmTransitions) {
                 ActivityImpl pvmActivityImpl = (ActivityImpl) pvmTransition.getDestination();
                 if (nextActivityImpl.equals(pvmActivityImpl)) {
-                    highFlows.add(pvmTransition.getId());
+                    highLightedFlows.add(pvmTransition.getId());
                 }
             }
         }
-        return highFlows;
+        return highLightedFlows;
     }
 
     @Override
     public List<ApprovalLog> getApprovalLog(String businessKey) {
-        List<ApprovalLog> approvalLogList = new ArrayList<>();
         HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
         if (historicProcessInstance == null) {
-            return approvalLogList;
+            return new ArrayList<>();
         }
 
-        String processInstanceId = historicProcessInstance.getId();
         List<HistoricActivityInstance> historicActivityInstanceList = historyService.createHistoricActivityInstanceQuery()
-                .processInstanceId(processInstanceId)
+                .processInstanceId(historicProcessInstance.getId())
                 .activityType("userTask")
                 .orderByHistoricActivityInstanceStartTime().asc()
                 .list();
         if (historicActivityInstanceList == null) {
-            return approvalLogList;
+            return new ArrayList<>();
         }
 
+        List<ApprovalLog> approvalLogList = new ArrayList<>();
         for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
             String taskId = historicActivityInstance.getTaskId();
 
@@ -676,8 +677,6 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public String turnTask(Turn turn) {
         String taskId = turn.getTaskId();
-        String newAssignee = turn.getAssignee();
-        String remark = turn.getRemark();
 
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
@@ -685,8 +684,6 @@ public class ProcessServiceImpl implements ProcessService {
         if (task == null) {
             return "任务不存在";
         }
-        String taskName = task.getName();
-        String oldAssignee = task.getAssignee();
 
         @SuppressWarnings("unchecked")
         List<TurnLog> turnLogList = (List<TurnLog>) taskService.getVariableLocal(taskId, "turnLog");
@@ -694,22 +691,21 @@ public class ProcessServiceImpl implements ProcessService {
             turnLogList = new ArrayList<>();
         }
         TurnLog turnLog = new TurnLog();
-        turnLog.setTaskName(taskName);
-        turnLog.setAssignee(oldAssignee);
+        turnLog.setTaskName(task.getName());
+        turnLog.setAssignee(task.getAssignee());
         turnLog.setOperTime(new Date());
         turnLog.setFlag("转交");
-        turnLog.setRemark(remark);
+        turnLog.setRemark(turn.getRemark());
         turnLogList.add(turnLog);
         taskService.setVariableLocal(taskId, "turnLog", turnLogList);
 
-        taskService.setAssignee(taskId, newAssignee);
+        taskService.setAssignee(taskId, turn.getAssignee());
         return "成功";
     }
 
     @Override
     public String delegateTask(Turn turn) {
         String taskId = turn.getTaskId();
-        String remark = turn.getRemark();
 
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
@@ -717,8 +713,6 @@ public class ProcessServiceImpl implements ProcessService {
         if (task == null) {
             return "任务不存在";
         }
-        String taskName = task.getName();
-        String assignee = task.getAssignee();
 
         @SuppressWarnings("unchecked")
         List<TurnLog> turnLogList = (List<TurnLog>) taskService.getVariableLocal(taskId, "turnLog");
@@ -726,11 +720,11 @@ public class ProcessServiceImpl implements ProcessService {
             turnLogList = new ArrayList<>();
         }
         TurnLog turnLog = new TurnLog();
-        turnLog.setTaskName(taskName);
-        turnLog.setAssignee(assignee);
+        turnLog.setTaskName(task.getName());
+        turnLog.setAssignee(task.getAssignee());
         turnLog.setOperTime(new Date());
         turnLog.setFlag("委派");
-        turnLog.setRemark(remark);
+        turnLog.setRemark(turn.getRemark());
         turnLogList.add(turnLog);
         taskService.setVariableLocal(taskId, "turnLog", turnLogList);
 
@@ -741,15 +735,13 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public String resolveTask(Turn turn) {
         String taskId = turn.getTaskId();
-        String remark = turn.getRemark();
+
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
                 .singleResult();
         if (task == null) {
             return "任务不存在";
         }
-        String taskName = task.getName();
-        String assignee = task.getAssignee();
 
         @SuppressWarnings("unchecked")
         List<TurnLog> turnLogList = (List<TurnLog>) taskService.getVariableLocal(taskId, "turnLog");
@@ -757,11 +749,11 @@ public class ProcessServiceImpl implements ProcessService {
             turnLogList = new ArrayList<>();
         }
         TurnLog turnLog = new TurnLog();
-        turnLog.setTaskName(taskName);
-        turnLog.setAssignee(assignee);
+        turnLog.setTaskName(task.getName());
+        turnLog.setAssignee(task.getAssignee());
         turnLog.setOperTime(new Date());
         turnLog.setFlag("委派完成");
-        turnLog.setRemark(remark);
+        turnLog.setRemark(turn.getRemark());
         turnLogList.add(turnLog);
         taskService.setVariableLocal(taskId, "turnLog", turnLogList);
 
