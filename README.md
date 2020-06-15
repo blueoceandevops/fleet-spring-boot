@@ -98,6 +98,7 @@
 - [spring-boot-activiti-modeler5](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-activiti-modeler5)：Spring Boot Activiti Modeler 5 在线流程编辑器
 - [spring-boot-uflo2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-uflo2)：Spring Boot Uflo2 工作流引擎
 - [spring-boot-ureport2](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-ureport2)：Spring Boot Ureport2 报表引擎
+- [spring-boot-mapstruct](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mapstruct)：Spring Boot MapStruct 简化属性复制
 - [spring-boot-common](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-common)：Spring Boot 公共类
 
 ### 中级部分：
