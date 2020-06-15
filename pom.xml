@@ -25,6 +25,7 @@
         <module>spring-boot-simple</module>
         <module>spring-boot-eureka</module>
         <module>spring-boot-provider</module>
+        <module>spring-boot-consul</module>
         <module>spring-boot-lombok</module>
         <module>spring-boot-jetty</module>
         <module>spring-boot-undertow</module>
@@ -96,7 +97,6 @@
         <module>spring-boot-jsoup</module>
         <module>spring-boot-druid</module>
         <module>spring-boot-hikari</module>
-        <module>spring-boot-consul</module>
         <module>spring-boot-dubbo</module>
         <module>spring-boot-mysql-multi</module>
         <module>spring-boot-mysql-multi-aop</module>
