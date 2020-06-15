@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface UserService {
 
-    int insert(User user);
+    User insert(User user);
 
     int delete(Long id);
 
