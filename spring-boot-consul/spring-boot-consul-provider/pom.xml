@@ -14,7 +14,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-consul-provider</artifactId>
     <name>spring-boot-consul-provider</name>
-    <description>admin-provider</description>
+    <description>consul-provider</description>
     <packaging>jar</packaging>
     <version>1.0</version>
 
