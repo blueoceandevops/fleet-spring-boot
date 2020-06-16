@@ -566,7 +566,7 @@ public class ProcessServiceImpl implements ProcessService {
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
 
             ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processInstance.getProcessDefinitionId());
-            List<String> highLightedFlows = getHighLightedFlows(bpmnModel, processDefinitionEntity, historicActivityInstanceList);
+            List<String> highLightedFlows = getHighLightedFlows(processDefinitionEntity, historicActivityInstanceList);
 
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
             InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
@@ -592,7 +592,7 @@ public class ProcessServiceImpl implements ProcessService {
      * @param processDefinitionEntity
      * @param historicActivityInstanceList
      */
-    private List<String> getHighLightedFlows(BpmnModel bpmnModel, ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstanceList) {
+    private List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstanceList) {
         List<String> highLightedFlows = new ArrayList<>();
 
         for (int i = 0; i < historicActivityInstanceList.size() - 1; i++) {
