@@ -25,7 +25,7 @@ public class Activiti5ApplicationTests {
 
     @Test
     public void myTaskList() {
-        String userId = "1";
+        String userId = "2";
         Page page = new Page();
         page.setPageIndex(1);
         page.setPageRows(10);
@@ -103,15 +103,15 @@ public class Activiti5ApplicationTests {
 //        approval.setRemark("这是提交");
 //        processService.completeTask(approval);
 
-        // Approval approval = new Approval();
-        // approval.setFlag("重新提交");
-        // approval.setTaskId("17505");
-        // approval.setRemark("这是重新提交");
-        // processService.completeTask(approval);
+//         Approval approval = new Approval();
+//         approval.setFlag("重新提交");
+//         approval.setTaskId("5007");
+//         approval.setRemark("重新提交");
+//         processService.completeTask(approval);
 
         Approval approval = new Approval();
         approval.setFlag("驳回");
-        approval.setTaskId("23");
+        approval.setTaskId("2519");
         approval.setRemark("驳回");
         processService.completeTask(approval);
     }
