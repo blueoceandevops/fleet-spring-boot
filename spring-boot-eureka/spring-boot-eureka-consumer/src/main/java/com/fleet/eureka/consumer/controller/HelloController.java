@@ -1,5 +1,6 @@
 package com.fleet.eureka.consumer.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -36,10 +37,23 @@ public class HelloController {
     }
 
     @Resource
+    RestTemplate loadBalanced;
+
+    @RequestMapping("hello")
+    public String hello() {
+        return loadBalanced.getForObject("http://eureka-provider/hello", String.class);
+    }
+
+    @Resource
     RestTemplate restTemplate;
 
     @RequestMapping("hello1")
     public String hello1() {
-        return restTemplate.getForObject("http://eureka-provider/hello", String.class);
+        return restTemplate.getForObject(choose() + "/hello", String.class);
+    }
+
+    @RequestMapping("hello2")
+    public String hello2() {
+        return restTemplate.getForObject("http://localhost:8080/api/provider/hello", String.class);
     }
 }
