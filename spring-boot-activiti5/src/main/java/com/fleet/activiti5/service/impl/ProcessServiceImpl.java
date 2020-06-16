@@ -10,9 +10,6 @@ import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricVariableInstance;
-import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
-import org.activiti.engine.impl.pvm.PvmTransition;
-import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
@@ -564,9 +561,7 @@ public class ProcessServiceImpl implements ProcessService {
             }
 
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
-
-            ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processInstance.getProcessDefinitionId());
-            List<String> highLightedFlows = getHighLightedFlows(processDefinitionEntity, historicActivityInstanceList);
+            List<String> highLightedFlows = getHighLightedFlows(bpmnModel, historicActivityInstanceList);
 
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
             InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
@@ -589,43 +584,46 @@ public class ProcessServiceImpl implements ProcessService {
     /**
      * 获取需要高亮的线
      *
-     * @param processDefinitionEntity
+     * @param bpmnModel
      * @param historicActivityInstanceList
      */
-    private List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstanceList) {
+    private static List<String> getHighLightedFlows(BpmnModel bpmnModel, List<HistoricActivityInstance> historicActivityInstanceList) {
+        // 高亮流程已发生流转的线id集合
         List<String> highLightedFlows = new ArrayList<>();
 
-        for (int i = 0; i < historicActivityInstanceList.size() - 1; i++) {
-            ActivityImpl activityImpl = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i).getActivityId());
-
-            // 用以保存后需开始时间相同的节点
-            List<ActivityImpl> activityImplList = new ArrayList<>();
-            ActivityImpl activityImpl1 = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i + 1).getActivityId());
-            activityImplList.add(activityImpl1);
-            for (int j = i + 1; j < historicActivityInstanceList.size() - 1; j++) {
-                // 后续第一个节点
-                HistoricActivityInstance historicActivityInstance1 = historicActivityInstanceList.get(j);
-
-                // 后续第二个节点
-                HistoricActivityInstance historicActivityInstance2 = historicActivityInstanceList.get(j + 1);
-                if (historicActivityInstance1.getStartTime().equals(historicActivityInstance2.getStartTime())) {
-                    // 如果后续第一个节点和后续第二个节点开始时间相同则保存
-                    ActivityImpl activityImpl2 = processDefinitionEntity.findActivity(historicActivityInstance2.getActivityId());
-                    activityImplList.add(activityImpl2);
-                } else {
-                    // 有不相同跳出循环
-                    break;
-                }
+        // 全部活动节点
+        List<FlowNode> flowNodeList = new ArrayList<>();
+        // 已完成的历史活动节点
+        List<HistoricActivityInstance> finishedList = new ArrayList<>();
+        for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
+            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(historicActivityInstance.getActivityId());
+            flowNodeList.add(flowNode);
+            if (historicActivityInstance.getEndTime() != null) {
+                finishedList.add(historicActivityInstance);
             }
+        }
 
-            // 取出节点的所有出去的线
-            List<PvmTransition> pvmTransitions = activityImpl.getOutgoingTransitions();
-            for (PvmTransition pvmTransition : pvmTransitions) {
-                ActivityImpl pvmActivityImpl = (ActivityImpl) pvmTransition.getDestination();
-
-                // 如果取出的线的目标节点存在时间相同的节点里，保存该线的id，进行高亮显示
-                if (activityImplList.contains(pvmActivityImpl)) {
-                    highLightedFlows.add(pvmTransition.getId());
+        // 遍历已完成的活动实例，从每个实例的outgoingFlows中找到已执行的
+        for (HistoricActivityInstance finished : finishedList) {
+            // 获得当前活动对应的节点信息及 outgoingFlows 信息
+            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(finished.getActivityId());
+            List<SequenceFlow> sequenceFlows = flowNode.getOutgoingFlows();
+            // 并行网关或兼容网关
+            if ("parallelGateway".equals(finished.getActivityType()) || "inclusiveGateway".equals(finished.getActivityType())) {
+                // 遍历历史活动节点，找到匹配流程目标节点
+                for (SequenceFlow sequenceFlow : sequenceFlows) {
+                    FlowNode nextFlowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(sequenceFlow.getTargetRef());
+                    if (flowNodeList.contains(nextFlowNode)) {
+                        highLightedFlows.add(nextFlowNode.getId());
+                    }
+                }
+            } else {
+                for (SequenceFlow sequenceFlow : sequenceFlows) {
+                    for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
+                        if (historicActivityInstance.getActivityId().equals(sequenceFlow.getTargetRef())) {
+                            highLightedFlows.add(sequenceFlow.getId());
+                        }
+                    }
                 }
             }
         }
