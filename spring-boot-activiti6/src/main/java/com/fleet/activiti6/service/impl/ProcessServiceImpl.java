@@ -591,37 +591,28 @@ public class ProcessServiceImpl implements ProcessService {
         // 高亮流程已发生流转的线id集合
         List<String> highLightedFlows = new ArrayList<>();
 
-        // 全部活动节点
-        List<FlowNode> flowNodeList = new ArrayList<>();
-        // 已完成的历史活动节点
-        List<HistoricActivityInstance> finishedList = new ArrayList<>();
-        for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
-            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(historicActivityInstance.getActivityId(), true);
-            flowNodeList.add(flowNode);
-            if (historicActivityInstance.getEndTime() != null) {
-                finishedList.add(historicActivityInstance);
-            }
-        }
-
-        // 遍历已完成的活动实例，从每个实例的outgoingFlows中找到已执行的
-        for (HistoricActivityInstance finished : finishedList) {
-            // 获得当前活动对应的节点信息及 outgoingFlows 信息
-            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(finished.getActivityId(), true);
-            List<SequenceFlow> sequenceFlows = flowNode.getOutgoingFlows();
-            // 并行网关或兼容网关
-            if ("parallelGateway".equals(finished.getActivityType()) || "inclusiveGateway".equals(finished.getActivityType())) {
-                // 遍历历史活动节点，找到匹配流程目标节点
-                for (SequenceFlow sequenceFlow : sequenceFlows) {
-                    FlowNode nextFlowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(sequenceFlow.getTargetRef(), true);
-                    if (flowNodeList.contains(nextFlowNode)) {
-                        highLightedFlows.add(nextFlowNode.getId());
+        for (int i = 0; i < historicActivityInstanceList.size(); i++) {
+            HistoricActivityInstance current = historicActivityInstanceList.get(i);
+            if (current.getEndTime() != null) {
+                // 获得当前活动对应的节点信息及 outgoingFlows 信息
+                FlowNode currentFlowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(current.getActivityId());
+                List<SequenceFlow> sequenceFlows = currentFlowNode.getOutgoingFlows();
+                // 并行网关或兼容网关
+                if ("parallelGateway".equals(current.getActivityType()) || "inclusiveGateway".equals(current.getActivityType())) {
+                    for (SequenceFlow sequenceFlow : sequenceFlows) {
+                        highLightedFlows.add(sequenceFlow.getId());
                     }
-                }
-            } else {
-                for (SequenceFlow sequenceFlow : sequenceFlows) {
-                    for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
-                        if (historicActivityInstance.getActivityId().equals(sequenceFlow.getTargetRef())) {
-                            highLightedFlows.add(sequenceFlow.getId());
+                } else {
+                    NEXT:
+                    for (int j = i + 1; j < historicActivityInstanceList.size(); j++) {
+                        HistoricActivityInstance next = historicActivityInstanceList.get(j);
+                        FlowNode nextFlowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(next.getActivityId());
+                        for (SequenceFlow sequenceFlow : sequenceFlows) {
+                            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(sequenceFlow.getTargetRef());
+                            if (nextFlowNode.equals(flowNode)) {
+                                highLightedFlows.add(sequenceFlow.getId());
+                                break NEXT;
+                            }
                         }
                     }
                 }
