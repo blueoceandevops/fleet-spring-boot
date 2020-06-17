@@ -563,9 +563,6 @@ public class ProcessServiceImpl implements ProcessService {
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
             List<String> highLightedFlows = getHighLightedFlows(bpmnModel, historicActivityInstanceList);
 
-//            ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processInstance.getProcessDefinitionId());
-//            List<String> highLightedFlows = getHighLightedFlows(processDefinitionEntity, historicActivityInstanceList);
-
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
             InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
 
