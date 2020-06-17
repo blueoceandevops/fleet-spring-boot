@@ -10,9 +10,6 @@ import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricVariableInstance;
-import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
-import org.activiti.engine.impl.pvm.PvmTransition;
-import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
@@ -590,52 +587,6 @@ public class ProcessServiceImpl implements ProcessService {
     /**
      * 获取需要高亮的线
      *
-     * @param processDefinitionEntity
-     * @param historicActivityInstanceList
-     */
-    private List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstanceList) {
-        List<String> highLightedFlows = new ArrayList<>();
-
-        for (int i = 0; i < historicActivityInstanceList.size() - 1; i++) {
-            ActivityImpl activityImpl = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i).getActivityId());
-
-            // 用以保存后需开始时间相同的节点
-            List<ActivityImpl> activityImplList = new ArrayList<>();
-            ActivityImpl activityImpl1 = processDefinitionEntity.findActivity(historicActivityInstanceList.get(i + 1).getActivityId());
-            activityImplList.add(activityImpl1);
-            for (int j = i + 1; j < historicActivityInstanceList.size() - 1; j++) {
-                // 后续第一个节点
-                HistoricActivityInstance historicActivityInstance1 = historicActivityInstanceList.get(j);
-
-                // 后续第二个节点
-                HistoricActivityInstance historicActivityInstance2 = historicActivityInstanceList.get(j + 1);
-                if (historicActivityInstance1.getStartTime().compareTo(historicActivityInstance2.getStartTime()) == 0) {
-                    // 如果后续第一个节点和后续第二个节点开始时间相同则保存
-                    ActivityImpl activityImpl2 = processDefinitionEntity.findActivity(historicActivityInstance2.getActivityId());
-                    activityImplList.add(activityImpl2);
-                } else {
-                    // 有不相同跳出循环
-                    break;
-                }
-            }
-
-            // 取出节点的所有出去的线
-            List<PvmTransition> pvmTransitions = activityImpl.getOutgoingTransitions();
-            for (PvmTransition pvmTransition : pvmTransitions) {
-                ActivityImpl pvmActivityImpl = (ActivityImpl) pvmTransition.getDestination();
-
-                // 如果取出的线的目标节点存在时间相同的节点里，保存该线的id，进行高亮显示
-                if (activityImplList.contains(pvmActivityImpl)) {
-                    highLightedFlows.add(pvmTransition.getId());
-                }
-            }
-        }
-        return highLightedFlows;
-    }
-
-    /**
-     * 获取需要高亮的线
-     *
      * @param bpmnModel
      * @param historicActivityInstanceList
      */
@@ -643,15 +594,6 @@ public class ProcessServiceImpl implements ProcessService {
         // 高亮流程已发生流转的线id集合
         List<String> highLightedFlows = new ArrayList<>();
 
-//        // 全部活动节点
-//        List<FlowNode> flowNodeList = new ArrayList<>();
-//        for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
-//            FlowNode flowNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(historicActivityInstance.getActivityId());
-//            flowNodeList.add(flowNode);
-//        }
-
-        // 判断是否是并行网关或兼容网关
-        boolean isGateway = false;
         for (int i = 0; i < historicActivityInstanceList.size(); i++) {
             HistoricActivityInstance current = historicActivityInstanceList.get(i);
             if (current.getEndTime() != null) {
