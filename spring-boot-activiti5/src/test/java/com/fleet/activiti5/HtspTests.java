@@ -115,17 +115,17 @@ public class HtspTests {
 //         approval.setRemark("重新提交");
 //         processService.completeTask(approval);
 
-//        Approval approval = new Approval();
-//        approval.setFlag("驳回");
-//        approval.setTaskId("5013");
-//        approval.setRemark("驳回");
-//        processService.completeTask(approval);
-
         Approval approval = new Approval();
-        approval.setFlag("同意");
-        approval.setTaskId("17512");
-        approval.setRemark("同意");
+        approval.setFlag("驳回");
+        approval.setTaskId("10006");
+        approval.setRemark("驳回");
         processService.completeTask(approval);
+
+//        Approval approval = new Approval();
+//        approval.setFlag("同意");
+//        approval.setTaskId("10006");
+//        approval.setRemark("同意");
+//        processService.completeTask(approval);
     }
 
     @Test
