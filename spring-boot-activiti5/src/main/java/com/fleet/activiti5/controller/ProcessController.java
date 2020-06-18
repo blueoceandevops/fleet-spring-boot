@@ -78,7 +78,7 @@ public class ProcessController {
     }
 
     /**
-     * 完成当前节点审批
+     * 完成当前节点审批（并行网关在驳回后，用户重新提交会产生多条 task 任务）
      */
     @PostMapping("/completeTask")
     public String completeTask(@RequestBody Approval approval) {
