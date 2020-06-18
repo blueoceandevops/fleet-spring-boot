@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Activiti6ApplicationTests {
+public class QjsqTests {
 
     @Resource
     ProcessService processService;
@@ -54,8 +54,8 @@ public class Activiti6ApplicationTests {
     @Test
     public void start() {
         ProcessInfo<List<Integer>> processInfo = new ProcessInfo<>();
-        processInfo.setProcessDefinitionKey("AskForLeave");
-        processInfo.setBusinessKey("AskForLeave:1");
+        processInfo.setProcessDefinitionKey("qjsq");
+        processInfo.setBusinessKey("qjsq:1");
         processInfo.setProcessName("这是请假流程");
         processInfo.setInitiator("1");
         processInfo.setPhone("11111");
@@ -68,7 +68,8 @@ public class Activiti6ApplicationTests {
 
         Map<String, String> assignees = new HashMap<>();
         assignees.put("填写申请单", "1");
-        assignees.put("领导审批", "1");
+        assignees.put("经理审批", "2");
+        assignees.put("人事记录", "3");
         processInfo.setAssignees(assignees);
         processService.start(processInfo);
     }
@@ -76,8 +77,8 @@ public class Activiti6ApplicationTests {
     @Test
     public void apply() {
         ProcessInfo<List<Integer>> processInfo = new ProcessInfo<>();
-        processInfo.setProcessDefinitionKey("AskForLeave");
-        processInfo.setBusinessKey("AskForLeave:1");
+        processInfo.setProcessDefinitionKey("qjsq");
+        processInfo.setBusinessKey("qjsq:1");
         processInfo.setProcessName("这是请假流程");
         processInfo.setInitiator("1");
         processInfo.setPhone("11111");
@@ -90,7 +91,8 @@ public class Activiti6ApplicationTests {
 
         Map<String, String> assignees = new HashMap<>();
         assignees.put("填写申请单", "1");
-        assignees.put("领导审批", "2");
+        assignees.put("经理审批", "2");
+        assignees.put("人事记录", "3");
         processInfo.setAssignees(assignees);
         processService.apply(processInfo);
     }
@@ -103,27 +105,33 @@ public class Activiti6ApplicationTests {
 //        approval.setRemark("这是提交");
 //        processService.completeTask(approval);
 
-        // Approval approval = new Approval();
-        // approval.setFlag("重新提交");
-        // approval.setTaskId("17505");
-        // approval.setRemark("这是重新提交");
-        // processService.completeTask(approval);
+//         Approval approval = new Approval();
+//         approval.setFlag("重新提交");
+//         approval.setTaskId("5007");
+//         approval.setRemark("重新提交");
+//         processService.completeTask(approval);
+
+//        Approval approval = new Approval();
+//        approval.setFlag("驳回");
+//        approval.setTaskId("2519");
+//        approval.setRemark("驳回");
+//        processService.completeTask(approval);
 
         Approval approval = new Approval();
-        approval.setFlag("驳回");
-        approval.setTaskId("2520");
-        approval.setRemark("驳回");
+        approval.setFlag("同意");
+        approval.setTaskId("7506");
+        approval.setRemark("同意");
         processService.completeTask(approval);
     }
 
     @Test
     public void stop() {
-        processService.stop("AskForLeave:1");
+        processService.stop("qjsq:1");
     }
 
     @Test
     public void getByBusinessKey() {
-        ProcessInfo<?> processInfo = processService.getByBusinessKey("AskForLeave:1");
+        ProcessInfo<?> processInfo = processService.getByBusinessKey("qjsq:1");
         System.out.println(JSON.toJSONString(processInfo));
     }
 
@@ -147,7 +155,7 @@ public class Activiti6ApplicationTests {
 
     @Test
     public void getApprovalLog() {
-        List<ApprovalLog> approvalLogList = processService.getApprovalLog("AskForLeave:1");
+        List<ApprovalLog> approvalLogList = processService.getApprovalLog("qjsq:1");
         System.out.println(JSON.toJSONString(approvalLogList));
     }
 
@@ -179,11 +187,11 @@ public class Activiti6ApplicationTests {
 
     @Test
     public void suspendProcess() {
-        processService.suspendProcess("AskForLeave:1");
+        processService.suspendProcess("qjsq:1");
     }
 
     @Test
     public void activateProcess() {
-        processService.activateProcess("AskForLeave:1");
+        processService.activateProcess("qjsq:1");
     }
 }

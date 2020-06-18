@@ -301,10 +301,9 @@ public class ProcessServiceImpl implements ProcessService {
         if (task == null) {
             return "任务不存在";
         }
-        String processInstanceId = task.getProcessInstanceId();
 
         // 添加审批记录
-        taskService.addComment(taskId, processInstanceId, "重新提交");
+        taskService.addComment(taskId, task.getProcessInstanceId(), "重新提交");
 
         Map<String, Object> vars = new HashMap<>();
         vars.put("info", processInfo);
@@ -318,23 +317,28 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Override
     public String completeTask(Approval approval) {
+        String taskId = approval.getTaskId();
         Task task = taskService.createTaskQuery()
-                .taskId(approval.getTaskId())
+                .taskId(taskId)
                 .singleResult();
         if (task == null) {
             return "任务不存在";
         }
-        String processInstanceId = task.getProcessInstanceId();
+
+        List<String> taskOperationList = getTaskOperation(taskId);
+        if (!taskOperationList.contains(approval.getFlag())) {
+            return "任务节点没有“" + approval.getFlag() + "”操作";
+        }
 
         // 添加审批记录
-        taskService.addComment(approval.getTaskId(), processInstanceId, approval.getRemark());
+        taskService.addComment(taskId, task.getProcessInstanceId(), approval.getRemark());
 
         Map<String, Object> vars = new HashMap<>();
         vars.put("操作", approval.getFlag());
-        taskService.setVariablesLocal(approval.getTaskId(), vars);
+        taskService.setVariablesLocal(taskId, vars);
 
         // 完成任务
-        taskService.complete(approval.getTaskId(), vars);
+        taskService.complete(taskId, vars);
         return "成功";
     }
 
@@ -518,7 +522,7 @@ public class ProcessServiceImpl implements ProcessService {
 
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinition.getId());
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
-            InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", Collections.<String>emptyList(), Collections.<String>emptyList(), "宋体", "宋体", null, null, 1.0);
+            InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", Collections.emptyList(), Collections.emptyList(), "宋体", "宋体", null, null, 1.0);
 
             byte[] bytes = new byte[in.available()];
             in.read(bytes);
@@ -583,9 +587,6 @@ public class ProcessServiceImpl implements ProcessService {
 
     /**
      * 获取需要高亮的线
-     *
-     * @param bpmnModel
-     * @param historicActivityInstanceList
      */
     private static List<String> getHighLightedFlows(BpmnModel bpmnModel, List<HistoricActivityInstance> historicActivityInstanceList) {
         // 高亮流程已发生流转的线id集合
@@ -642,7 +643,6 @@ public class ProcessServiceImpl implements ProcessService {
         List<ApprovalLog> approvalLogList = new ArrayList<>();
         for (HistoricActivityInstance historicActivityInstance : historicActivityInstanceList) {
             String taskId = historicActivityInstance.getTaskId();
-
             HistoricVariableInstance historicVariableInstance = historyService.createHistoricVariableInstanceQuery()
                     .taskId(taskId)
                     .variableName("turnLog")
@@ -688,7 +688,6 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public String turnTask(Turn turn) {
         String taskId = turn.getTaskId();
-
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
                 .singleResult();
@@ -717,7 +716,6 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public String delegateTask(Turn turn) {
         String taskId = turn.getTaskId();
-
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
                 .singleResult();
@@ -746,7 +744,6 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public String resolveTask(Turn turn) {
         String taskId = turn.getTaskId();
-
         Task task = taskService.createTaskQuery()
                 .taskId(taskId)
                 .singleResult();

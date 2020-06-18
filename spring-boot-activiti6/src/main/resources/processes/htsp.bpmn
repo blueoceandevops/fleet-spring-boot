@@ -14,17 +14,17 @@
     <userTask id="apply" name="填写申请单" activiti:assignee="${initiator}" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" camunda:assignee="${initiator}"></userTask>
     <userTask id="kzsp" name="科长审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="fwsp" name="法务审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="bmjlsp" name="部门经理审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow7" sourceRef="parallelgateway1" targetRef="bmjlsp">
@@ -37,7 +37,7 @@
     </sequenceFlow>
     <userTask id="zjlsp" name="总经理审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>

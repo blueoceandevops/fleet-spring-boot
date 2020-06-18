@@ -21,12 +21,12 @@
     <userTask id="apply" name="填写申请单" activiti:assignee="${initiator}" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" camunda:assignee="${initiator}"></userTask>
     <userTask id="jlsp" name="经理审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="rsjl" name="人事记录">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.fleet.activiti5.listener.AssigneeTaskListener"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.fleet.activiti6.listener.AssigneeTaskListener"></activiti:taskListener>
       </extensionElements>
     </userTask>
   </process>
