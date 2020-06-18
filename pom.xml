@@ -108,7 +108,6 @@
         <module>spring-boot-activiti5</module>
         <module>spring-boot-activiti-modeler5</module>
         <module>spring-boot-activiti6</module>
-        <module>spring-boot-activiti7</module>
         <module>spring-boot-uflo2</module>
         <module>spring-boot-ureport2</module>
         <module>spring-boot-mapstruct</module>

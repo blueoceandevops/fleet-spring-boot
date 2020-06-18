@@ -7,7 +7,7 @@ import org.springframework.batch.core.JobExecutionListener;
 
 public class CsvJobExecutionListener implements JobExecutionListener {
 
-    private Logger logger = LoggerFactory.getLogger(CsvJobExecutionListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(CsvJobExecutionListener.class);
 
     private long startTime;
 

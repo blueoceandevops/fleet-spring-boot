@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping(value = "/bigFile")
 public class BigFileController {
 
-    private Logger logger = LoggerFactory.getLogger(BigFileController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BigFileController.class);
 
     @Resource
     private StorageService storageService;

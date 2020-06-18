@@ -21,7 +21,7 @@ import java.util.Objects;
 @Component
 public class LogAspect {
 
-    private static Logger logger = LoggerFactory.getLogger(LogAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     @Pointcut("execution(* com.fleet..*.controller..*.*(..))")
     public void pointcut() {
