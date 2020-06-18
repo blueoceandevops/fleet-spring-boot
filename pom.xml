@@ -123,6 +123,7 @@
         <module>spring-boot-javafx</module>
         <module>spring-boot-cxf</module>
         <module>spring-boot-sso</module>
+        <module>spring-boot-mso</module>
     </modules>
 
     <build>
