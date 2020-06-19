@@ -119,3 +119,4 @@
 
 - [spring-boot-sso](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-sso)：Spring Boot 通过 accessToken 与 refreshToken 实现 SSO 单点登录
 - [spring-boot-mso](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-mso)：Spring Boot 通过 accessToken 与 refreshToken 实现 MSO 多点登录
+- [spring-boot-authcheck](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-authcheck)：Spring Boot 自定义权限管理
