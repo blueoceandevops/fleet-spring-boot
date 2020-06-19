@@ -125,6 +125,7 @@
         <module>spring-boot-cxf</module>
         <module>spring-boot-sso</module>
         <module>spring-boot-mso</module>
+        <module>spring-boot-elk</module>
     </modules>
 
     <build>
