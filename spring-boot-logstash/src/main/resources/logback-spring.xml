@@ -14,7 +14,7 @@
 
     <!-- 关联logstash输出 -->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>127.0.0.1:9601</destination>
+        <destination>127.0.0.1:4567</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"appname":"elk"}</customFields>
         </encoder>
@@ -39,18 +39,14 @@
     <springProfile name="dev">
         <root level="debug">
             <appender-ref ref="console"/>
-            <appender-ref ref="logFile"/>
-        </root>
-    </springProfile>
-    <springProfile name="test">
-        <root level="info">
-            <appender-ref ref="console"/>
+            <appender-ref ref="logstash"/>
             <appender-ref ref="logFile"/>
         </root>
     </springProfile>
     <springProfile name="pro">
         <root level="error">
             <appender-ref ref="console"/>
+            <appender-ref ref="logstash"/>
             <appender-ref ref="logFile"/>
         </root>
     </springProfile>
