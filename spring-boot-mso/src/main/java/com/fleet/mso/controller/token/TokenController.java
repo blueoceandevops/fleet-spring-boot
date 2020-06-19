@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -37,22 +39,26 @@ public class TokenController extends BaseController {
         }
 
         Integer id = (Integer) redisUtil.get("refreshToken:user:" + refreshToken);
-        if (id == null) {
-            throw new BaseException("refreshToken 无效或已过期");
-        }
-
         String accessToken = (String) redisUtil.get("refreshToken:accessToken:" + refreshToken);
         if (accessToken != null) {
             redisUtil.delete("accessToken:user:" + accessToken);
+            redisUtil.delete("accessToken:refreshToken:" + accessToken);
         }
-        redisUtil.delete("refreshToken:accessToken:" + refreshToken);
 
-        accessToken = UUIDUtil.getUUID();
-        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, accessToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-        redisUtil.setEx("accessToken:user:" + accessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-
-        redisUtil.setEx("accessToken:user:" + accessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-        redisUtil.setEx("accessToken:refreshToken:" + accessToken, refreshToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-        return R.ok(accessToken);
+        List<String> accessTokenList = (List<String>) redisUtil.get("user:accessToken:" + id);
+        if (accessTokenList != null) {
+            if (accessToken != null) {
+                accessTokenList.remove(accessToken);
+            }
+        } else {
+            accessTokenList = new ArrayList<>();
+        }
+        String newAccessToken = UUIDUtil.getUUID();
+        accessTokenList.add(newAccessToken);
+        redisUtil.set("user:accessToken:" + id, accessTokenList);
+        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, newAccessToken, redisUtil.getExpire("refreshToken:accessToken:" + refreshToken, TimeUnit.SECONDS), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:user:" + newAccessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:refreshToken:" + newAccessToken, refreshToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        return R.ok(newAccessToken);
     }
 }
