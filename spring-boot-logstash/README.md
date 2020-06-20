@@ -34,7 +34,29 @@ output {
 `cd bin`
 `logstash -f ../config/logstash.conf`
 
-5. 启动项目，调用 [http://localhost:8080/log](http://localhost:8080/log) 接口，可在 dos 窗口查看输出日志
+5. 配置 logback-spring.xml
+
+```
+
+<appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>127.0.0.1:4567</destination>
+    <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
+</appender>
+
+<springProfile name="dev">
+    <root level="debug">
+        <appender-ref ref="logstash"/>
+    </root>
+</springProfile>
+<springProfile name="pro">
+    <root level="error">
+        <appender-ref ref="logstash"/>
+    </root>
+</springProfile>
+
+```
+
+6. 启动项目，调用 [http://localhost:8080/log](http://localhost:8080/log) 接口，可在 dos 窗口查看输出日志
 
 ```
 {
