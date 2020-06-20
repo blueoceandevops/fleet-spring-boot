@@ -6,7 +6,7 @@
 
 1. 下载安装 jdk1.8 
 
-2. 下载 logstash 安装包，解压，下载地址： [https://artifacts.elastic.co/downloads/logstash/logstash-7.8.0.tar.gz](https://artifacts.elastic.co/downloads/logstash/logstash-7.8.0.tar.gz "logstash-7.8.0")
+2. 下载安装 logstash，下载地址： [https://artifacts.elastic.co/downloads/logstash/logstash-7.6.0.tar.gz](https://artifacts.elastic.co/downloads/logstash/logstash-7.6.0.tar.gz "logstash-7.6.0")
 
 3. 配置 config/logstash.yml
 
@@ -31,8 +31,17 @@ output {
 
 4. dos命令进入 logstash 安装目录下，启动 logstash 
 
-`cd bin`
-`logstash -f ../config/logstash.conf`
+```
+
+cd bin
+
+```
+
+```
+
+logstash -f ../config/logstash.conf
+
+```
 
 5. 配置 logback-spring.xml
 
@@ -59,6 +68,7 @@ output {
 6. 启动项目，调用 [http://localhost:8080/log](http://localhost:8080/log) 接口，可在 dos 窗口查看输出日志
 
 ```
+
 {
         "message" => "******debug******",
     "logger_name" => "com.fleet.logstash.controller.TestController",
