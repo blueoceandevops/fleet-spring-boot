@@ -13,9 +13,6 @@ import java.util.Locale;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    /**
-     * 默认解析器 其中locale表示默认语言
-     */
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
@@ -23,9 +20,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return localeResolver;
     }
 
-    /**
-     * 默认拦截器 其中lang表示切换语言的参数名
-     */
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
         return new WebMvcConfigurer() {
