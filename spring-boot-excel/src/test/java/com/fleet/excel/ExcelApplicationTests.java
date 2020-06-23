@@ -21,9 +21,9 @@ public class ExcelApplicationTests {
     @Test
     public void read() throws Exception {
         File file = new File("D:\\test.xls");
-        FileInputStream in = new FileInputStream(file);
+        FileInputStream is = new FileInputStream(file);
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        List<User> list = excelUtil.read(in, "test信息");
+        List<User> list = excelUtil.read(is, "test信息");
         System.out.println("----执行完毕----");
     }
 
@@ -39,9 +39,9 @@ public class ExcelApplicationTests {
             user.setIdNo("20201918");
             list.add(user);
         }
-        FileOutputStream out = new FileOutputStream("D:\\test.xls");
+        FileOutputStream fos = new FileOutputStream("D:\\test.xls");
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        excelUtil.export(list, out);
+        excelUtil.export(list, fos);
         System.out.println("----执行完毕----");
     }
 
@@ -57,17 +57,17 @@ public class ExcelApplicationTests {
             user.setIdNo("20201918");
             list.add(user);
         }
-        FileOutputStream out = new FileOutputStream("D:\\test.xls");
+        FileOutputStream fos = new FileOutputStream("D:\\test.xls");
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        excelUtil.exportByTemplate(list, out);
+        excelUtil.exportByTemplate(list, fos);
         System.out.println("----执行完毕----");
     }
 
     @Test
     public void exportTemplate() throws Exception {
-        FileOutputStream out = new FileOutputStream("D:\\testTemplate.xls");
+        FileOutputStream fos = new FileOutputStream("D:\\testTemplate.xls");
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        excelUtil.exportTemplate("test信息", out);
+        excelUtil.exportTemplate("test信息", fos);
         System.out.println("----执行完毕----");
     }
 }

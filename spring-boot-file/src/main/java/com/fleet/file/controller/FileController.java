@@ -37,18 +37,14 @@ public class FileController {
      * 上传图片文件
      */
     @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
-    public String imageUpload(@RequestParam(value = "file") MultipartFile file) {
+    public String imageUpload(@RequestParam(value = "file") MultipartFile file) throws Exception {
         if (file == null) {
             return "上传图片文件为空";
         }
 
-        try {
-            String fileName = FileUtil.rename(file.getOriginalFilename());
-            FileUtil.upload(file.getBytes(), fileConfig.getImgPath(), fileName);
-            return "/file/image/view/" + fileName;
-        } catch (Exception e) {
-            return "失败";
-        }
+        String fileName = FileUtil.rename(file.getOriginalFilename());
+        FileUtil.upload(file.getBytes(), fileConfig.getImgPath(), fileName);
+        return "/file/image/view/" + fileName;
     }
 
     /**

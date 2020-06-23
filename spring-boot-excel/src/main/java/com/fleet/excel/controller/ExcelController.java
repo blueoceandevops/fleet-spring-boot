@@ -3,6 +3,7 @@ package com.fleet.excel.controller;
 import com.fleet.excel.entity.User;
 import com.fleet.excel.util.ExcelUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class ExcelController {
 
     @RequestMapping("/read")
-    public List<User> read(MultipartFile file) throws Exception {
+    public List<User> read(@RequestParam(value = "file") MultipartFile file) throws Exception {
         if (file == null) {
             return null;
         }
@@ -40,7 +41,7 @@ public class ExcelController {
 
         response.setHeader("Content-disposition", "attachment;filename=" + new String("测试.xls".getBytes(), StandardCharsets.ISO_8859_1));
         response.setContentType("application/ms-excel;charset=utf-8");
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
 
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
@@ -52,7 +53,7 @@ public class ExcelController {
             user.setIdNo("20201918");
             list.add(user);
         }
-        excelUtil.export("用户", list, out);
+        excelUtil.export("用户", list, os);
     }
 
     @RequestMapping("/exportByTemplate")
@@ -61,7 +62,7 @@ public class ExcelController {
 
         response.setHeader("Content-disposition", "attachment;filename=" + new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1));
         response.setContentType("application/ms-excel;charset=utf-8");
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
 
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
@@ -73,6 +74,6 @@ public class ExcelController {
             user.setIdNo("20201918");
             list.add(user);
         }
-        excelUtil.exportByTemplate(list, out);
+        excelUtil.exportByTemplate(list, os);
     }
 }

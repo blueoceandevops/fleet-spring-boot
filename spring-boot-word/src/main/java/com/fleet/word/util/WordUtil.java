@@ -25,18 +25,18 @@ public class WordUtil {
     /**
      * 根据word xml模板生成word文档
      */
-    public void export(Map<String, Object> map, String tempPath, String tempName, OutputStream out) throws Exception {
+    public void export(Map<String, Object> map, String tempPath, String tempName, OutputStream os) throws Exception {
         File file = getTempFile(map, tempPath, tempName);
 
-        InputStream in = new FileInputStream(file);
+        InputStream is = new FileInputStream(file);
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            os.write(b, 0, len);
         }
-        out.flush();
-        out.close();
-        in.close();
+        os.flush();
+        os.close();
+        is.close();
     }
 
     /**

@@ -37,26 +37,26 @@ public class ImgBase64Util {
         connection.setConnectTimeout(30000);
         connection.setReadTimeout(30000);
 
-        InputStream in = connection.getInputStream();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        InputStream is = connection.getInputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            baos.write(b, 0, len);
         }
-        in.close();
-        return "data:" + connection.getContentType() + ";base64," + Base64.encodeBase64String(out.toByteArray());
+        is.close();
+        return "data:" + connection.getContentType() + ";base64," + Base64.encodeBase64String(baos.toByteArray());
     }
 
     /**
      * 本地图片转换 Base64 字符串
      */
     private static String Img2Base64Data(String imgPath) throws IOException {
-        InputStream in = new FileInputStream(imgPath);
-        int len = in.available();
+        InputStream is = new FileInputStream(imgPath);
+        int len = is.available();
         byte[] bytes = new byte[len];
-        in.read(bytes);
-        in.close();
+        is.read(bytes);
+        is.close();
         return "data:" + Files.probeContentType(Paths.get(imgPath)) + ";base64," + Base64.encodeBase64String(bytes);
     }
 
@@ -70,30 +70,30 @@ public class ImgBase64Util {
         connection.setConnectTimeout(30000);
         connection.setReadTimeout(30000);
 
-        InputStream in = connection.getInputStream();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        InputStream is = connection.getInputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            baos.write(b, 0, len);
         }
-        in.close();
-        return Base64.encodeBase64String(out.toByteArray());
+        is.close();
+        return Base64.encodeBase64String(baos.toByteArray());
     }
 
     /**
      * 本地图片转换 Base64 字符串
      */
     private static String Img2Base64(String imgPath) throws IOException {
-        InputStream in = new FileInputStream(imgPath);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        InputStream is = new FileInputStream(imgPath);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            baos.write(b, 0, len);
         }
-        in.close();
-        return Base64.encodeBase64String(out.toByteArray());
+        is.close();
+        return Base64.encodeBase64String(baos.toByteArray());
     }
 
     /**
@@ -106,9 +106,9 @@ public class ImgBase64Util {
                 b[i] += 256;
             }
         }
-        OutputStream out = new FileOutputStream(dest);
-        out.write(b);
-        out.flush();
-        out.close();
+        OutputStream os = new FileOutputStream(dest);
+        os.write(b);
+        os.flush();
+        os.close();
     }
 }

@@ -141,10 +141,10 @@ public class ProcessController {
         ResponseEntity<byte[]> entity = processService.getProcessImage(processDefinitionKey);
         try {
             byte[] bytes = entity.getBody();
-            OutputStream out = response.getOutputStream();
-            out.write(bytes);
-            out.flush();
-            out.close();
+            OutputStream os = response.getOutputStream();
+            os.write(bytes);
+            os.flush();
+            os.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,10 +158,10 @@ public class ProcessController {
         ResponseEntity<byte[]> entity = processService.getProcessRateImage(businessKey);
         try {
             byte[] bytes = entity.getBody();
-            OutputStream out = response.getOutputStream();
-            out.write(bytes);
-            out.flush();
-            out.close();
+            OutputStream os = response.getOutputStream();
+            os.write(bytes);
+            os.flush();
+            os.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,21 +7,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 
 public class GenericResponseWrapper extends HttpServletResponseWrapper {
-    private ByteArrayOutputStream output;
+    private ByteArrayOutputStream baos;
     private int contentLength;
     private String contentType;
 
     public GenericResponseWrapper(HttpServletResponse response) {
         super(response);
-        output = new ByteArrayOutputStream();
+        baos = new ByteArrayOutputStream();
     }
 
     public byte[] getData() {
-        return output.toByteArray();
+        return baos.toByteArray();
     }
 
     public ServletOutputStream getOutputStream() {
-        return new FilterServletOutputStream(output);
+        return new FilterServletOutputStream(baos);
     }
 
     public PrintWriter getWriter() {

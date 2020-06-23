@@ -55,15 +55,14 @@ public class ModelSaveRestResource implements ModelDataJsonConstants {
 
             PNGTranscoder transcoder = new PNGTranscoder();
             // Setup output
-            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-            TranscoderOutput output = new TranscoderOutput(outStream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            TranscoderOutput output = new TranscoderOutput(baos);
 
             // Do the transformation
             transcoder.transcode(input, output);
-            final byte[] result = outStream.toByteArray();
+            final byte[] result = baos.toByteArray();
             repositoryService.addModelEditorSourceExtra(model.getId(), result);
-            outStream.close();
-
+            baos.close();
         } catch (Exception e) {
             LOGGER.error("Error saving model", e);
             throw new ActivitiException("Error saving model", e);

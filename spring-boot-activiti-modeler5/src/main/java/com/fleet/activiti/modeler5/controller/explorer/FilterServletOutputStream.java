@@ -11,8 +11,8 @@ public class FilterServletOutputStream extends ServletOutputStream {
     private DataOutputStream stream;
     private WriteListener writeListener;
 
-    public FilterServletOutputStream(OutputStream output) {
-        stream = new DataOutputStream(output);
+    public FilterServletOutputStream(OutputStream os) {
+        stream = new DataOutputStream(os);
     }
 
     public void write(int b) throws IOException {

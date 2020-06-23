@@ -36,30 +36,30 @@ public class ExcelUtil<T> {
      * 导入 excel 文件，读取数据
      */
     public List<T> read(MultipartFile file) throws Exception {
-        InputStream in = file.getInputStream();
-        return read(in);
+        InputStream is = file.getInputStream();
+        return read(is);
     }
 
     /**
      * 导入 excel 文件，读取数据
      */
     public List<T> read(File file) throws Exception {
-        FileInputStream in = new FileInputStream(file);
-        return read(in);
+        FileInputStream is = new FileInputStream(file);
+        return read(is);
     }
 
     /**
      * 导入 excel 文件，读取数据
      */
     public List<T> read(File file, String sheetName) throws Exception {
-        FileInputStream in = new FileInputStream(file);
-        return read(in, sheetName);
+        FileInputStream is = new FileInputStream(file);
+        return read(is, sheetName);
     }
 
     /**
      * 导入 excel 文件，读取数据
      */
-    public List<T> read(InputStream in) throws Exception {
+    public List<T> read(InputStream is) throws Exception {
         int sheetAt = 0;
         int startWith = 1;
         if (clazz.isAnnotationPresent(ExcelSheet.class)) {
@@ -68,38 +68,38 @@ public class ExcelUtil<T> {
             startWith = excelSheet.startWith();
         }
 
-        Workbook workbook = getWorkbook(in);
+        Workbook workbook = getWorkbook(is);
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
         Sheet sheet = getSheet(workbook, sheetAt);
         Map<Integer, Field> fields = getFields();
         List<T> list = getList(sheet, fields, startWith);
         workbook.close();
-        in.close();
+        is.close();
         return list;
     }
 
     /**
      * 导入 excel 文件，读取数据
      */
-    public List<T> read(InputStream in, String sheetName) throws Exception {
+    public List<T> read(InputStream is, String sheetName) throws Exception {
         int startWith = 1;
         if (clazz.isAnnotationPresent(ExcelSheet.class)) {
             ExcelSheet excelSheet = clazz.getAnnotation(ExcelSheet.class);
             startWith = excelSheet.startWith();
         }
 
-        Workbook workbook = getWorkbook(in);
+        Workbook workbook = getWorkbook(is);
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
         Sheet sheet = getSheet(workbook, sheetName);
         Map<Integer, Field> fields = getFields();
         List<T> list = getList(sheet, fields, startWith);
         workbook.close();
-        in.close();
+        is.close();
         return list;
     }
 
-    private Workbook getWorkbook(InputStream in) throws Exception {
-        return WorkbookFactory.create(in);
+    private Workbook getWorkbook(InputStream is) throws Exception {
+        return WorkbookFactory.create(is);
     }
 
     private Sheet getSheet(Workbook workbook, String sheetName) {
@@ -252,21 +252,21 @@ public class ExcelUtil<T> {
     /**
      * 导出 excel 模板（表头）文件
      */
-    public void exportTemplate(String sheetName, OutputStream out) throws Exception {
-        export(sheetName, new ArrayList<>(), out);
+    public void exportTemplate(String sheetName, OutputStream os) throws Exception {
+        export(sheetName, new ArrayList<>(), os);
     }
 
     /**
      * 导出 excel 模板（表头、数据）文件
      */
-    public void exportTemplate(String sheetName, List<T> list, OutputStream out) throws Exception {
-        export(sheetName, list, out);
+    public void exportTemplate(String sheetName, List<T> list, OutputStream os) throws Exception {
+        export(sheetName, list, os);
     }
 
     /**
      * 导出 excel 文件
      */
-    public void export(List<T> list, OutputStream out) throws Exception {
+    public void export(List<T> list, OutputStream os) throws Exception {
         int startWith = 1;
         if (clazz.isAnnotationPresent(ExcelSheet.class)) {
             ExcelSheet excelSheet = clazz.getAnnotation(ExcelSheet.class);
@@ -283,16 +283,16 @@ public class ExcelUtil<T> {
         createHead(workbook, sheet, fields);
         createBody(workbook, sheet, fields, list, startWith);
 
-        workbook.write(out);
+        workbook.write(os);
         workbook.close();
-        out.flush();
-        out.close();
+        os.flush();
+        os.close();
     }
 
     /**
      * 导出 excel 文件
      */
-    public void export(String sheetName, List<T> list, OutputStream out) throws Exception {
+    public void export(String sheetName, List<T> list, OutputStream os) throws Exception {
         int startWith = 1;
         if (clazz.isAnnotationPresent(ExcelSheet.class)) {
             ExcelSheet excelSheet = clazz.getAnnotation(ExcelSheet.class);
@@ -309,10 +309,10 @@ public class ExcelUtil<T> {
         createHead(workbook, sheet, fields);
         createBody(workbook, sheet, fields, list, startWith);
 
-        workbook.write(out);
+        workbook.write(os);
         workbook.close();
-        out.flush();
-        out.close();
+        os.flush();
+        os.close();
     }
 
     private HSSFSheet createSheet(HSSFWorkbook workbook) {
@@ -492,7 +492,7 @@ public class ExcelUtil<T> {
     /**
      * 导出 excel 文件(按照模板导出)
      */
-    public void exportByTemplate(List<T> list, OutputStream out) throws Exception {
+    public void exportByTemplate(List<T> list, OutputStream os) throws Exception {
         String template = "";
         int sheetAt = 0;
         int headAt = 0;
@@ -508,22 +508,22 @@ public class ExcelUtil<T> {
             throw new Exception("模板文件未找到");
         }
 
-        InputStream in = this.getClass().getResourceAsStream(template);
-        if (in == null) {
+        InputStream is = this.getClass().getResourceAsStream(template);
+        if (is == null) {
             throw new Exception("模板文件未找到");
         }
 
-        Workbook workbook = getWorkbook(in);
+        Workbook workbook = getWorkbook(is);
         Sheet sheet = getSheet(workbook, sheetAt);
         Map<Integer, Field> fields = getFields();
 
         createHead(sheet, headAt, fields);
         createBody(sheet, startWith, fields, list);
 
-        workbook.write(out);
+        workbook.write(os);
         workbook.close();
-        out.flush();
-        out.close();
+        os.flush();
+        os.close();
     }
 
     private void createHead(Sheet sheet, int headAt, Map<Integer, Field> fields) {

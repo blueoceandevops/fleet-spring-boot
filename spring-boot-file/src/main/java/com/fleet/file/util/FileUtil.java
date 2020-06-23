@@ -28,69 +28,69 @@ public class FileUtil {
         if (!fileDir.exists() && !fileDir.isDirectory()) {
             fileDir.mkdirs();
         }
-        FileOutputStream out = new FileOutputStream(path + fileName);
-        out.write(file);
-        out.flush();
-        out.close();
+        FileOutputStream fos = new FileOutputStream(path + fileName);
+        fos.write(file);
+        fos.flush();
+        fos.close();
     }
 
     /**
      * 文件上传
      */
-    public static void upload(InputStream in, String path, String fileName) throws Exception {
+    public static void upload(InputStream is, String path, String fileName) throws Exception {
         File fileDir = new File(path);
         if (!fileDir.exists() && !fileDir.isDirectory()) {
             fileDir.mkdirs();
         }
-        FileOutputStream out = new FileOutputStream(path + fileName);
+        FileOutputStream fos = new FileOutputStream(path + fileName);
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            fos.write(b, 0, len);
         }
-        in.close();
-        out.flush();
-        out.close();
+        is.close();
+        fos.flush();
+        fos.close();
     }
 
     /**
      * resource 文件下载
      */
     public static void downloadResource(String filePath, String fileName, HttpServletResponse response) throws Exception {
-        InputStream in = FileUtil.class.getResourceAsStream(filePath);
+        InputStream is = FileUtil.class.getResourceAsStream(filePath);
 
         response.reset();
         response.setContentType("bin");
         response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            os.write(b, 0, len);
         }
-        out.flush();
-        out.close();
-        in.close();
+        os.flush();
+        os.close();
+        is.close();
     }
 
     /**
      * 文件下载
      */
     public static void download(String filePath, String fileName, HttpServletResponse response) throws Exception {
-        InputStream in = new FileInputStream(filePath);
+        InputStream is = new FileInputStream(filePath);
 
         response.reset();
         response.setContentType("bin");
         response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            os.write(b, 0, len);
         }
-        out.flush();
-        out.close();
-        in.close();
+        os.flush();
+        os.close();
+        is.close();
     }
 
     /**
@@ -109,13 +109,13 @@ public class FileUtil {
             zipfile.createNewFile();
         }
 
-        FileOutputStream out = new FileOutputStream(zipfile);
-        ZipOutputStream zipOutputStream = new ZipOutputStream(out);
-        zipFile(files, zipOutputStream);
-        zipOutputStream.finish();
-        zipOutputStream.close();
-        out.flush();
-        out.close();
+        FileOutputStream fos = new FileOutputStream(zipfile);
+        ZipOutputStream zos = new ZipOutputStream(fos);
+        zipFile(files, zos);
+        zos.finish();
+        zos.close();
+        fos.flush();
+        fos.close();
         downloadZip(zipfile, fileName, response);
     }
 
@@ -123,17 +123,17 @@ public class FileUtil {
      * 图片在线查看
      */
     public static void image(String path, String fileName, HttpServletResponse response) throws Exception {
-        InputStream in = new FileInputStream(path + fileName);
+        InputStream is = new FileInputStream(path + fileName);
 
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            os.write(b, 0, len);
         }
-        out.flush();
-        out.close();
-        in.close();
+        os.flush();
+        os.close();
+        is.close();
     }
 
     public static String rename(String fileName) {
@@ -143,11 +143,11 @@ public class FileUtil {
     /**
      * 全部文件打包
      */
-    private static void zipFile(File[] files, ZipOutputStream zipOutputStream) {
+    private static void zipFile(File[] files, ZipOutputStream zos) {
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
                 File file = files[i];
-                zipFile(file, zipOutputStream);
+                zipFile(file, zos);
             }
         }
     }
@@ -155,29 +155,29 @@ public class FileUtil {
     /**
      * 对文件打包
      */
-    private static void zipFile(File file, ZipOutputStream zipOutputStream) {
+    private static void zipFile(File file, ZipOutputStream zos) {
         try {
             if (file.exists()) {
                 if (file.isFile()) {
-                    FileInputStream in = new FileInputStream(file);
+                    FileInputStream is = new FileInputStream(file);
                     ZipEntry entry = new ZipEntry(file.getName());
-                    zipOutputStream.putNextEntry(entry);
+                    zos.putNextEntry(entry);
 
                     // 向压缩文件中输出数据
                     byte[] b = new byte[1024];
                     int len;
-                    while ((len = in.read(b)) > 0) {
-                        zipOutputStream.write(b, 0, len);
+                    while ((len = is.read(b)) > 0) {
+                        zos.write(b, 0, len);
                     }
-                    zipOutputStream.closeEntry();
+                    zos.closeEntry();
                     // 关闭创建的流对象
-                    in.close();
+                    is.close();
                 } else {
                     try {
                         File[] files = file.listFiles();
                         if (files != null) {
                             for (int i = 0; i < files.length; i++) {
-                                zipFile(files[i], zipOutputStream);
+                                zipFile(files[i], zos);
                             }
                         }
                     } catch (Exception e) {
@@ -194,20 +194,20 @@ public class FileUtil {
      * 下载Zip文件
      */
     private static void downloadZip(File file, String fileName, HttpServletResponse response) throws Exception {
-        FileInputStream in = new FileInputStream(file);
+        FileInputStream is = new FileInputStream(file);
 
         response.reset();
         response.setContentType("application/octet-stream");
         response.addHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1));
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = in.read(b)) > 0) {
-            out.write(b, 0, len);
+        while ((len = is.read(b)) > 0) {
+            os.write(b, 0, len);
         }
-        out.flush();
-        out.close();
-        in.close();
+        os.flush();
+        os.close();
+        is.close();
     }
 
     /**

@@ -32,9 +32,9 @@ public class WordController {
 
         response.setHeader("Content-disposition", "attachment;filename=" + new String("用户表.doc".getBytes(), StandardCharsets.ISO_8859_1));
         response.setContentType("application/ms-word;charset=utf-8");
-        OutputStream out = response.getOutputStream();
+        OutputStream os = response.getOutputStream();
 
         WordUtil wordUtil = new WordUtil();
-        wordUtil.export(review, "D:\\", "User.xml", out);
+        wordUtil.export(review, "D:\\", "User.xml", os);
     }
 }

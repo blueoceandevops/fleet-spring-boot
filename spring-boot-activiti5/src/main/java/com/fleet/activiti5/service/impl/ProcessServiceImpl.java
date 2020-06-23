@@ -522,17 +522,17 @@ public class ProcessServiceImpl implements ProcessService {
 
             BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinition.getId());
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
-            InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", Collections.emptyList(), Collections.emptyList(), "宋体", "宋体", null, null, 1.0);
+            InputStream is = processDiagramGenerator.generateDiagram(bpmnModel, "png", Collections.emptyList(), Collections.emptyList(), "宋体", "宋体", null, null, 1.0);
 
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "image/png");
             headers.add("Connection", "close");
             headers.add("Accept-Ranges", "bytes");
             entity = new ResponseEntity<>(bytes, headers, HttpStatus.OK);
-            in.close();
+            is.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -568,17 +568,17 @@ public class ProcessServiceImpl implements ProcessService {
             List<String> highLightedFlows = getHighLightedFlows(bpmnModel, historicActivityInstanceList);
 
             ProcessDiagramGenerator processDiagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
-            InputStream in = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
+            InputStream is = processDiagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivityIds, highLightedFlows, "宋体", "宋体", null, null, 1.0);
 
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "image/png");
             headers.add("Connection", "close");
             headers.add("Accept-Ranges", "bytes");
             entity = new ResponseEntity<>(bytes, headers, HttpStatus.OK);
-            in.close();
+            is.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

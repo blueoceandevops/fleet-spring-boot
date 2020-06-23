@@ -56,9 +56,9 @@ public class MinioController {
         response.reset();
         response.setContentType(stat.contentType());
         response.setHeader("Content-Disposition", "attachment; filename=" + new String(name.getBytes(), StandardCharsets.ISO_8859_1));
-        InputStream in = minioClient.getObject(BUCKET_NAME, name);
-        IOUtils.copy(in, response.getOutputStream());
-        in.close();
+        InputStream is = minioClient.getObject(BUCKET_NAME, name);
+        IOUtils.copy(is, response.getOutputStream());
+        is.close();
     }
 
     @RequestMapping(value = "/delete/{name:.+}")

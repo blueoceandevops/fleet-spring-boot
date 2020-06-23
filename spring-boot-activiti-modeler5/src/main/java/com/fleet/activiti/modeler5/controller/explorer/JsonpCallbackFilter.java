@@ -27,24 +27,24 @@ public class JsonpCallbackFilter implements Filter {
             if (log.isDebugEnabled())
                 log.debug("Wrapping response with JSONP callback '" + parms.get("callback")[0] + "'");
 
-            OutputStream out = httpResponse.getOutputStream();
+            OutputStream os = httpResponse.getOutputStream();
 
             GenericResponseWrapper wrapper = new GenericResponseWrapper(httpResponse);
 
             chain.doFilter(request, wrapper);
 
             //handles the content-size truncation
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            outputStream.write(new String(parms.get("callback")[0] + "(").getBytes());
-            outputStream.write(wrapper.getData());
-            outputStream.write(new String(");").getBytes());
-            byte jsonpResponse[] = outputStream.toByteArray();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            baos.write(new String(parms.get("callback")[0] + "(").getBytes());
+            baos.write(wrapper.getData());
+            baos.write(new String(");").getBytes());
+            byte jsonpResponse[] = baos.toByteArray();
 
             wrapper.setContentType("text/javascript;charset=UTF-8");
             wrapper.setContentLength(jsonpResponse.length);
 
-            out.write(jsonpResponse);
-            out.close();
+            os.write(jsonpResponse);
+            os.close();
         } else {
             chain.doFilter(request, response);
         }

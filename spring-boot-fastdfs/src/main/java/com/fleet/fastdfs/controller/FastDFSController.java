@@ -3,6 +3,7 @@ package com.fleet.fastdfs.controller;
 import com.fleet.fastdfs.util.FastDFSUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +24,7 @@ public class FastDFSController {
      * 上传文件
      */
     @RequestMapping("/uploadFile")
-    public String uploadFile(MultipartFile file) throws IOException {
+    public String uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
         return fastDFSUtil.uploadFile(file);
     }
 
@@ -31,7 +32,7 @@ public class FastDFSController {
      * 上传图片文件
      */
     @RequestMapping("/uploadImageFile")
-    public String uploadImageFile(MultipartFile file) throws IOException {
+    public String uploadImageFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
         return fastDFSUtil.uploadImageFile(file);
     }
 
@@ -46,7 +47,7 @@ public class FastDFSController {
         response.setContentType("image/jpeg;charset=utf-8");
         response.setHeader("Content-disposition", "attachment;filename=" + new String("test.jpg".getBytes(), StandardCharsets.ISO_8859_1));
 
-        OutputStream out = response.getOutputStream();
-        IOUtils.write(data, out);
+        OutputStream os = response.getOutputStream();
+        IOUtils.write(data, os);
     }
 }
