@@ -53,12 +53,12 @@ public class TokenController extends BaseController {
         } else {
             accessTokenList = new ArrayList<>();
         }
-        String newAccessToken = UUIDUtil.getUUID();
-        accessTokenList.add(newAccessToken);
+        accessToken = UUIDUtil.getUUID();
+        accessTokenList.add(accessToken);
         redisUtil.set("user:accessToken:" + id, accessTokenList);
-        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, newAccessToken, redisUtil.getExpire("refreshToken:accessToken:" + refreshToken, TimeUnit.SECONDS), TimeUnit.SECONDS);
-        redisUtil.setEx("accessToken:user:" + newAccessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-        redisUtil.setEx("accessToken:refreshToken:" + newAccessToken, refreshToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
-        return R.ok(newAccessToken);
+        redisUtil.setEx("refreshToken:accessToken:" + refreshToken, accessToken, redisUtil.getExpire("refreshToken:accessToken:" + refreshToken, TimeUnit.SECONDS), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:user:" + accessToken, id, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        redisUtil.setEx("accessToken:refreshToken:" + accessToken, refreshToken, TokenExpiresIn.ACCESS_EXPIRES_IN.getSec(), TimeUnit.SECONDS);
+        return R.ok(accessToken);
     }
 }
