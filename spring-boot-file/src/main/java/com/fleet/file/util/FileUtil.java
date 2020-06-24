@@ -159,19 +159,19 @@ public class FileUtil {
         try {
             if (file.exists()) {
                 if (file.isFile()) {
-                    FileInputStream is = new FileInputStream(file);
+                    FileInputStream fis = new FileInputStream(file);
                     ZipEntry entry = new ZipEntry(file.getName());
                     zos.putNextEntry(entry);
 
                     // 向压缩文件中输出数据
                     byte[] b = new byte[1024];
                     int len;
-                    while ((len = is.read(b)) > 0) {
+                    while ((len = fis.read(b)) > 0) {
                         zos.write(b, 0, len);
                     }
                     zos.closeEntry();
                     // 关闭创建的流对象
-                    is.close();
+                    fis.close();
                 } else {
                     try {
                         File[] files = file.listFiles();
@@ -194,7 +194,7 @@ public class FileUtil {
      * 下载Zip文件
      */
     private static void downloadZip(File file, String fileName, HttpServletResponse response) throws Exception {
-        FileInputStream is = new FileInputStream(file);
+        FileInputStream fis = new FileInputStream(file);
 
         response.reset();
         response.setContentType("application/octet-stream");
@@ -202,12 +202,12 @@ public class FileUtil {
         OutputStream os = response.getOutputStream();
         byte[] b = new byte[1024];
         int len;
-        while ((len = is.read(b)) > 0) {
+        while ((len = fis.read(b)) > 0) {
             os.write(b, 0, len);
         }
         os.flush();
         os.close();
-        is.close();
+        fis.close();
     }
 
     /**

@@ -21,9 +21,9 @@ public class ExcelApplicationTests {
     @Test
     public void read() throws Exception {
         File file = new File("D:\\test.xls");
-        FileInputStream is = new FileInputStream(file);
+        FileInputStream fis = new FileInputStream(file);
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        List<User> list = excelUtil.read(is, "test信息");
+        List<User> list = excelUtil.read(fis, "test信息");
         System.out.println("----执行完毕----");
     }
 

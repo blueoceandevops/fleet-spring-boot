@@ -44,16 +44,16 @@ public class ExcelUtil<T> {
      * 导入 excel 文件，读取数据
      */
     public List<T> read(File file) throws Exception {
-        FileInputStream is = new FileInputStream(file);
-        return read(is);
+        FileInputStream fis = new FileInputStream(file);
+        return read(fis);
     }
 
     /**
      * 导入 excel 文件，读取数据
      */
     public List<T> read(File file, String sheetName) throws Exception {
-        FileInputStream is = new FileInputStream(file);
-        return read(is, sheetName);
+        FileInputStream fis = new FileInputStream(file);
+        return read(fis, sheetName);
     }
 
     /**
