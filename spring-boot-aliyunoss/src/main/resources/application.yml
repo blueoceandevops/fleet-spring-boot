@@ -1,9 +1,5 @@
+spring:
+  profiles:
+    active: dev
 server:
   port: 8080
-aliyun:
-  oss:
-    endpoint: oss-cn-shenzhen.aliyuncs.com
-    accessKeyId: LTAI4G7XsZ9DYcuypm4ophuX
-    accessKeySecret: GejJum1b3DAluhlKH8EXWeLCtMJMFA
-    bucketName: fleetsoft-bucket
-    fileHost: test

@@ -1,18 +1,16 @@
 package com.fleet.aliyunoss.controller;
 
 import com.fleet.aliyunoss.config.AliyunOSSConfig;
+import com.fleet.aliyunoss.config.FileConfig;
 import com.fleet.aliyunoss.util.AliyunOSSUtil;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,23 +22,46 @@ public class FileController {
     private AliyunOSSConfig aliyunOSSConfig;
 
     @Resource
+    private FileConfig fileConfig;
+
+    @Resource
     private AliyunOSSUtil aliyunOSSUtil;
 
-    @RequestMapping("/uploadFile")
-    public void uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
-        File dest = new File(Objects.requireNonNull(file.getOriginalFilename()));
-        OutputStream os = new FileOutputStream(dest);
-        os.write(file.getBytes());
-        os.close();
+    /**
+     * 上传文件
+     */
+    @RequestMapping("/upload")
+    public void upload(@RequestParam(value = "file") MultipartFile file) throws IOException {
+        File dest = new File(fileConfig.getFilePath() + Objects.requireNonNull(file.getOriginalFilename()));
+        FileOutputStream fos = new FileOutputStream(dest);
+        fos.write(file.getBytes());
+        fos.close();
         file.transferTo(dest);
         aliyunOSSUtil.upload(dest);
+        dest.delete();
     }
 
-    @GetMapping("/getObjectList")
-    public List<String> getObjectList() {
-        String bucketName = aliyunOSSConfig.getBucketName();
-        System.out.println(bucketName);
-        List<String> objectList = aliyunOSSUtil.getObjectList(bucketName);
-        return objectList;
+    /**
+     * 下载文件
+     */
+    @RequestMapping("/download/{fileName:.+}")
+    public void download(@PathVariable("fileName") String fileName, HttpServletResponse response) throws IOException {
+        aliyunOSSUtil.download(fileName, response);
+    }
+
+    /**
+     * 删除文件
+     */
+    @RequestMapping("/delete/{fileName:.+}")
+    public void delete(@PathVariable("fileName") String fileName) {
+        aliyunOSSUtil.delete(fileName);
+    }
+
+    /**
+     * 文件列表
+     */
+    @GetMapping("/list")
+    public List<String> list() {
+        return aliyunOSSUtil.list();
     }
 }
