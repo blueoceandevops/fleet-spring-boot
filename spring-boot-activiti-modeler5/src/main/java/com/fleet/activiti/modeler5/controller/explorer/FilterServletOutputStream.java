@@ -8,23 +8,23 @@ import java.io.OutputStream;
 
 public class FilterServletOutputStream extends ServletOutputStream {
 
-    private DataOutputStream stream;
+    private DataOutputStream dos;
     private WriteListener writeListener;
 
     public FilterServletOutputStream(OutputStream os) {
-        stream = new DataOutputStream(os);
+        dos = new DataOutputStream(os);
     }
 
     public void write(int b) throws IOException {
-        stream.write(b);
+        dos.write(b);
     }
 
     public void write(byte[] b) throws IOException {
-        stream.write(b);
+        dos.write(b);
     }
 
     public void write(byte[] b, int off, int len) throws IOException {
-        stream.write(b, off, len);
+        dos.write(b, off, len);
     }
 
     @Override

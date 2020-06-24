@@ -106,9 +106,9 @@ public class ImgBase64Util {
                 b[i] += 256;
             }
         }
-        OutputStream os = new FileOutputStream(dest);
-        os.write(b);
-        os.flush();
-        os.close();
+        FileOutputStream fos = new FileOutputStream(dest);
+        fos.write(b);
+        fos.flush();
+        fos.close();
     }
 }
