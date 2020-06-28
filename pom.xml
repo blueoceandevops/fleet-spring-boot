@@ -114,6 +114,7 @@
         <module>spring-boot-mapstruct</module>
         <module>spring-boot-i18n</module>
         <module>spring-boot-online</module>
+        <module>spring-boot-validator</module>
         <module>spring-boot-common</module>
         <module>spring-boot-excel</module>
         <module>spring-boot-word</module>
