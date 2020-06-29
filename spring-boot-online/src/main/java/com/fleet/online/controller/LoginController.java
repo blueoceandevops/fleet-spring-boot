@@ -20,7 +20,8 @@ public class LoginController {
      * @param pwd  密码
      */
     @GetMapping("/login")
-    public R login(@RequestParam("name") String name, @RequestParam("pwd") String pwd, HttpSession session) {
+    public R login(@RequestParam("name") String name, @RequestParam("pwd") String pwd, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         session.removeAttribute("name");
         session.setAttribute("name", name);
         return R.ok();
