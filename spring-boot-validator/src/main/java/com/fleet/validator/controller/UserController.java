@@ -1,38 +1,28 @@
 package com.fleet.validator.controller;
 
 import com.fleet.validator.entity.User;
-import org.springframework.validation.annotation.Validated;
+import com.fleet.validator.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+    @Resource
+    private UserRepository userRepository;
+
     @RequestMapping("/insert")
-    public void insert(@RequestBody @Validated User user) {
-    }
-
-    @RequestMapping("/delete")
-    public void delete(Long id) {
-    }
-
-    @RequestMapping("/update")
-    public void update(@RequestBody User user) {
-    }
-
-    @RequestMapping("/get")
-    public User get(Long id) {
-        return null;
+    public void insert(@RequestBody @Valid User user) {
+        userRepository.save(user);
     }
 
     @RequestMapping("/list")
-    public List<User> list(Map<String, Object> map) {
-        return new ArrayList<>();
+    public Iterable<User> list() {
+        return userRepository.findAll();
     }
 }

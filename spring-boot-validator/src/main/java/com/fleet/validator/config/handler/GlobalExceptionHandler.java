@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.ServletException;
-import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
@@ -50,22 +49,6 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * ValidationException
-     */
-    @ExceptionHandler(ValidationException.class)
-    public R handleValidationException(ValidationException e) {
-        return R.error(e.getCause().getMessage());
-    }
-
-    /**
-     * ConstraintViolationException
-     */
-    @ExceptionHandler(ConstraintViolationException.class)
-    public R handleConstraintViolationException(ConstraintViolationException e) {
-        return R.error(e.getMessage());
-    }
-
-    /**
      * 全局异常捕捉处理
      *
      * @param e
@@ -99,6 +82,9 @@ public class GlobalExceptionHandler {
                     logger.error("不支持的操作异常：" + e.getMessage(), e);
                 } else if (e instanceof TypeMismatchException) {
                     logger.error("参数类型不匹配异常：" + e.getMessage(), e);
+                } else if (e instanceof ValidationException) {
+                    logger.error("校验异常：" + e.getMessage(), e);
+                    return R.error(e.getCause().getMessage());
                 } else {
                     logger.error("其它RuntimeException异常：" + e.getMessage(), e);
                 }

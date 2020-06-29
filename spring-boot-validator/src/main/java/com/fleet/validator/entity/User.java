@@ -1,29 +1,40 @@
 package com.fleet.validator.entity;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-public class User {
+@Entity
+@Table(name = "user")
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 用户id
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
      * 账户
      */
     @NotBlank(message = "账户不能为空")
-    @Size(max = 20, message = "账户不能多于20个字符")
-    @Size(min = 5, message = "账户不能少于5个字符")
-    @Pattern(regexp = "^[a-zA-Z0-9_]{5,20}$", message = "账户只能为字母，数字，下划线一种或多种")
+//    @Size(max = 20, message = "账户不能多于20个字符")
+//    @Size(min = 25, message = "账户不能少于5个字符")
+    @Length(min = 5, max = 20, message = "账户不能少于5个或多于20个字符")
+    @Pattern(regexp = "^[a-zA-Z0-9]{5,20}$", message = "账户只能为字母、数字中的一种或多种")
     private String name;
 
     /**
      * 昵称
      */
+    @Column(name = "nick_name")
     private String nickName;
 
     /**
@@ -34,6 +45,7 @@ public class User {
     /**
      * 加盐
      */
+    @Column(name = "pwd_salt")
     private String pwdSalt;
 
     /**
