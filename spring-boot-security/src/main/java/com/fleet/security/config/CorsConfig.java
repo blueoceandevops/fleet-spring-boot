@@ -8,18 +8,22 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class CorsConfig {
-	private CorsConfiguration buildConfig() {
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.addAllowedOrigin("*"); // 1允许任何域名使用
-		corsConfiguration.addAllowedHeader("*"); // 2允许任何头
-		corsConfiguration.addAllowedMethod("*"); // 3允许任何方法（post、get等）
-		return corsConfiguration;
-	}
 
-	@Bean
-	public CorsFilter corsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", buildConfig()); // 4
-		return new CorsFilter(source);
-	}
+    private CorsConfiguration buildConfig() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        // 跨域的地址，注意 127.0.0.1 != localhost
+        corsConfiguration.addAllowedOrigin("*");
+        // 跨域的请求头
+        corsConfiguration.addAllowedHeader("*");
+        // 跨域的请求方法
+        corsConfiguration.addAllowedMethod("*");
+        return corsConfiguration;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildConfig());
+        return new CorsFilter(source);
+    }
 }

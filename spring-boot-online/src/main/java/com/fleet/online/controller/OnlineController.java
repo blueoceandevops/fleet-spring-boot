@@ -9,6 +9,6 @@ public class OnlineController {
 
     @RequestMapping("/online")
     public String online() {
-        return "OnlineListener在线用户数量：" + OnlineListener.online;
+        return "在线用户数量：" + OnlineListener.online;
     }
 }
