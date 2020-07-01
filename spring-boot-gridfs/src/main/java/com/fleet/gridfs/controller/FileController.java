@@ -1,6 +1,5 @@
 package com.fleet.gridfs.controller;
 
-import cn.hutool.core.io.IoUtil;
 import com.fleet.gridfs.entity.FileInfo;
 import com.fleet.gridfs.page.Page;
 import com.fleet.gridfs.util.UUIDUtil;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -99,7 +99,14 @@ public class FileController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
             }
             GridFsResource gridFsResource = new GridFsResource(gridFsFile, gds);
-            byte[] bytes = IoUtil.readBytes(gridFsResource.getInputStream());
+            InputStream is = gridFsResource.getInputStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] b = new byte[1024];
+            int len;
+            while ((len = is.read(b)) > 0) {
+                baos.write(b, 0, len);
+            }
+            byte[] bytes = baos.toByteArray();
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "application/octet-stream")
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + new String(fileInfo.getName().getBytes(), StandardCharsets.ISO_8859_1))
