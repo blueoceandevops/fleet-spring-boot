@@ -125,6 +125,7 @@
         <module>spring-boot-minio</module>
         <module>spring-boot-file</module>
         <module>spring-boot-fastdfs</module>
+        <module>spring-boot-gridfs</module>
         <module>spring-boot-javafx</module>
         <module>spring-boot-cxf</module>
         <module>spring-boot-sso</module>
