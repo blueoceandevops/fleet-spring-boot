@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class MongodbController {
 
     @Resource
-    MongoTemplate mongotemplate;
+    MongoTemplate mongoTemplate;
 
     @Resource
     UserRepository userRepository;
@@ -24,14 +24,14 @@ public class MongodbController {
     User insert() {
         User user = new User();
         user.setName("张三");
-        return mongotemplate.insert(user);
+        return mongoTemplate.insert(user);
     }
 
     @RequestMapping("/get")
     User get() {
         Query query = new Query();
         query.addCriteria(Criteria.where("name").is("测试"));
-        return mongotemplate.findOne(query, User.class);
+        return mongoTemplate.findOne(query, User.class);
     }
 
     @RequestMapping("/get1")
