@@ -1,6 +1,6 @@
 package com.fleet.sso.json;
 
-import com.fleet.sso.enums.ResultStatus;
+import com.fleet.sso.enums.ResultState;
 
 public class R {
 
@@ -44,7 +44,7 @@ public class R {
      * @return R
      */
     public static R ok() {
-        return result(ResultStatus.SUCCESS.getCode(), ResultStatus.SUCCESS.getMsg());
+        return result(ResultState.SUCCESS.getCode(), ResultState.SUCCESS.getMsg());
     }
 
     /**
@@ -54,7 +54,7 @@ public class R {
      * @return R
      */
     public static R ok(Object data) {
-        return result(ResultStatus.SUCCESS.getCode(), data);
+        return result(ResultState.SUCCESS.getCode(), data);
     }
 
     /**
@@ -71,11 +71,11 @@ public class R {
     /**
      * 成功
      *
-     * @param resultStatus 成功枚举
+     * @param resultState 成功枚举
      * @return R
      */
-    public static R ok(ResultStatus resultStatus) {
-        return result(resultStatus.getCode(), resultStatus.getMsg());
+    public static R ok(ResultState resultState) {
+        return result(resultState.getCode(), resultState.getMsg());
     }
 
     /**
@@ -84,7 +84,7 @@ public class R {
      * @return
      */
     public static R error() {
-        return result(ResultStatus.ERROR.getCode(), ResultStatus.ERROR.getMsg());
+        return result(ResultState.ERROR.getCode(), ResultState.ERROR.getMsg());
     }
 
     /**
@@ -94,7 +94,7 @@ public class R {
      * @return R
      */
     public static R error(Object data) {
-        return result(ResultStatus.ERROR.getCode(), data);
+        return result(ResultState.ERROR.getCode(), data);
     }
 
     /**
@@ -111,22 +111,22 @@ public class R {
     /**
      * 错误
      *
-     * @param resultStatus 错误枚举
+     * @param resultState 错误枚举
      * @return R
      */
-    public static R error(ResultStatus resultStatus) {
-        return result(resultStatus.getCode(), resultStatus.getMsg());
+    public static R error(ResultState resultState) {
+        return result(resultState.getCode(), resultState.getMsg());
     }
 
     /**
      * 错误
      *
-     * @param resultStatus 错误枚举
+     * @param resultState 错误枚举
      * @param data         数据
      * @return R
      */
-    public static R error(ResultStatus resultStatus, Object data) {
-        return result(resultStatus.getCode(), data);
+    public static R error(ResultState resultState, Object data) {
+        return result(resultState.getCode(), data);
     }
 
     /**
@@ -136,7 +136,7 @@ public class R {
      * @return
      */
     public static Boolean isOk(R r) {
-        if (r != null && r.getCode().equals(ResultStatus.SUCCESS.getCode())) {
+        if (r != null && r.getCode().equals(ResultState.SUCCESS.getCode())) {
             return true;
         }
         return false;

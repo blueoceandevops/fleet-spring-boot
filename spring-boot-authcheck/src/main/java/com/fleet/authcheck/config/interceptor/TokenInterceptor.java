@@ -2,7 +2,7 @@ package com.fleet.authcheck.config.interceptor;
 
 import com.fleet.authcheck.config.handler.BaseException;
 import com.fleet.authcheck.entity.User;
-import com.fleet.authcheck.enums.ResultStatus;
+import com.fleet.authcheck.enums.ResultState;
 import com.fleet.authcheck.service.UserService;
 import com.fleet.authcheck.util.CurrentUser;
 import com.fleet.authcheck.util.RedisUtil;
@@ -54,7 +54,7 @@ public class TokenInterceptor implements HandlerInterceptor {
                     refreshToken = request.getParameter("refreshToken");
                 }
                 if (StringUtils.isEmpty(refreshToken)) {
-                    throw new BaseException(ResultStatus.ERROR, "缺少 refreshToken");
+                    throw new BaseException(ResultState.ERROR, "缺少 refreshToken");
                 }
 
                 Integer id = (Integer) redisUtil.get("refreshToken:user:" + refreshToken);
@@ -77,7 +77,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             accessToken = request.getParameter("accessToken");
         }
         if (StringUtils.isEmpty(accessToken)) {
-            throw new BaseException(ResultStatus.ERROR, "缺少 accessToken");
+            throw new BaseException(ResultState.ERROR, "缺少 accessToken");
         }
 
         Integer id = (Integer) redisUtil.get("accessToken:user:" + accessToken);

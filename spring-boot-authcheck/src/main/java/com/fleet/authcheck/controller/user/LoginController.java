@@ -1,7 +1,7 @@
 package com.fleet.authcheck.controller.user;
 
 import com.fleet.authcheck.entity.User;
-import com.fleet.authcheck.enums.ResultStatus;
+import com.fleet.authcheck.enums.ResultState;
 import com.fleet.authcheck.enums.TokenExpiresIn;
 import com.fleet.authcheck.json.R;
 import com.fleet.authcheck.service.UserService;
@@ -38,29 +38,29 @@ public class LoginController {
     @GetMapping("/login")
     public R login(@RequestParam("name") String name, @RequestParam("pwd") String pwd) {
         if (StringUtils.isEmpty(name)) {
-            return R.error(ResultStatus.ERROR, "账户为空");
+            return R.error(ResultState.ERROR, "账户为空");
         }
         if (StringUtils.isEmpty(pwd)) {
-            return R.error(ResultStatus.ERROR, "密码为空");
+            return R.error(ResultState.ERROR, "密码为空");
         }
 
         User user = new User();
         user.setName(name);
         user = userService.get(user);
         if (user == null) {
-            return R.error(ResultStatus.ERROR, "账户或密码错误");
+            return R.error(ResultState.ERROR, "账户或密码错误");
         }
 
         pwd = MD5Util.encrypt(pwd, user.getPwdSalt());
         if (!pwd.equals(user.getPwd())) {
-            return R.error(ResultStatus.ERROR, "账户或密码错误");
+            return R.error(ResultState.ERROR, "账户或密码错误");
         }
 
-        if (user.getStatus().equals(0)) {
-            return R.error(ResultStatus.ERROR, "账户被禁用");
+        if (user.getState().equals(0)) {
+            return R.error(ResultState.ERROR, "账户被禁用");
         }
-        if (user.getStatus().equals(2)) {
-            return R.error(ResultStatus.ERROR, "账户被锁定");
+        if (user.getState().equals(2)) {
+            return R.error(ResultState.ERROR, "账户被锁定");
         }
 
         Integer id = user.getId();

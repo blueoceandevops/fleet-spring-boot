@@ -1,6 +1,6 @@
 package com.fleet.authcheck.config.handler;
 
-import com.fleet.authcheck.enums.ResultStatus;
+import com.fleet.authcheck.enums.ResultState;
 
 import java.io.Serializable;
 
@@ -46,15 +46,15 @@ public class BaseException extends RuntimeException implements Serializable {
         this.msg = msg;
     }
 
-    public BaseException(ResultStatus resultStatus) {
-        super(resultStatus.getMsg());
-        this.code = resultStatus.getCode();
-        this.msg = resultStatus.getMsg();
+    public BaseException(ResultState resultState) {
+        super(resultState.getMsg());
+        this.code = resultState.getCode();
+        this.msg = resultState.getMsg();
     }
 
-    public BaseException(ResultStatus resultStatus, String msg) {
+    public BaseException(ResultState resultState, String msg) {
         super(msg);
-        this.code = resultStatus.getCode();
+        this.code = resultState.getCode();
         this.msg = msg;
     }
 }

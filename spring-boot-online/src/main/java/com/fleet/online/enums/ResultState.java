@@ -1,6 +1,6 @@
-package com.fleet.sso.enums;
+package com.fleet.online.enums;
 
-public enum ResultStatus {
+public enum ResultState {
 
     /**
      * 200 成功
@@ -11,7 +11,7 @@ public enum ResultStatus {
      **/
     ERROR(400, "错误");
 
-    ResultStatus(Integer code, String msg) {
+    ResultState(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }

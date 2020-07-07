@@ -1,5 +1,5 @@
 package com.fleet.authcheck.enums;
 
-public enum UserStatus {
+public enum UserState {
 	FORBIDDEN, NORMAL, LOCKED;
 }

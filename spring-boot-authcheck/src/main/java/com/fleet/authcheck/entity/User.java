@@ -30,7 +30,7 @@ public class User {
     /**
      * 用户状态（0：禁用，1：正常，2：锁定）
      */
-    private Integer status;
+    private Integer state;
 
     public Integer getId() {
         return id;
@@ -72,11 +72,11 @@ public class User {
         this.pwdSalt = pwdSalt;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getState() {
+        return state;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

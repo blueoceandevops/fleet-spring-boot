@@ -2,7 +2,7 @@ package com.fleet.sso.controller.token;
 
 import com.fleet.sso.config.handler.BaseException;
 import com.fleet.sso.controller.BaseController;
-import com.fleet.sso.enums.ResultStatus;
+import com.fleet.sso.enums.ResultState;
 import com.fleet.sso.enums.TokenExpiresIn;
 import com.fleet.sso.json.R;
 import com.fleet.sso.util.RedisUtil;
@@ -33,7 +33,7 @@ public class TokenController extends BaseController {
             refreshToken = request.getParameter("refreshToken");
         }
         if (StringUtils.isEmpty(refreshToken)) {
-            throw new BaseException(ResultStatus.ERROR, "缺少 refreshToken");
+            throw new BaseException(ResultState.ERROR, "缺少 refreshToken");
         }
 
         Integer id = (Integer) redisUtil.get("refreshToken:user:" + refreshToken);

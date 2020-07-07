@@ -2,7 +2,7 @@ package com.fleet.authcheck.controller.user;
 
 import com.fleet.authcheck.config.handler.BaseException;
 import com.fleet.authcheck.controller.BaseController;
-import com.fleet.authcheck.enums.ResultStatus;
+import com.fleet.authcheck.enums.ResultState;
 import com.fleet.authcheck.json.R;
 import com.fleet.authcheck.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +33,7 @@ public class LogoutController extends BaseController {
             accessToken = request.getParameter("accessToken");
         }
         if (StringUtils.isEmpty(accessToken)) {
-            throw new BaseException(ResultStatus.ERROR, "缺少 accessToken");
+            throw new BaseException(ResultState.ERROR, "缺少 accessToken");
         }
 
         Integer id = getId();

@@ -3,7 +3,7 @@ package com.fleet.sso.controller.user;
 import com.fleet.sso.config.handler.BaseException;
 import com.fleet.sso.controller.BaseController;
 import com.fleet.sso.entity.User;
-import com.fleet.sso.enums.ResultStatus;
+import com.fleet.sso.enums.ResultState;
 import com.fleet.sso.json.R;
 import com.fleet.sso.service.UserService;
 import com.fleet.sso.util.MD5Util;
@@ -35,21 +35,21 @@ public class PwdController extends BaseController {
     @RequestMapping("/change")
     public R login(@RequestParam("oldPwd") String oldPwd, @RequestParam("newPwd") String newPwd) {
         if (StringUtils.isEmpty(oldPwd)) {
-            throw new BaseException(ResultStatus.ERROR, "旧密码为空");
+            throw new BaseException(ResultState.ERROR, "旧密码为空");
         }
         if (StringUtils.isEmpty(newPwd)) {
-            throw new BaseException(ResultStatus.ERROR, "新密码为空");
+            throw new BaseException(ResultState.ERROR, "新密码为空");
         }
 
         // 当前用户
         User cur = getUser();
         if (cur == null) {
-            throw new BaseException(ResultStatus.ERROR);
+            throw new BaseException(ResultState.ERROR);
         }
 
         String pwd = MD5Util.encrypt(oldPwd, cur.getPwdSalt());
         if (!pwd.equals(cur.getPwd())) {
-            throw new BaseException(ResultStatus.ERROR, "旧密码错误");
+            throw new BaseException(ResultState.ERROR, "旧密码错误");
         }
 
         User user = new User();

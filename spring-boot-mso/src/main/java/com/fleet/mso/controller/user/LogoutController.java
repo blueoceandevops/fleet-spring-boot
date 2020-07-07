@@ -2,7 +2,7 @@ package com.fleet.mso.controller.user;
 
 import com.fleet.mso.config.handler.BaseException;
 import com.fleet.mso.controller.BaseController;
-import com.fleet.mso.enums.ResultStatus;
+import com.fleet.mso.enums.ResultState;
 import com.fleet.mso.json.R;
 import com.fleet.mso.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +28,7 @@ public class LogoutController extends BaseController {
             accessToken = request.getParameter("accessToken");
         }
         if (StringUtils.isEmpty(accessToken)) {
-            throw new BaseException(ResultStatus.ERROR, "缺少 accessToken");
+            throw new BaseException(ResultState.ERROR, "缺少 accessToken");
         }
 
         Integer id = (Integer) redisUtil.get("accessToken:user:" + accessToken);
