@@ -1,5 +1,6 @@
 package com.fleet.jsoup.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fleet.jsoup.entity.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ public class UserController {
 
     @RequestMapping("/insert")
     public String insert(@RequestBody User user) {
-        System.out.println(user.getName());
-        return "成功";
+        return JSON.toJSONString(user);
     }
 }

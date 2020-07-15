@@ -1,13 +1,19 @@
-package com.fleet.jsoup.filter;
+package com.fleet.jsoup.config.xss;
+
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author April Han
+ */
 public class XssFilter implements Filter {
 
     public List<String> excludes = new ArrayList<>();
@@ -15,11 +21,9 @@ public class XssFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
         String temp = filterConfig.getInitParameter("excludes");
-        if (temp != null) {
+        if (StringUtils.isNotEmpty(temp)) {
             String[] url = temp.split(",");
-            for (int i = 0; i < url.length; i++) {
-                excludes.add(url[i]);
-            }
+            excludes.addAll(Arrays.asList(url));
         }
     }
 
@@ -42,12 +46,13 @@ public class XssFilter implements Filter {
         if (excludes == null || excludes.isEmpty()) {
             return false;
         }
-        String url = request.getServletPath();
+        String servletPath = request.getServletPath();
         for (String pattern : excludes) {
             Pattern p = Pattern.compile("^" + pattern);
-            Matcher m = p.matcher(url);
-            if (m.find())
+            Matcher m = p.matcher(servletPath);
+            if (m.find()) {
                 return true;
+            }
         }
         return false;
     }

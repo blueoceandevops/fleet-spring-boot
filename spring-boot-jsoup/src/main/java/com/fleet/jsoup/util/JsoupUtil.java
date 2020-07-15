@@ -4,11 +4,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
 
+/**
+ * @author April Han
+ */
 public class JsoupUtil {
 
     private static final Whitelist whitelist = Whitelist.relaxed();
 
-    /*
+    /**
      * 配置过滤化参数，不对代码进行格式化
      */
     private static final Document.OutputSettings outputSettings = new Document.OutputSettings().prettyPrint(false);

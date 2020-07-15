@@ -1,4 +1,4 @@
-package com.fleet.jsoup.filter;
+package com.fleet.jsoup.config.xss;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,18 +12,21 @@ import java.util.Map;
 
 import static com.fleet.jsoup.util.JsoupUtil.clean;
 
+/**
+ * @author April Han
+ */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
-    private HttpServletRequest orgRequest = null;
+    private HttpServletRequest request;
 
     public XssHttpServletRequestWrapper(HttpServletRequest request) {
         super(request);
-        orgRequest = request;
+        this.request = request;
     }
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(orgRequest.getInputStream()));
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String line = br.readLine();
         String result = "";
         if (line != null) {
