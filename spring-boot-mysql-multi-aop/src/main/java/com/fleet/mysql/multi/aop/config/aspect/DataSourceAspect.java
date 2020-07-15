@@ -11,20 +11,17 @@ import org.springframework.stereotype.Component;
 public class DataSourceAspect {
 
     @Before("!@annotation(com.fleet.mysql.multi.aop.annotation.Master) "
-            + "&& (execution(* com.fleet.mysql.proxy.service..*.select*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.get*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.list*(..)))")
+            + "&& (execution(* com.fleet.mysql.multi.aop.service..*.get*(..)) "
+            + "|| execution(* com.fleet.mysql.multi.aop.service..*.select*(..)) "
+            + "|| execution(* com.fleet.mysql.multi.aop.service..*.list*(..)))")
     public void read() {
         DataSourceConfig.DataSourceType.setDBType(DBType.SLAVE);
     }
 
     @Before("@annotation(com.fleet.mysql.multi.aop.annotation.Master) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.insert*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.add*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.update*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.edit*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.delete*(..)) "
-            + "|| execution(* com.fleet.mysql.proxy.service..*.remove*(..))")
+            + "|| execution(* com.fleet.mysql.multi.aop.service..*.insert*(..)) "
+            + "|| execution(* com.fleet.mysql.multi.aop.service..*.delete*(..)) "
+            + "|| execution(* com.fleet.mysql.multi.aop.service..*.update*(..))")
     public void write() {
         DataSourceConfig.DataSourceType.setDBType(DBType.MASTER);
     }
