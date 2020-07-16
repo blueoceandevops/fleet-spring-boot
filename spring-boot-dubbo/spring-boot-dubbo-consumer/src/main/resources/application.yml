@@ -2,7 +2,7 @@ spring:
   application:
     name: dubbo-consumer
 server:
-  port: 8082
+  port: 8080
 dubbo:
   application:
     name: dubbo-consumer
