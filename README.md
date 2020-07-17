@@ -13,6 +13,7 @@
 - [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka 微服务注册与发现
 - [spring-boot-consul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-consul)：Spring Boot Consul 微服务注册与发现
 - [spring-boot-nacos](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-nacos)：Spring Boot Nacos 微服务注册与发现
+- [spring-boot-zookeeper](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-zookeeper)：Spring Boot ZooKeeper 微服务注册与发现
 - [spring-boot-lombok](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-lombok)：Spring Boot Lombok 消除样板式代码
 - [spring-boot-jetty](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-jetty)：Spring Boot 使用 Jetty 作为 Servlet 引擎
 - [spring-boot-undertow](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-undertow)：Spring Boot 使用 Undertow 作为 Servlet 引擎
