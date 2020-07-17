@@ -7,7 +7,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-simple</artifactId>
     <name>spring-boot-simple</name>
-    <description>simple</description>
+    <description>简单的服务提供者、消费者</description>
     <packaging>pom</packaging>
     <version>1.0</version>
 
