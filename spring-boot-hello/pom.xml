@@ -14,7 +14,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-hello</artifactId>
     <name>spring-boot-hello</name>
-    <description>Hello</description>
+    <description>快速入门 Hello world 示例</description>
     <packaging>jar</packaging>
     <version>1.0</version>
 
