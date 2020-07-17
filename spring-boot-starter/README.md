@@ -1,4 +1,4 @@
-# spring-boot-hello
+# spring-boot-starter
 
 > 自定义 Banner （启动图案）
 

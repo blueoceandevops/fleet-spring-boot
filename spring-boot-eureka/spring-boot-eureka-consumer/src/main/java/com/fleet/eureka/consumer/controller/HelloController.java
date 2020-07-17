@@ -39,7 +39,7 @@ public class HelloController {
     @Resource
     RestTemplate loadBalanced;
 
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public String hello() {
         return loadBalanced.getForObject("http://eureka-provider/hello", String.class);
     }

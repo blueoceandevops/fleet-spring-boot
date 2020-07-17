@@ -12,7 +12,7 @@ public class HelloController {
     @Resource
     ProviderFeignClient providerFeignClient;
 
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public String hello() {
         return providerFeignClient.hello();
     }

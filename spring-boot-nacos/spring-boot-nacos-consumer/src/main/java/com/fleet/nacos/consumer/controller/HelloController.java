@@ -38,7 +38,7 @@ public class HelloController {
     @Resource
     RestTemplate restTemplate;
 
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public String hello() {
         return restTemplate.getForObject("http://nacos-provider/hello", String.class);
     }

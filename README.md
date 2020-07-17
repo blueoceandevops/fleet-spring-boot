@@ -6,10 +6,9 @@
 
 ### 基础部分：
 
-- [spring-boot-hello](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hello)：Spring Boot 入门项目
-- [spring-boot-starter](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-starter)：Spring Boot 自定义Banner（启动图案）
-- [spring-boot-simple-provider](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple-provider)：编写服务提供者
-- [spring-boot-simple-consumer](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple-consumer)：编写服务消费者
+- [spring-boot-hello](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-hello)：Spring Boot 快速入门 Hello world 示例
+- [spring-boot-starter](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-starter)：Spring Boot 自定义 Banner （启动图案）
+- [spring-boot-simple](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-simple/spring-boot-simple)：Spring Boot 简单的服务提供者、消费者
 - [spring-boot-eureka](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-eureka)：Spring Boot Eukeka 微服务注册与发现
 - [spring-boot-consul](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-consul)：Spring Boot Consul 微服务注册与发现
 - [spring-boot-nacos](https://github.com/AprilHan1992/fleet-spring-boot/tree/master/spring-boot-nacos)：Spring Boot Nacos 微服务注册与发现
