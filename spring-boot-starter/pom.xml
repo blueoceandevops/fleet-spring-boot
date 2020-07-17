@@ -14,7 +14,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-starter</artifactId>
     <name>spring-boot-starter</name>
-    <description>starter</description>
+    <description>自定义 Banner （启动图案）</description>
     <packaging>jar</packaging>
     <version>1.0</version>
 
