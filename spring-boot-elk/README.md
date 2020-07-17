@@ -138,7 +138,7 @@ kibana.bat
 
 ```
 
-10. 启动项目，调用 [http://localhost:8080/log](http://localhost:8080/log) 接口，可在 dos 窗口查看输出日志
+10. 启动项目，调用 [http://localhost:8000/log](http://localhost:8000/log) 接口，可在 dos 窗口查看输出日志
 
 ```
 {

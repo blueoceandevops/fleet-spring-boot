@@ -16,4 +16,4 @@ info:
   version: 1.0
   app:
     name: eureka-provider
-    port: 8081
+    port: 8001

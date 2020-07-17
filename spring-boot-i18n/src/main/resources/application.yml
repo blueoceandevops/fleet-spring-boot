@@ -5,4 +5,4 @@ spring:
   messages:
     basename: static/i18n/messages
 server:
-  port: 8080
+  port: 8000

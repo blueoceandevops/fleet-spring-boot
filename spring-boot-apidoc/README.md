@@ -15,8 +15,8 @@
   "version": "1.0.0",
   "description": "接口文档",
   "title": "接口文档",
-  "url": "http://localhost:8080/",
-  "sampleUrl": "http://localhost:8080/"
+  "url": "http://localhost:8000/",
+  "sampleUrl": "http://localhost:8000/"
 }
 
 ```

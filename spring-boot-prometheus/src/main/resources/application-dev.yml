@@ -26,4 +26,4 @@ info:
   version: 1.0
   app:
     name: prometheus
-    port: 8080
+    port: 8000

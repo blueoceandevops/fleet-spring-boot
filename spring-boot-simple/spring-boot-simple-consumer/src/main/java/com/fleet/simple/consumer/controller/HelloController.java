@@ -14,6 +14,6 @@ public class HelloController {
 
     @RequestMapping("hello")
     public String hello() {
-        return restTemplate.getForObject("http://localhost:8081/hello", String.class);
+        return restTemplate.getForObject("http://localhost:8001/hello", String.class);
     }
 }

@@ -9,4 +9,4 @@ spring:
       max-connections: 5
       idle-timeout: 30000
 server:
-  port: 8080
+  port: 8000

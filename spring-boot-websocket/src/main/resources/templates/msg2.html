@@ -28,7 +28,7 @@
     }
 
     function connect() {
-        var socket = new SockJS('http://localhost:8080/socket');
+        var socket = new SockJS('http://localhost:8000/socket');
         stomp = Stomp.over(socket);
         stomp.connect({}, function (frame) {
             stomp.subscribe('/user/1/queue/getResponse', function (response) {

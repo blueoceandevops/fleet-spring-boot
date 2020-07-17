@@ -10,4 +10,4 @@ spring:
       # 设置总上传大小
       max-request-size: 200MB
 server:
-  port: 8080
+  port: 8000

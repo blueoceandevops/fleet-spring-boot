@@ -18,4 +18,4 @@ spring:
     history-level: full
     db-history-used: true
 server:
-  port: 8080
+  port: 8000

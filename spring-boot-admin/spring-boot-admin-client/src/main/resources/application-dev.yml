@@ -2,7 +2,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8081
+        url: http://localhost:8001
 # 加载所有的端点，默认只加载了info、health
 management:
   endpoints:
