@@ -67,7 +67,6 @@
 	    public static void main(String[] args) {
 	        SpringApplication.run(EurekaEurekaApplication.class, args);
 	    }
-	
 	}
 	
 	```
@@ -130,7 +129,6 @@
 	    public static void main(String[] args) {
 	        SpringApplication.run(EurekaProviderApplication.class, args);
 	    }
-	
 	}
 	
 	```
