@@ -21,8 +21,8 @@
 
     <modules>
         <module>spring-boot-eureka-eureka</module>
-        <module>spring-boot-eureka-consumer</module>
         <module>spring-boot-eureka-provider</module>
+        <module>spring-boot-eureka-consumer</module>
     </modules>
 
     <build>
