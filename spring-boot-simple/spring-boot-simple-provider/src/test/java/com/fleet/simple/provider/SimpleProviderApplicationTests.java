@@ -1,4 +1,4 @@
-package com.fleet.provider;
+package com.fleet.simple.provider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
