@@ -9,5 +9,4 @@ public class JettyApplication {
     public static void main(String[] args) {
         SpringApplication.run(JettyApplication.class, args);
     }
-
 }
