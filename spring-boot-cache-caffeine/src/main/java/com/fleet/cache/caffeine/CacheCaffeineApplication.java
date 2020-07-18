@@ -11,5 +11,4 @@ public class CacheCaffeineApplication {
     public static void main(String[] args) {
         SpringApplication.run(CacheCaffeineApplication.class, args);
     }
-
 }

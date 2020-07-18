@@ -11,5 +11,4 @@ public class ActivitiModelerApplication5 {
     public static void main(String[] args) {
         SpringApplication.run(ActivitiModelerApplication5.class, args);
     }
-
 }

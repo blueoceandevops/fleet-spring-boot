@@ -11,5 +11,4 @@ public class SubmitApplication {
     public static void main(String[] args) {
         SpringApplication.run(SubmitApplication.class, args);
     }
-
 }

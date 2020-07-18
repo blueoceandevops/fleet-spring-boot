@@ -9,5 +9,4 @@ public class LogstashApplication {
     public static void main(String[] args) {
         SpringApplication.run(LogstashApplication.class, args);
     }
-
 }

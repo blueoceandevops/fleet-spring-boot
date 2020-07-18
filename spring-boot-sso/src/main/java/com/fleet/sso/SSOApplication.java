@@ -9,5 +9,4 @@ public class SSOApplication {
     public static void main(String[] args) {
         SpringApplication.run(SSOApplication.class, args);
     }
-
 }

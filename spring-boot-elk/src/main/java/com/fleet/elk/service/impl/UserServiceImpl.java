@@ -42,5 +42,4 @@ public class UserServiceImpl implements UserService {
         Page<User> searchPageResults = userRepository.search(searchQuery);
         return searchPageResults.getContent();
     }
-
 }

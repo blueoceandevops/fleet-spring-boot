@@ -13,5 +13,4 @@ public class DatawayApplication {
     public static void main(String[] args) {
         SpringApplication.run(DatawayApplication.class, args);
     }
-
 }

@@ -9,5 +9,4 @@ public class BeetlApplication {
     public static void main(String[] args) {
         SpringApplication.run(BeetlApplication.class, args);
     }
-
 }

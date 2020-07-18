@@ -11,5 +11,4 @@ public class GridFSApplication {
     public static void main(String[] args) {
         SpringApplication.run(GridFSApplication.class, args);
     }
-
 }

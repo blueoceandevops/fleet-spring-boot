@@ -10,5 +10,4 @@ public class Activiti5Application {
     public static void main(String[] args) {
         SpringApplication.run(Activiti5Application.class, args);
     }
-
 }

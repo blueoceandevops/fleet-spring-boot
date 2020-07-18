@@ -20,5 +20,4 @@ public class FileApplicationTests {
     public void pushAndroid() {
         System.out.println(fileConfig.getFilePath());
     }
-
 }

@@ -9,5 +9,4 @@ public class Uflo2Application {
     public static void main(String[] args) {
         SpringApplication.run(Uflo2Application.class, args);
     }
-
 }

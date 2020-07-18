@@ -9,5 +9,4 @@ public class PostgreSQLApplication {
     public static void main(String[] args) {
         SpringApplication.run(PostgreSQLApplication.class, args);
     }
-
 }

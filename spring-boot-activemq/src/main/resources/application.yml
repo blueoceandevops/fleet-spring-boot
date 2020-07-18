@@ -1,3 +1,5 @@
+server:
+  port: 8000
 spring:
   activemq:
     broker-url: tcp://localhost:61616
@@ -8,5 +10,3 @@ spring:
       enabled: false
       max-connections: 5
       idle-timeout: 30000
-server:
-  port: 8000

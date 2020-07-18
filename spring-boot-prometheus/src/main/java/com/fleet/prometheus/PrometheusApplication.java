@@ -9,5 +9,4 @@ public class PrometheusApplication {
     public static void main(String[] args) {
         SpringApplication.run(PrometheusApplication.class, args);
     }
-
 }

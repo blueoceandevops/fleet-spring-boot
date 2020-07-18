@@ -11,5 +11,4 @@ public class AuthCheckApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthCheckApplication.class, args);
     }
-
 }

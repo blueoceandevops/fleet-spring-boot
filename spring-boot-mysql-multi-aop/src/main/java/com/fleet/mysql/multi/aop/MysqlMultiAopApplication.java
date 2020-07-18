@@ -9,5 +9,4 @@ public class MysqlMultiAopApplication {
     public static void main(String[] args) {
         SpringApplication.run(MysqlMultiAopApplication.class, args);
     }
-
 }

@@ -9,5 +9,4 @@ public class HikariApplication {
     public static void main(String[] args) {
         SpringApplication.run(HikariApplication.class, args);
     }
-
 }

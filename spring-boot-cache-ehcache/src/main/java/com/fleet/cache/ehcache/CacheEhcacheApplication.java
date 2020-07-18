@@ -11,5 +11,4 @@ public class CacheEhcacheApplication {
     public static void main(String[] args) {
         SpringApplication.run(CacheEhcacheApplication.class, args);
     }
-
 }

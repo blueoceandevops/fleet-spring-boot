@@ -9,5 +9,4 @@ public class ArtemisApplication {
     public static void main(String[] args) {
         SpringApplication.run(ArtemisApplication.class, args);
     }
-
 }

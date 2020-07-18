@@ -9,5 +9,4 @@ public class OpenOfficeApplication {
     public static void main(String[] args) {
         SpringApplication.run(OpenOfficeApplication.class, args);
     }
-
 }

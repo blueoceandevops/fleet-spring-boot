@@ -17,5 +17,4 @@ public class MsgController {
     public void send() {
         sender.send();
     }
-
 }

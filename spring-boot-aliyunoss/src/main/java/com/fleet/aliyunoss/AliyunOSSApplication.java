@@ -9,5 +9,4 @@ public class AliyunOSSApplication {
     public static void main(String[] args) {
         SpringApplication.run(AliyunOSSApplication.class, args);
     }
-
 }

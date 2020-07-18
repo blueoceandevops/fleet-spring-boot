@@ -1,5 +1,5 @@
+server:
+  port: 8000
 spring:
   application:
     name: spring-boot-enjoy
-server:
-  port: 8000

@@ -22,5 +22,4 @@ public class JpaApplicationTests {
         Optional<User> user = userRepository.findById(1L);
         System.out.println(user);
     }
-
 }

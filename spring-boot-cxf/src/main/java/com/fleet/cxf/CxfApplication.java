@@ -9,5 +9,4 @@ public class CxfApplication {
     public static void main(String[] args) {
         SpringApplication.run(CxfApplication.class, args);
     }
-
 }

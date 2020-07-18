@@ -1,3 +1,5 @@
+server:
+  port: 8000
 spring:
   profiles:
     active: dev
@@ -8,5 +10,3 @@ spring:
     process-definition-location-prefix: classpath:/processes/
     history-level: full
     db-history-used: true
-server:
-  port: 8000

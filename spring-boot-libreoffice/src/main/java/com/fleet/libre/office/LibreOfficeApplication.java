@@ -9,5 +9,4 @@ public class LibreOfficeApplication {
     public static void main(String[] args) {
         SpringApplication.run(LibreOfficeApplication.class, args);
     }
-
 }

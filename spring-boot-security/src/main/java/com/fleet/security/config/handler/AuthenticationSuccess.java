@@ -22,5 +22,4 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
         printWriter.flush();
         printWriter.close();
     }
-
 }

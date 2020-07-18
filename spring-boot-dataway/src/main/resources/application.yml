@@ -1,3 +1,5 @@
+server:
+  port: 9040
 spring:
   application:
     name: service-dataway
@@ -5,8 +7,6 @@ spring:
     active: dev
   thymeleaf:
     cache: false
-server:
-  port: 9040
 
 # 启用 Dataway 功能（默认不启用）
 HASOR_DATAQL_DATAWAY: true

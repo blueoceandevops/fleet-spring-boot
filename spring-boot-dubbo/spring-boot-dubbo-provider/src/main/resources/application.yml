@@ -1,10 +1,10 @@
+server:
+  port: 8001
 spring:
   application:
     name: dubbo-provider
   profiles:
     active: dev
-server:
-  port: 8001
 dubbo:
   application:
     name: dubbo-provider

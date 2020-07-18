@@ -9,5 +9,4 @@ public class JoopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JoopApplication.class, args);
 	}
-
 }

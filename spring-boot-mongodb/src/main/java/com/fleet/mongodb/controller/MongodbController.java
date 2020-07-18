@@ -38,5 +38,4 @@ public class MongodbController {
     User get1() {
         return userRepository.findByName("测试");
     }
-
 }

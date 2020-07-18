@@ -10,5 +10,4 @@ public class CouchbaseApplication {
     public static void main(String[] args) {
         SpringApplication.run(CouchbaseApplication.class, args);
     }
-
 }

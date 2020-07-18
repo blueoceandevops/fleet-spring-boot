@@ -11,5 +11,4 @@ public class CacheGuavaApplication {
     public static void main(String[] args) {
         SpringApplication.run(CacheGuavaApplication.class, args);
     }
-
 }

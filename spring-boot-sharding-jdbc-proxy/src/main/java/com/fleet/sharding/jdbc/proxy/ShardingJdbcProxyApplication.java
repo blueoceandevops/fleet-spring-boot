@@ -12,5 +12,4 @@ public class ShardingJdbcProxyApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShardingJdbcProxyApplication.class, args);
     }
-
 }

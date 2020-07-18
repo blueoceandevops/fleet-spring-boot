@@ -9,5 +9,4 @@ public class MybatisPageHelperApplication {
     public static void main(String[] args) {
         SpringApplication.run(MybatisPageHelperApplication.class, args);
     }
-
 }

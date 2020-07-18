@@ -12,5 +12,4 @@ public class MycatMysqlShardingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MycatMysqlShardingApplication.class, args);
 	}
-
 }

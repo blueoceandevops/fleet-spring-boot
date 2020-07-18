@@ -9,5 +9,4 @@ public class GroovyApplication {
     public static void main(String[] args) {
         SpringApplication.run(GroovyApplication.class, args);
     }
-
 }
