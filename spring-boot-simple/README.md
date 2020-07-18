@@ -13,15 +13,15 @@
 	```
 	
 	<modules>
+		<module>spring-boot-simple-provider</module>
         <module>spring-boot-simple-consumer</module>
-        <module>spring-boot-simple-provider</module>
     </modules>
 	
 	```
 
 2. 服务提供者
 
-	1. 在父 maven 项目下，创建一个新的 Spring Boot 服务提供者项目
+	1. 在父 maven 项目下，创建一个新的 Spring Boot 服务提供者项目 `spring-boot-simple-provider`
 	
 	2. 配置 pom.xml 文件，添加依赖
 
@@ -82,7 +82,7 @@
 
 3. 服务消费者
 
-	1. 在父 maven 项目下，创建一个新的 Spring Boot 服务消费者项目
+	1. 在父 maven 项目下，创建一个新的 Spring Boot 服务消费者项目 `spring-boot-simple-consumer`
 	
 	2. 配置 pom.xml 文件，添加依赖
 

@@ -20,8 +20,8 @@
     </properties>
 
     <modules>
-        <module>spring-boot-simple-consumer</module>
         <module>spring-boot-simple-provider</module>
+        <module>spring-boot-simple-consumer</module>
     </modules>
 
     <build>
