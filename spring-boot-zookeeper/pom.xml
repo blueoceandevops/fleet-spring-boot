@@ -7,7 +7,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-zookeeper</artifactId>
     <name>spring-boot-zookeeper</name>
-    <description>zookeeper</description>
+    <description>ZooKeeper 微服务注册与发现</description>
     <packaging>pom</packaging>
     <version>1.0</version>
 
@@ -20,8 +20,8 @@
     </properties>
 
     <modules>
-        <module>spring-boot-zookeeper-consumer</module>
         <module>spring-boot-zookeeper-provider</module>
+        <module>spring-boot-zookeeper-consumer</module>
     </modules>
 
     <build>

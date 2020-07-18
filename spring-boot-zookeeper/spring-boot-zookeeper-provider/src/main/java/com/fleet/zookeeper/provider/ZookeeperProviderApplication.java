@@ -11,5 +11,4 @@ public class ZookeeperProviderApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZookeeperProviderApplication.class, args);
     }
-
 }
