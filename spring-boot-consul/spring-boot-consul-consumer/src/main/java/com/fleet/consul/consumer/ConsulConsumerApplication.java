@@ -9,5 +9,4 @@ public class ConsulConsumerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ConsulConsumerApplication.class, args);
 	}
-
 }

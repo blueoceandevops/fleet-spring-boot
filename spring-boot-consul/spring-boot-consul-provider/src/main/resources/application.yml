@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: consul-provider
+  profiles:
+    active: dev
   cloud:
     consul:
       host: localhost

@@ -7,7 +7,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-consul</artifactId>
     <name>spring-boot-consul</name>
-    <description>consul</description>
+    <description>Consul 微服务注册与发现</description>
     <packaging>pom</packaging>
     <version>1.0</version>
 
@@ -20,8 +20,8 @@
     </properties>
 
     <modules>
-        <module>spring-boot-consul-consumer</module>
         <module>spring-boot-consul-provider</module>
+        <module>spring-boot-consul-consumer</module>
     </modules>
 
     <build>
