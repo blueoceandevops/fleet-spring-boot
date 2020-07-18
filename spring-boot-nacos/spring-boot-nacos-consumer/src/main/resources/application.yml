@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: nacos-consumer
+  profiles:
+    active: dev
   cloud:
     nacos:
       discovery:

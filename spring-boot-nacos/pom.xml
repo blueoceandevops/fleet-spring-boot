@@ -7,7 +7,7 @@
     <groupId>com.fleet</groupId>
     <artifactId>spring-boot-nacos</artifactId>
     <name>spring-boot-nacos</name>
-    <description>nacos</description>
+    <description>Nacos 微服务注册与发现</description>
     <packaging>pom</packaging>
     <version>1.0</version>
 
@@ -20,8 +20,8 @@
     </properties>
 
     <modules>
-        <module>spring-boot-nacos-consumer</module>
         <module>spring-boot-nacos-provider</module>
+        <module>spring-boot-nacos-consumer</module>
     </modules>
 
     <build>
