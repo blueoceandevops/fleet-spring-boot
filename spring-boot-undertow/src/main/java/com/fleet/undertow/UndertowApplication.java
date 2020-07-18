@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JettyApplication {
+public class UndertowApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JettyApplication.class, args);
+        SpringApplication.run(UndertowApplication.class, args);
     }
-
 }
