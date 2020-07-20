@@ -19,7 +19,7 @@ public class User4Controller {
 
     @RequestMapping("/insert")
     public String insert(@RequestBody User user) {
-        synchronized (this.getClass()) {
+        synchronized (this) {
             if (map.containsKey(user.getId())) {
                 throw new BaseException("重复提交");
             }

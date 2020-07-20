@@ -22,7 +22,7 @@ public class User2Controller {
 
     @RequestMapping("/insert")
     public String insert(@RequestBody User user) {
-        synchronized (this.getClass()) {
+        synchronized (this) {
             if (Arrays.asList(ids).contains(user.getId())) {
                 throw new BaseException("重复提交");
             }

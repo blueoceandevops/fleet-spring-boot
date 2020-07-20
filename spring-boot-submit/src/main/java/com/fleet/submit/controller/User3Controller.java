@@ -26,7 +26,7 @@ public class User3Controller {
             throw new BaseException("重复提交");
         }
 
-        synchronized (this.getClass()) {
+        synchronized (this) {
             if (Arrays.asList(ids).contains(user.getId())) {
                 throw new BaseException("重复提交");
             }
