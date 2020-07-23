@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
-@ApiModel
+@ApiModel(value = "用户")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class User implements Serializable {
     @ApiModelProperty(value = "用户id")
     private Long id;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "用户名", required = true, example = "fleet")
     private String name;
 
     public Long getId() {
