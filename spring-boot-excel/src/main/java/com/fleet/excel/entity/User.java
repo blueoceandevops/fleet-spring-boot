@@ -2,7 +2,7 @@ package com.fleet.excel.entity;
 
 import com.fleet.excel.annotation.ExcelColumn;
 import com.fleet.excel.annotation.ExcelSheet;
-import com.fleet.excel.value.SexValues;
+import com.fleet.excel.util.value.SexValues;
 
 import java.io.Serializable;
 import java.util.Date;
