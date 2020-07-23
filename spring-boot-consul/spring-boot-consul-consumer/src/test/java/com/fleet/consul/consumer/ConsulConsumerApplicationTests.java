@@ -12,5 +12,4 @@ public class ConsulConsumerApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

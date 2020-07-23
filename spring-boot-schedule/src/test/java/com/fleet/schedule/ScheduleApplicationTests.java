@@ -12,5 +12,4 @@ public class ScheduleApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

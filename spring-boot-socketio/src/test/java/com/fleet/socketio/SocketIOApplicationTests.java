@@ -12,5 +12,4 @@ public class SocketIOApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

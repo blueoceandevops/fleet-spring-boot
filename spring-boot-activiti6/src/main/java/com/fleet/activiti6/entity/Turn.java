@@ -43,5 +43,4 @@ public class Turn {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 }

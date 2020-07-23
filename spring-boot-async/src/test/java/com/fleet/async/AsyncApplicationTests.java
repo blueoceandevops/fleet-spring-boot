@@ -12,5 +12,4 @@ public class AsyncApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

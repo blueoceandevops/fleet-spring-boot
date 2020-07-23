@@ -12,5 +12,4 @@ public class PostgresqlApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

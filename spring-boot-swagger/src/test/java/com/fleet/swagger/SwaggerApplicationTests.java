@@ -12,5 +12,4 @@ public class SwaggerApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -12,5 +12,4 @@ public class MycatMysqlProxyApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

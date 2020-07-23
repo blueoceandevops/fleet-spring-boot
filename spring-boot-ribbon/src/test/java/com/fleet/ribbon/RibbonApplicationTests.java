@@ -12,5 +12,4 @@ public class RibbonApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

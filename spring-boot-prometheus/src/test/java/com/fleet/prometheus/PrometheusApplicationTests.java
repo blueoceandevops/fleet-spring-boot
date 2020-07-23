@@ -12,5 +12,4 @@ public class PrometheusApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

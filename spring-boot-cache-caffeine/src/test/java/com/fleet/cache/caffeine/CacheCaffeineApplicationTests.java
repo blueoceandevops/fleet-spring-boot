@@ -12,5 +12,4 @@ public class CacheCaffeineApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

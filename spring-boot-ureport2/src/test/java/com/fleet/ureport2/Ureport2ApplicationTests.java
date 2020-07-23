@@ -12,5 +12,4 @@ public class Ureport2ApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

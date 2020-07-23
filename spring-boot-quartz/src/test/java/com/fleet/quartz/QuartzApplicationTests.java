@@ -12,5 +12,4 @@ public class QuartzApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

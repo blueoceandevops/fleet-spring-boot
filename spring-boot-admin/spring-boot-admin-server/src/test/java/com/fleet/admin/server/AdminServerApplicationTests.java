@@ -12,5 +12,4 @@ public class AdminServerApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

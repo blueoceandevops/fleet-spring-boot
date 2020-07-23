@@ -12,5 +12,4 @@ public class MustacheApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

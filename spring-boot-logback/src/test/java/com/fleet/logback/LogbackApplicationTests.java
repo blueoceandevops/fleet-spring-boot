@@ -12,5 +12,4 @@ public class LogbackApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -12,5 +12,4 @@ public class WebsocketApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

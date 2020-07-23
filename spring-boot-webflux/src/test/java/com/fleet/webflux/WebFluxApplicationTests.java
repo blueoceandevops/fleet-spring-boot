@@ -12,5 +12,4 @@ public class WebFluxApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

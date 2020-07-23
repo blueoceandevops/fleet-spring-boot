@@ -12,5 +12,4 @@ public class ArtemisApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

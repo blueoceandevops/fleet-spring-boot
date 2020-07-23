@@ -37,5 +37,4 @@ public class EnvironmentProviderImpl implements EnvironmentProvider {
     public String getCategoryId() {
         return null;
     }
-
 }

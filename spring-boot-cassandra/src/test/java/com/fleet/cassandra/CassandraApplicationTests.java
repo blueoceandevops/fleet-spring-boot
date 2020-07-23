@@ -12,5 +12,4 @@ public class CassandraApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

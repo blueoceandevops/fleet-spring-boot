@@ -12,5 +12,4 @@ public class DatawayApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

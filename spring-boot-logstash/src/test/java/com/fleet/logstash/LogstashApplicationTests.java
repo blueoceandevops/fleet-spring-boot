@@ -12,5 +12,4 @@ public class LogstashApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

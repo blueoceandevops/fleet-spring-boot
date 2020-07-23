@@ -12,5 +12,4 @@ public class ValidatorApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

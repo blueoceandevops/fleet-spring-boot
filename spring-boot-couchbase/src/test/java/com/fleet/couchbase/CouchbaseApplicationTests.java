@@ -12,5 +12,4 @@ public class CouchbaseApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -12,5 +12,4 @@ public class LiquibaseApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

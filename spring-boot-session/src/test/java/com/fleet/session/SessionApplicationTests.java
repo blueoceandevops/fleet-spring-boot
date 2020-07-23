@@ -12,5 +12,4 @@ public class SessionApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -12,5 +12,4 @@ public class BeetlApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

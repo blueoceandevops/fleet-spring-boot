@@ -12,5 +12,4 @@ public class CacheEhcacheApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

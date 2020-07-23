@@ -12,5 +12,4 @@ public class ApidocApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

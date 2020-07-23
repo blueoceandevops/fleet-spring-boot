@@ -12,5 +12,4 @@ public class Uflo2ApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

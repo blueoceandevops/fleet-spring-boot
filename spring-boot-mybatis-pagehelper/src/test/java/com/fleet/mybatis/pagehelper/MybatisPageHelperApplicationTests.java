@@ -12,5 +12,4 @@ public class MybatisPageHelperApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

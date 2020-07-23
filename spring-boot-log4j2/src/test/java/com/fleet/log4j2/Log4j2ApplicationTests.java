@@ -12,5 +12,4 @@ public class Log4j2ApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

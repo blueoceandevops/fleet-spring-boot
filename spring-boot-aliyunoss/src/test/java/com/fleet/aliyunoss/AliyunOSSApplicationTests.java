@@ -12,5 +12,4 @@ public class AliyunOSSApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

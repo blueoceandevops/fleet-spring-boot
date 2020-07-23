@@ -12,5 +12,4 @@ public class JsoupApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

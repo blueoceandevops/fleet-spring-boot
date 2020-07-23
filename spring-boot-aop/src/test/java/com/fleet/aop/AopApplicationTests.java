@@ -12,5 +12,4 @@ public class AopApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

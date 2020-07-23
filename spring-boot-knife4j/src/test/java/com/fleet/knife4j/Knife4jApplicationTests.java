@@ -12,5 +12,4 @@ public class Knife4jApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

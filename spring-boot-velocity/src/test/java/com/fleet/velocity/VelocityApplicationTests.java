@@ -12,5 +12,4 @@ public class VelocityApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

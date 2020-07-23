@@ -12,5 +12,4 @@ public class MSOApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

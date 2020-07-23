@@ -12,5 +12,4 @@ public class UndertowApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

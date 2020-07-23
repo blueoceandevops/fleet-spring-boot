@@ -12,5 +12,4 @@ public class ActivemqApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

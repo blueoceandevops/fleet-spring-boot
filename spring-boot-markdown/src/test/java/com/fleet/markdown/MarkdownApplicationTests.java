@@ -12,5 +12,4 @@ public class MarkdownApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

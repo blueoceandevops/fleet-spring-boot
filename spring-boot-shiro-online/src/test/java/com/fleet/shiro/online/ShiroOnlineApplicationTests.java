@@ -12,5 +12,4 @@ public class ShiroOnlineApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -12,5 +12,4 @@ public class CacheRedisApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

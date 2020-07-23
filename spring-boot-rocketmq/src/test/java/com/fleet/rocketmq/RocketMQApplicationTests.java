@@ -12,5 +12,4 @@ public class RocketMQApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

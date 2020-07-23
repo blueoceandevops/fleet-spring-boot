@@ -12,5 +12,4 @@ public class SecurityApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

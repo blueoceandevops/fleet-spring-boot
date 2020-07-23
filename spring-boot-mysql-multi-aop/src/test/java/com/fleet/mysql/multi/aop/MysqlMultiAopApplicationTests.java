@@ -12,5 +12,4 @@ public class MysqlMultiAopApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }
