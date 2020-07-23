@@ -11,13 +11,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger2
 @Configuration
+@EnableSwagger2
 public class SwaggerConfig {
 
     @Bean
     public Docket docket() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.withClassAnnotation(Api.class)).apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).groupName("用户模块").select().apis(RequestHandlerSelectors.withClassAnnotation(Api.class)).apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
     }
 
     private ApiInfo apiInfo() {
