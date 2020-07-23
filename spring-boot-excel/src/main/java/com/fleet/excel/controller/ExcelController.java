@@ -28,7 +28,7 @@ public class ExcelController {
             return null;
         }
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
-        if (!suffix.equals("xls") && !suffix.equals("xlsx")) {
+        if (!"xls".equals(suffix) && !"xlsx".equals(suffix)) {
             return null;
         }
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
@@ -56,8 +56,8 @@ public class ExcelController {
         excelUtil.export("用户", list, os);
     }
 
-    @RequestMapping("/exportByTemplate")
-    public void exportByTemplate(HttpServletResponse response) throws Exception {
+    @RequestMapping("/temp")
+    public void temp(HttpServletResponse response) throws Exception {
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
 
         response.setHeader("Content-disposition", "attachment;filename=" + new String("用户.xls".getBytes(), StandardCharsets.ISO_8859_1));
@@ -74,6 +74,6 @@ public class ExcelController {
             user.setIdNo("20201918");
             list.add(user);
         }
-        excelUtil.exportByTemplate(list, os);
+        excelUtil.temp(list, os);
     }
 }

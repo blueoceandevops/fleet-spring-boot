@@ -46,7 +46,7 @@ public class ExcelApplicationTests {
     }
 
     @Test
-    public void exportByTemplate() throws Exception {
+    public void temp() throws Exception {
         List<User> list = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             User user = new User();
@@ -59,7 +59,7 @@ public class ExcelApplicationTests {
         }
         FileOutputStream fos = new FileOutputStream("D:\\test.xls");
         ExcelUtil<User> excelUtil = new ExcelUtil<>(User.class);
-        excelUtil.exportByTemplate(list, fos);
+        excelUtil.temp(list, fos);
         System.out.println("----执行完毕----");
     }
 

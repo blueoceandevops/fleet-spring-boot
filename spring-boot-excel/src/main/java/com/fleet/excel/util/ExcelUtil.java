@@ -492,7 +492,7 @@ public class ExcelUtil<T> {
     /**
      * 导出 excel 文件(按照模板导出)
      */
-    public void exportByTemplate(List<T> list, OutputStream os) throws Exception {
+    public void temp(List<T> list, OutputStream os) throws Exception {
         String template = "";
         int sheetAt = 0;
         int headAt = 0;
