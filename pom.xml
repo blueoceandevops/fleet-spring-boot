@@ -53,6 +53,7 @@
         <module>spring-boot-actuator</module>
         <module>spring-boot-admin</module>
         <module>spring-boot-swagger</module>
+        <module>spring-boot-knife4j</module>
         <module>spring-boot-apidoc</module>
         <module>spring-boot-async</module>
         <module>spring-boot-mail</module>
